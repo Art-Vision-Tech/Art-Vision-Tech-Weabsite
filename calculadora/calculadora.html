@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter"> <!-- Link para referenciar fontes google, fonte 'Inter' -->
+    <link href='https://fonts.googleapis.com/css?family=Libre Caslon Text' rel='stylesheet'> <!-- Link para referenciar fontes google, fonte 'Libre Caslon Text' -->
+    <link rel="stylesheet" href="reset.css"> <!-- Link para o arquivo de reset de estilização -->
+    <link rel="stylesheet" href="style.css"> <!-- Link para o arquivo de estilização -->
+    <title>Calculadora Financeira</title>
+</head>
+
+<body>
+        <main>
+            <div id="div_sobre"> <!-- Coluna da esquerda -->
+                <h1> Calculadora Financeira</h1>
+                <p> Com a Art Vision Tech (AVT), oferecemos a melhor relação custo-benefício do mercado, garantindo que seus
+                    sensores atendam plenamente às necessidades de conservação de obras em seu museu.</p>
+                <h2> Como funciona: </h2>
+                <p> Na primeira tabela, pegamos o valor atual dos seus acervos e subtraímos pelo gasto com a restauração deles, assim você consegue verificar o quanto ganha e perde sem a nossa empresa. Já na segunda, pegamos o valor dos gastos e subtraímos pela efetividade dos sensores no aumento de vida das obras de arte. Assim, contribuindo de forma indireta para a redução dos gastos. Importante lembrar que não somos responsáveis pela redução dos valores e sim pelo monitoramento, onde garantimos que o seu acervo seja cuidado da melhor forma possível dentro de nossos limites.  </p>
+            </div>
+            <div id="div_calculadora"> <!-- Coluna da direita -->
+                <div id="formulario"> <!-- Formulário (esquerda) -->
+                    <h1> Informe-nos sobre sua situação </h1>
+                    <div id="grid_input">
+                        <div class="div_input">
+                            <h3> A instituição que você representa: </h3>
+                            <input type="text" class="input" id="input_instituto" placeholder="Instituição">
+                            <h3> Quantidade de sensores estimadas por região:   </h3>
+                            <input type="text" class="input" id="input_qtdsensor" placeholder="Numero de sensores">
+                        </div>
+                        <div class="div_input">
+                            <h3> Valor do acervo museologico: </h3>
+                            <input type="text" class="input" id="input_valor_museo" placeholder="Valor museologico">
+                            <h3> Gasto com a restauração de acervo museologico: </h3>
+                            <input type="text" class="input" id="input_restauracao_museo" placeholder="Restauração museológico">
+                        </div>
+                        <div class="div_input">
+                            <h3> Valor do acervo bibliográfico: </h3>
+                            <input type="text" class="input" id="input_valor_biblio" placeholder="Valor bibliográfico">
+                            <h3> Gasto com a restauração de acervo bibliográfico: </h3>
+                            <input type="text" class="input" id="input_restauracao_biblio" placeholder="Restauração bibliográfico">
+                        </div>
+                        <div class="div_input">
+                            <h3> Valor do acervo arquivistico: </h3>
+                            <input type="text" class="input" id="input_valor_arquivo" placeholder="Valor arquivistico">
+                            <h3> Gasto com a restauração de acervo arquivistico: </h3>
+                            <input type="text" class="input" id="input_restauracao_arquivo" placeholder="Restauração arquivistico">
+                        </div>
+                    </div>
+                </div>
+                <div class="resultado"> <!-- Saída do programa -->
+                    <h3> Período de manutenção (Semanal / Mensal): </h3>
+                    <select id="opcao_periodo">
+                        <option value="semanal"> Semanal </option>
+                        <option value="mensal"> Mensal </option>
+                    </select>
+                    <button onclick="calculadora()"> Consultar o orçamento </button>
+                </div>
+                <h4 id="mensagem_instituto"></h4>
+                <div class="div_tabela">
+                    <p class="p_resultado" id="resultado1">
+                    </p>
+                    <br><br>
+                    <p class="p_resultado" id="resultado2">
+                    </p>
+                </div>
+                <p> Obs: Com o nosso sistema é estimado uma redução de até 25% no custo total na conservação dos acervos
+                    + os valor total de todos os sensores. </p>
+            </div>
+        </main>
+</body>
+</html>
+<script>
+    function calculadora() {
+        var instituto =  input_instituto.value;
+        var qtd_sensor =  Number(input_qtdsensor.value);
+        var valor_museo = Number(input_valor_museo.value);
+        var restauracao_museo = Number(input_restauracao_museo.value);
+        var valor_biblio = Number(input_valor_biblio.value);
+        var restauracao_biblio = Number(input_restauracao_biblio.value);
+        var valor_arquivo = Number(input_valor_arquivo.value);
+        var restauracao_arquivo = Number(input_restauracao_arquivo.value);
+
+        var sensor_total = qtd_sensor * 150;
+
+        /* Gasto total do cliente sem a nossa empresa */
+
+        var museo_total = valor_museo - restauracao_museo;
+        var biblio_total = valor_biblio - restauracao_biblio; 
+        var arquivo_total = valor_arquivo - restauracao_arquivo;
+
+        /* Gasto total do cliente com a nossa empresa */
+        
+        var sensor_museo = (museo_total * 0.75) + sensor_total;
+        var sensor_biblio = (biblio_total * 0.75) + sensor_total;
+        var sensor_arquivo = (arquivo_total * 0.75) + sensor_total;
+
+
+        mensagem_instituto.innerHTML = `Olá, representante do ${instituto}! `
+
+        resultado1.innerHTML = `
+        <div>
+            <h2> Sem nossa solução </h2>
+            <table id="tabela_cliente">
+            <tr>
+                <th> Acervos </th>
+                <th> Valor acervo (R$) </th>
+                <th> Restauração (R$) </th>
+                <th> Total (R$) </th>
+            </tr>
+            <tr>
+                <td> Museológico </td>
+                <td> ${valor_museo}</td>
+                <td> ${restauracao_museo}</td>
+                <td> ${museo_total}</td>
+            </tr>
+            <tr>
+                <td> Bibliográfico</td>
+                <td> ${valor_biblio}</td>
+                <td> ${restauracao_biblio}</td>
+                <td> ${biblio_total}</td>
+            </tr>
+            <tr>
+                <td> Arquivistico </td>
+                <td> ${valor_arquivo}</td>
+                <td> ${restauracao_arquivo}</td>
+                <td> ${arquivo_total}</td>
+            </tr>
+                </table>
+        </div>` 
+
+    resultado2.innerHTML = `
+        <h2> Com o nossa solução  </h2> 
+        <table id="tabela_cliente">
+        <tr>
+            <th> Acervos </th>
+            <th> Valor acervo (R$)</th>
+            <th> Restauração (R$) </th>
+            <th> Total + Sensores (R$) </th>
+        </tr>
+        <tr>
+            <td> Museológico </td>
+            <td> ${valor_museo}</td>
+            <td> ${restauracao_museo}</td>
+            <td> ${sensor_museo}</td>
+        </tr>
+        <tr>
+            <td> Bibliográfico</td>
+            <td> ${valor_biblio}</td>
+            <td> ${restauracao_biblio}</td>
+            <td> ${sensor_biblio}</td>
+        </tr>
+        <tr>
+            <td> Arquivistico </td>
+            <td> ${valor_arquivo}</td>
+            <td> ${restauracao_arquivo}</td>
+            <td> ${sensor_arquivo}</td>
+        </tr>
+    </table>
+    
+    ` 
+
+
+
+    }
+</script>
