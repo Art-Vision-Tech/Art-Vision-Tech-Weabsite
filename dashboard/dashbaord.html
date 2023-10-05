@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> <!-- Link onde são fornecidos os ícones  -->
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'> <!-- Link para o google fonts, por enquanto estaremos utilizando a fonte 'Inter' -->
+    <link rel="stylesheet" href="sistema_style.css"> <!-- Css padrão para a estilização da parte do sistema do site -->
+    <link rel="stylesheet" href="dashboard_style.css"> <!-- Css padrão para a estilização da parte do dashboard -->
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="header">
+        <div id="perfil">
+            <p> Henrique </p>
+            <img id="perfil-avatar" src="https://cdn-icons-png.flaticon.com/512/3106/3106773.png" alt="Foto de perfil">
+        </div>
+    </div>
+    <div id="sidebar"> <!-- Div que representa o elemento menu  -->
+        <img id="logo" src="logo.png" alt="Logo Museu"> <!-- Imagem da logo do museus cadastrado no sistema -->
+        <div id="sidebar-menu">
+            <a class="active" href="#DASHBOARD"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Dashboard </a>
+            <a href="#Linha do Tempo"> <i class="fa fa-fw fa-solid fa-timeline"></i> Linha do Tempo </a>
+            <a href="#Relátorios"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relátorios </a>
+            <a href="#Ajustes"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
+            <a href="#Sair"> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
+        </div>
+    </div>
+    <div class="rigth-content"> <!-- Seção onde será inserido o conteúdo do sistema-->
+        <div class="container-bg-content"> 
+            <!-- Cabeçalho da div conteúdo, este elemento é opcional -->
+<!--             <div class="container-header"> 
+                <p> <i class="fa fa-fw fa-solid fa-arrow-left"></i> Modelo </p>
+            </div> -->
+            <div class="container-main-content">
+                <h2> Dashboard </h2>
+                <div class="linha">
+                    <!-- Coluna 1 -->
+                    <div class="coluna">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>Galeria de arte 2° andar - norte</h3>
+                                <div class="container-card">
+                                    <div class="card-img"></div>
+                                    <div class="card-texto">
+                                        <p>Média de temperatura: 22°</p>
+                                        <p>Média de umidade: 56%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="status-card ok">
+                                <p>os sensores estão funcionando</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>Sala de escrituras 1º andar - leste</h3>
+                                <div class="container-card">
+                                    <div class="card-img"></div>
+                                    <div class="card-texto">
+                                        <p>Média de temperatura: 36°</p>
+                                        <p>Média de umidade: 67%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="status-card erro">
+                                <p>Problema de conectvidade, manutenção necessária</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>Sala de esculturas 2º andar - sul</h3>
+                                <div class="container-card">
+                                    <div class="card-img"></div>
+                                    <div class="card-texto">
+                                        <p>Média de temperatura: 36°</p>
+                                        <p>Média de umidade: 67%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="status-card atencao">
+                                <p>Carga de energia baixa</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Coluna 2 -->
+                    <div class="coluna">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>Sala de relíquias  1º andar - oeste</h3>
+                                <div class="container-card">
+                                    <div class="card-img"></div>
+                                    <div class="card-texto">
+                                        <p>Média de temperatura: 22°</p>
+                                        <p>Média de umidade: 56%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="status-card ok">
+                                <p>os sensores estão funcionando</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
