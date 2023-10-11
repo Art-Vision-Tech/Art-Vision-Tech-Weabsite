@@ -20,11 +20,18 @@
         <h1 class="titulo">Login</h1>
 
         <div class="campos">
-            <input type="number" id="input_CPF" max="11" placeholder="CPF">
+            <input type="number" id="input_CPF" min="11" max="11" placeholder="CPF">
         </div>
+        <div style="color: red;" id="div_mensagem"></div>
 
         <div class="campos">
-            <input type="password" id="input_senha" placeholder="Senha">
+            <input type="password" id="input_senha" placeholder="Senha"> 
+            <div style="color: red;">  <div id="div_mensagem"></div> 
+            <div style="color: rgb(0, 255, 13);">  <div id="div_BemVindo"></div>
+    
+               
+
+            </div>
         </div>
 
         <button onclick="Entrar()" class="botao">Entrar</button>
@@ -35,30 +42,30 @@
             </a>
         </div>
     </div>
+    
 </body>
 
 </html>
 <script>
-    var CPF;
-    var Senha;
+    
 
     function Entrar() {
         CPF = input_CPF.value;
         Senha = input_senha.value;
-        if (CPF.length !== 11 ||  Senha.length < 8) {
-            alert("CPF ou Senha inválidos. Por favor, tente novamente");
-        } else {
-            alert("CPF e Senha válidos. Realizando autenticação...");
-            Logar();
-        }
+        if (CPF.length != 11){
+         div_mensagem.innerHTML ="CPF invalido";
+         }else{
+            div_mensagem.innerHTML =" "
+         }
+        
+        if (Senha.length < 8) {
+            div_mensagem.innerHTML= "A senha deve conter no minimo oito caracteres"
+    } else {
+        div_BemVindo.innerHTML= "Logado com sucesso"
     }
 
-    function Logar() {
-        if (CPF == '012345678901' || Senha == 'senha123') {
-            alert("Login bem-sucedido!");
-        } else {
-            alert("Falha de login, verifique os dados inseridos e tente novamente!");
-        }
+
+
         /*if (CPF !== CPF_Usuario || Senha !== SENHA_Usuario) {
             alert("Falha de login, verifique os dados inseridos e tente novamente!");
         } else {

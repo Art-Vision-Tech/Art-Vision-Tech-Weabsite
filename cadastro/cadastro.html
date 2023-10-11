@@ -1,55 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela de Cadastro</title>
     <link rel="stylesheet" href="styles_cadastro.css">
 </head>
+
 <body>
     <div class="quadro1">
-        <h2 class="titulo1">Bem-Vindo!</h2> 
+        <h2 class="titulo1">Bem-Vindo!</h2>
 
-        <h3 class="titulo1">A  ArtVision Tech Software</h3>
+        <h3 class="titulo1">A ArtVision Tech Software</h3>
 
     </div>
     <div class="quadro">
         <h1 class="titulo">Registre-se</h1>
 
-    <div class="campos">
-        <input type="text" name="nome" placeholder="Nome">
-    </div>
+        <div class="campos">
+            <input type="text" id="input_nome" placeholder="Nome">
+        </div>
 
-    <div class="campos">
-        <input type="email" name="email" placeholder="Email">
-    </div>
+        <div id="div_nome" style="color: red;"></div> <br>
 
-    <div class="campos">
-        <input type="number" name="CPF" max="11" placeholder="CPF"> 
-    </div>
+        <div class="campos">
+            <input type="email" id="input_email" placeholder="Email">
+        </div>
 
-    <div class="campos">
-        <input type="text" name="empresa" placeholder="Empresa">
-    </div>
+        <div id="div_email" style="color: red;"></div> <br>
 
-    <div class="campos">
-        <input type="password" name="senha" placeholder="Senha">
-    </div>
+        <div class="campos">
+            <input type="number" id="input_CPF" placeholder="CPF">
+        </div>
 
-    <button class="botao">Criar conta</button>
-    <div class="card-footer">
-        <a href="#" class="senha">Esqueceu a senha?</a> <br>
-        <a href="login.html" class="login">Já possui uma conta? Login.</a>
-    
-    
-    </div>
+        <div id="div_cpf" style="color: red;"></div> <br>
+
+        <div class="campos">
+            <input type="text" id="input_empresa" placeholder="Empresa">
+        </div>
+
+        <div class="campos">
+            <input type="password" id="input_senha" placeholder="Senha">
+        </div>
+
+        <div id="div_senha" style="color: red;"></div>
+        <div id="div_BemVindo" style="color: rgb(0, 255, 21);"></div>
+
+        <button onclick="validar()" class="botao">Criar conta</button>
+        <div class="card-footer">
+            <a href="login.html" class="login">Já possui uma conta? Login.</a>
+            <a href="#" class="senha">Esqueceu a senha?</a>
+
+
+
+        </div>
     </div>
 </body>
+
 </html>
 <script>
-var bom= dia
+    function validar() {
+        var nome = input_nome.value
+        var email = input_email.value
+        var cpf = input_CPF.value
+        var empresa = input_empresa.value
+        var senha = input_senha.value
+        var nome_especial =
+            nome.indexOf('1') >= 0 || nome.indexOf('2') >= 0 ||
+            nome.indexOf('3') >= 0 || nome.indexOf('4') >= 0 ||
+            nome.indexOf('5') >= 0 || nome.indexOf('7') >= 0 ||
+            nome.indexOf('8') >= 0 || nome.indexOf('9') >= 0 ||
+            nome.indexOf('0') >= 0 || nome.indexOf('!') >= 0 ||
+            nome.indexOf('@') >= 0 || nome.indexOf('6') >= 0 ||
+            nome.indexOf('#') >= 0 || nome.indexOf('%') >= 0 ||
+            nome.indexOf('¨') >= 0 || nome.indexOf('&') >= 0 ||
+            nome.indexOf('*') >= 0 || nome.indexOf('-') >= 0 ||
+            nome.indexOf('(') >= 0 || nome.indexOf('_') >= 0 ||
+            nome.indexOf(')') >= 0 || nome.indexOf('+') >= 0 ||
+            nome.indexOf('$') >= 0 || nome.indexOf('=') >= 0 ||
+            nome.indexOf('ç') >= 0 || nome.indexOf(',') >= 0 ||
+            nome.indexOf('{') >= 0 || nome.indexOf(':') >= 0 ||
+            nome.indexOf('}') >= 0 || nome.indexOf(';') >= 0 ||
+            nome.indexOf('[') >= 0 || nome.indexOf('|') >= 0 ||
+            nome.indexOf('/') >= 0 || nome.indexOf('º') >= 0 ||
+            nome.indexOf('?') >= 0 || nome.indexOf('°') >= 0;
+
+
+        var emailValido = email.endsWith('@gmail.com') ||
+            email.endsWith('@hotmail.com') ||
+            email.endsWith('@outlook.com') ||
+            email.endsWith('@sptech.school')
+
+        if (nome_especial) {
+            div_nome.innerHTML = 'O Nome deve conter apenas letras <br>'
+        } else{
+            div_nome.innerHTML =" "
+        }
+        if (emailValido)
+            div_email.innerHTML = ''
+        else { div_email.innerHTML = 'Digite um endereço de email valido ' }
+
+
+        if (cpf.length != 11) {
+            div_cpf.innerHTML = 'insira um CPF válido'
+        } else {
+            div_cpf.innerHTML = ` `
+        }
 
 
 
+        if (senha.length < 8) {
+            div_senha.innerHTML = 'A senha deve conter pelo menos oito digitos'
+        } else {
+            div_BemVindo.innerHTML = 'Cadastro bem sucedido '
+        }
 
+    }
 </script>
