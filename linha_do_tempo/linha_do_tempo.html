@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link rel="stylesheet" href="sidebar_nav.css">
+    <link rel="stylesheet" href="linha_do_tempo.css">
+    <link rel="stylesheet" href="sistema_style.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="header">
+        <div id="perfil">
+            <p> Henrique </p>
+            <img id="perfil-avatar" src="https://cdn-icons-png.flaticon.com/512/3106/3106773.png" alt="Foto de perfil">
+        </div>
+    </div>
+    <div id="sidebar">
+        <img id="logo" src="logo.png" alt="Logo Museu">
+        <div id="sidebar-menu">
+            <a class="active" href="#DASHBOARD"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Dashboard </a>
+            <a href="#Linha do Tempo"> <i class="fa fa-fw fa-solid fa-timeline"></i> Linha do Tempo </a>
+            <a href="#Relátorios"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relátorios </a>
+            <a href="#Ajustes"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
+            <a href="#Sair"> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
+        </div>
+    </div>
+    <div class="rigth-content">
+        <div class="container-bg-content">
+            <div class="container-header">
+                <p> <i class="fa fa-fw fa-solid fa-arrow-left" style="cursor: pointer;"></i> Linha do tempo </p>
+            </div>
+            <div class="container-main-content">
+                <ul class="timeline">
+                    <li class="evento" >
+                        <div class="timeline-status atualizado"></div>
+                        <p> Manutenção de equipamento realizado no sensor 1 </p>
+                        <p> Galeria de arte 2º andar </p>
+                        <p> Atualização de software </p>
+                    </li>
+                    <li class="evento" >
+                        <div class="timeline-status umidade"></div>
+                        <p> Registro de umidade abaixo do normal no sensor de umidade 1 </p>
+                        <p> Galeria de arte 2 andar </p>
+                        <p> Verificar o umidificador </p>
+                    </li>
+                    <li class="evento" >
+                        <div class="timeline-status temperatura"></div>
+                        <p> Registro de temperatura acima do normal no 
+                            sensor de temperatura 2 </p>
+                        <p> Sala da esculturas 2 andar </p>
+                        <p> Verificar ar condicionados </p>
+                    </li>
+                    <li class="evento" >
+                        <div class="timeline-status erro"></div>
+                        <p> Perca do sinal com o o sensor de temperatura 2 </p>
+                        <p> Sala da escritura 1 andar </p>
+                        <p> Queda de energia </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

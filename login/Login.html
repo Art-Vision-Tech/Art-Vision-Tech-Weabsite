@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+    <title>Tela de Login</title>
+    <link rel="stylesheet" href="styles_login.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="quadro1">
+            <div class="texto-quadro1">
+                <h2 class="titulo1">Bem-Vindo!</h2>
+                <p class="titulo2">A ArtVision Tech Software</p>
+            </div>
+        </div>
+        <div class="quadro2">
+            <div class="container-quadro2">
+                <h1 class="titulo">Login</h1>
+                <div class="formulario">
+                    <div class="campos">
+                        <input type="text" id="input_CPF" max="11" placeholder="CPF">
+                    </div>
+                    <div class="campos">
+                        <input type="password" id="input_senha" placeholder="Senha">
+                    </div>
+                </div>
+                <button onclick="Entrar()" class="botao">Entrar</button>
+                <div class="form-footer">
+                    <a href="/cadastro/cadastro.html"
+                        class="registro">Ainda não possui cadastro? <span style="color: #8c2a44;">Registre-se.</span></style>
+                    </a><br>
+                    <a href="#" class="senha">Esqueceu a senha?</a> 
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    var CPF;
+    var Senha;
+
+    function Entrar() {
+        CPF = input_CPF.value;
+        Senha = input_senha.value;
+        if (CPF.length !== 11 ||  Senha.length < 8) {
+            alert("CPF ou Senha inválidos. Por favor, tente novamente");
+        } else {
+            alert("CPF e Senha válidos. Realizando autenticação...");
+            Logar();
+        }
+    }
+
+    function Logar() {
+        if (CPF == '012345678901' || Senha == 'senha123') {
+            alert("Login bem-sucedido!");
+        } else {
+            alert("Falha de login, verifique os dados inseridos e tente novamente!");
+        }
+        /*if (CPF !== CPF_Usuario || Senha !== SENHA_Usuario) {
+            alert("Falha de login, verifique os dados inseridos e tente novamente!");
+        } else {
+            alert("Login bem-sucedido!");
+        } */
+    }
+</script>
