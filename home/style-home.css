@@ -1,0 +1,162 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.foto-banner{
+    width: 100%;
+}
+
+.index-tecnologia{
+    background-color: rgb(16, 52, 64);
+    width: 100%;
+    height: 400px;
+    border-bottom: 40px solid rgb(255, 255, 255);
+}
+
+.container-geral{
+    margin: 10px 0px;
+    padding: 0px;
+}
+
+
+.texto-geral h4{
+    margin: 0 750px;
+    width: 700px;
+    color: white;     
+}
+
+.texto-geral p{
+    width: 400px;
+    color: white; 
+    padding: 10px; 
+    margin: 0 740px;
+}
+
+.texto-geral h3{
+    width: 90%;  
+    margin: 40px 80px;
+    color: white;  
+}
+
+.titulo{
+    margin: 0 280px;
+    width: 700px;
+    margin-top: 3%;
+    padding: 25px;
+    color: white; 
+}
+
+
+.index-solução{
+    background-color: rgb(244, 245, 249);
+    height: 400px;
+    border-bottom: 0px solid rgb(255, 255, 255);
+}
+
+
+.texto-geral2{
+    margin-top: 5%;
+    align-items: center;
+}
+
+.texto-geral2 h4{
+    width: 90%;  
+    margin: 0px 130px;
+    color: black;
+
+}
+
+.texto-geral2 p{
+    width: 600px;
+    color: black; 
+    padding: 10px; 
+    margin: 0px 120px;
+}
+
+.container-geral2{
+    margin: -90px 0;
+    display: flex;
+    align-items: center;
+}
+
+.container-geral2 img{
+    width: 44%;
+    margin: 0 40px;
+}
+
+.index-solução h3{
+    width: 40%;
+    align-items: center;
+    margin: 10px 500px;
+    padding: 30px;
+    
+}
+
+.index-porque{
+    width: 1923px;
+    height: 400px;
+    border-bottom: 0px solid rgb(255, 255, 255);
+}
+
+.index-porque h3{
+    margin: 0 280px;
+    width: 700px;
+    margin-top: 3%;
+    padding: 25px;
+    color: white; 
+}
+
+.texto-geral3 p{
+    
+    background-color: rgb(86, 5, 25);
+    width: 600px;
+    color: white; 
+    padding: 12px; 
+    margin: 10px 680px;
+}
+
+.img-diagrama{
+    align-items: center;
+    margin: 20px 125px ;
+    width: 1080px;
+}
+
+.index-diagrama h3{
+    margin: 60px 450px;
+    width: 700px;
+}
+
+.texto-interesse{
+    background-color:  rgb(16, 52, 64);
+    height: 140px;
+   padding: 40px;
+   width: 100%;
+   border-bottom: 40px solid rgb(255, 255, 255);
+}
+
+.texto-interesse h3{
+color: white;
+
+}
+
+.texto-interesse p{
+    padding:20px ;
+    color: white;
+}
+
+.texto-interesse button{
+    color: white;
+    width: 200px;
+    height: 40px;
+    border-radius: 4px;
+    background: #8C2A44;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.titulo-footer{
+    display: flex;
+    padding: 45px;
+}
+

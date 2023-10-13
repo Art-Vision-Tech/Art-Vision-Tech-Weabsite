@@ -5,6 +5,10 @@
 
 /* Estilização da página */
 
+*{
+    font-family:Arial, Helvetica, sans-serif;
+}
+
 body {
     background-color: #103440;
     background-image: url(museu_transparente.png); 

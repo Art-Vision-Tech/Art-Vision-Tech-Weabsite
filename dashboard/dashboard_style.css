@@ -1,3 +1,7 @@
+*{
+    font-family:Arial, Helvetica, sans-serif;
+}
+
 .card {
     width: 350px;
     margin-top: 20px;

@@ -45,6 +45,10 @@
   width: 3% 10%;
 }
 
+.container-nossaMissao{
+  width: 100%;
+}
+
 .background-nossaMissao{
   background-color: rgb(16, 52, 64);
   width: 1920px;
@@ -56,10 +60,12 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin: 0 -150px ;
 }
 
-.texto-nossaMissao{
-  width: 50px;
+.alinhamento-nossaMissao p{  
+  width: 400px;
+  margin: 0 -400px;
 }
 
 .imagem-nossaMissao{
@@ -149,6 +155,14 @@
   display: flex;
 }
 
+.container-nossaVisao p{
+  margin: 0 -80px;
+}
+
+.container-nossaVisao h2{
+  margin: 0 -70px;
+}
+
 .foto5-PG-sobre{
   width: 500px;
   height: 500px;
@@ -186,6 +200,7 @@ box-shadow: 4px 8px 0px 0px #40131F;
 width: 1800px;
 height: 400px;
 flex-shrink: 0;
+border-bottom: 40px solid rgb(255, 255, 255);
 }
 
 .texto-registrar{
@@ -208,8 +223,8 @@ line-height: normal;
 .foto-redonda{
   width: 250px;
   height: 250px;
-  margin: 15% 0;
-  margin-left: 300px;
+  margin: 15% 1000px;
+  margin-left: 60px;
 }
 
 
