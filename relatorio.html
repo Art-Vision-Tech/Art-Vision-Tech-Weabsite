@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Link onde são fornecidos os ícones  -->
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <!-- Link para o google fonts, por enquanto estaremos utilizando a fonte 'Inter' -->
+    <link rel="stylesheet" href="/css/sistema_style.css"> <!-- Css padrão para a estilização da parte do sistema do site -->
+    <link rel="stylesheet" href="/css/relatorio_mstyle.css"> <!-- Css padrão para a estilização da parte do sistema do site -->
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="header">
+        <div id="perfil">
+            <p> Henrique </p>
+            <img id="perfil-avatar" src="https://cdn-icons-png.flaticon.com/512/3106/3106773.png" alt="Foto de perfil">
+        </div>
+    </div>
+    <div id="sidebar"> <!-- Div que representa o elemento menu  -->
+        <img id="logo" src="/img/logo_museu.png" alt="Logo Museu">
+        <!-- Imagem da logo do museus cadastrado no sistema -->
+        <div id="sidebar-menu">
+            <a href="#DASHBOARD"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Dashboard </a>
+            <a href="#Linha do Tempo"> <i class="fa fa-fw fa-solid fa-timeline"></i> Linha do Tempo </a>
+            <a class="active" href="#Relatorios"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relátorios </a>
+            <a href="#Ajustes"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
+            <a href="#Sair"> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
+        </div>
+    </div>
+    <div class="rigth-content"> <!-- Seção onde será inserido o conteúdo do sistema-->
+        <div class="container-bg-content">
+            <div class="container-main-content">
+                <h2> Relatório </h2>
+                <div class="container-relatorio">
+                    <div class="grafico-relatorio">
+                        <h3> Registros </h3>
+                        <div class="divider"></div>
+                        <div style="height: 200px; width: 300px;">
+                            <canvas id="myChart"></canvas>
+                          </div>
+                          
+                          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                          
+                          <script>
+                            const ctx = document.getElementById('myChart');
+                          
+                            new Chart(ctx, {
+                              type: 'pie',
+                              data: {
+                                labels: ['Funcional', 'Problemas'],
+                                datasets: [{
+                                  data: [3, 1],
+                                  backgroundColor: [
+                                    'green',
+                                    'red',
+                                  ],
+                                  borderWidth: 1
+                                }]
+                              },
+                              options: {
+                                legend: {
+                                    position: 'right',
+                                }
+                              }
+                              
+                            });
+                          </script>
+                    </div>
+                    <div class="lista-avaliacao">
+                        <div class="lista-header">
+                            <p> Lista de avaliação </p>
+                        </div>
+                        <div class="lista-componente">
+                            <i class="fa fa-fw fa-solid fa-check"></i>
+                            <p> A variação de temperatura e umidade manteve-se nos valores previstos durante um grande
+                                período do dia de hoje </p>
+                        </div>
+                        <div class="lista-componente">
+                            <i class="fa fa-fw fa-solid fa-check"></i>
+                            <p> Os sensores estiveram funcionando durante boa parte do período programado </p>
+                        </div>
+                        <div class="lista-componente">
+                            <i class="fa fa-fw fa-solid fa-check"></i>
+                            <p> A conexão se montável estável por um grande período de tempo </p>
+                        </div>
+                        <div class="lista-componente">
+                            <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
+                            <p> Foi detectado uma possível interrupção em um sensor </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

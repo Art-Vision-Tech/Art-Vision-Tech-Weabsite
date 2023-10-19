@@ -1,0 +1,62 @@
+.container-relatorio {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.grafico-relatorio {
+    height: 280px;
+    width: 20%;
+    background-color: white;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.grafico-relatorio h3 {
+    color: #0B1354;
+    margin: 20px 20px 5px 20px;
+}
+
+.grafico-relatorio img {
+    margin: 20px 20px 5px 20px;
+}
+
+.divider {
+    border-top: 1px solid #ECECEC;
+    width: 100%;
+}
+
+.lista-avaliacao {
+    height: 65vh;
+    width: 80%;
+    background-color:whitesmoke;
+}
+
+.lista-header {
+    height: 50px;
+    background-color: #8C2A44;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.lista-header p {
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+.lista-componente {
+    height: 70px;
+    gap: 40px;
+    font-size: 12px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    border: 1px solid #D9D9D9;
+}
+
+.lista-componente i {
+    font-size: 20px;
+    margin-left: 20px;
+    color: green;
+}
