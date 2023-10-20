@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Link onde são fornecidos os ícones  -->
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <!-- Link para o google fonts, por enquanto estaremos utilizando a fonte 'Inter' -->
+    <link rel="stylesheet" href="css/sistema_style.css"> <!-- Css padrão para a estilização da parte do sistema do site -->
+    <link rel="stylesheet" href="css/dashboard_sala.css">
+    <!-- Css padrão para a estilização da parte do sistema do site -->
+    <title>Dashboard Sala</title>
+</head>
+
+<body>
+    <div class="header">
+        <div id="perfil">
+            <p> Henrique </p>
+            <img id="perfil-avatar" src="https://cdn-icons-png.flaticon.com/512/3106/3106773.png" alt="Foto de perfil">
+        </div>
+    </div>
+    <div id="sidebar"> <!-- Div que representa o elemento menu  -->
+        <img id="logo" src="/img/logo_museu.png" alt="Logo Museu">
+        <!-- Imagem da logo do museus cadastrado no sistema -->
+        <div id="sidebar-menu">
+            <a class="active" href="#DASHBOARD"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Dashboard </a>
+            <a href="#Linha do Tempo"> <i class="fa fa-fw fa-solid fa-timeline"></i> Linha do Tempo </a>
+            <a href="#Relátorios"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relátorios </a>
+            <a href="#Ajustes"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
+            <a href="#Sair"> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
+        </div>
+    </div>
+    <div class="rigth-content"> <!-- Seção onde será inserido o conteúdo do sistema-->
+        <div class="container-bg-content">
+            <div class="container-main-content">
+                <div class="container-column">
+                    <div class="grafico">
+                        <canvas id="kpi_chart"></canvas>
+                    </div>
+                    <div class="tabela-sensor-container">
+                        <table id="tabela-sensor">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</html>
+
+
+
+<script>
+    const ctx = document.getElementById('kpi_chart').getContext('2d');
+
+    const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['0:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00'],
+            datasets: [
+                {
+                    yAxisID: 'A',
+                    label: 'Temperatura',
+                    data: [18, 20, 19, 17, 19, 21, 23, 22, 25, 26, 25, 28],
+                    borderWidth: 1,
+                    backgroundColor: 'orange',
+                    borderColor: 'orange'
+                },
+                {
+                    yAxisID: 'B',
+                    label: 'UR %',
+                    data: [47, 55, 53, 60, 57, 51, 47, 46, 50, 52, 48, 56],
+                    borderWidth: 1,
+                    backgroundColor: 'blue',
+                    borderColor: 'blue'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                A: {
+                    type: 'linear',
+                    position: 'left',
+                    ticks: { beginAtZero: true, color: 'orange' },
+                    // Hide grid lines, otherwise you have separate grid lines for the 2 y axes
+                    grid: { display: false }
+                },
+                B: {
+                    type: 'linear',
+                    position: 'right',
+                    ticks: { beginAtZero: true, color: 'blue' },
+                    grid: { display: false }
+                },
+                x: { ticks: { beginAtZero: true } }
+            }
+        }
+    });
+</script>

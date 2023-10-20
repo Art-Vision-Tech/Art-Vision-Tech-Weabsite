@@ -20,7 +20,7 @@
     position: relative;
     padding: 30px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     gap: 20px;
     align-items: center;
     border-radius: 20px;

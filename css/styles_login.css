@@ -65,12 +65,10 @@ body{
     border: none;
 }
 
-
 .campos{
     margin-bottom: 30px;
 
 }
-
 
 .campos > input{
     color: #11111399;
@@ -117,25 +115,27 @@ body{
     align-items: center;
     justify-content: center;
     width: 125px;
-    height: 306px;
+    height: auto;
     background-color: #103440;
     border: 1px black solid;
     padding: 100px;
     border-radius: 30px 0px 0px 30px;
     margin-top: 100px;
-    border: none;}
-    .quadro{
+    border: none;
+}
+
+.quadro{
         display: flex;
         flex-direction: column;
         text-align: center;
         align-items: center;
         justify-content: center;
         width: 27%;
-        height: 466px;
+        height: auto;
         background-color: rgb(255, 252, 252);
         border: 1px black solid;
         padding: 20px;
         border-radius: 0px 30px 30px 0px;
         margin-top: 100px;
         border: none;
-    }
+}
