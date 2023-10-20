@@ -1,0 +1,208 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter'; /* Tipo de fonte que vai ser utilizada no site */
+    background-color: whitesmoke;
+}
+
+/* Cabeçalho */
+
+.header {
+    background-color: white;
+    float: right;
+    width: 100%;
+    height: 75px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+}
+
+/* Alinhamento do nome com a foto de perfil */
+
+#perfil {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+    gap: 10px;
+}
+
+/* Estilização do perfil do avatar */
+
+#perfil-avatar {
+    border-radius: 50%;
+    padding: 15px;
+    height: 20px;
+    width: 20px;
+    background-color: gray;
+    vertical-align: middle;
+}
+
+#logo {
+    width: 100%;
+    height: 150px;
+}
+
+/* Menu de navegação lateral */
+
+#sidebar {
+    margin: 0;
+    padding: 0;
+    top: 0;
+    background-color: #103440;
+    position: fixed;
+    height: 100vh;
+}
+
+/* Container do menu de navegação */
+
+#sidebar-menu {
+    margin: 50px 0px;
+    height: 400px;
+}
+
+/* Estilização das opções de navegação */
+
+#sidebar a {
+    margin: 0;
+    display: block;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    font-size: 12px;
+}
+
+/* Efeito de transição de cores do menu */
+
+#sidebar a:hover {
+    background-color: #8C2A44;
+    color: #D9AA1E;
+}
+
+#sidebar a.active {
+    color: #D9AA1E;
+    background-color: #8C2A44;
+}
+
+/* Div para alinhar o Container de conteúdo */
+
+.rigth-content {
+    margin-top: 100px;
+    margin-left: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 90vh;
+}
+
+/* Container onde será apresentado o conteúdo da página */
+
+.container-bg-content {
+    background-color: white;
+    height: 90%;
+    width: 90%;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    overflow-y: auto;
+
+}
+
+
+
+/* Div onde será disponibilizado o conteúdo da página (espaço em branco) */
+
+.container-main-content {
+    padding: 30px;
+    background-color: white;
+}
+
+.container-main-content h1{
+margin-bottom: 20px;
+}
+
+.div-container-menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.div_perfil{
+    justify-content: center;
+    align-items: center;
+}
+.perfil{
+    width: 300px;
+    font-size: 12px;
+}
+.perfil td {
+padding: 5px 0px;
+}
+.botao{
+    background-color: #8C2A44;
+    color: white;
+    border: none;
+    padding: 15px 32px;
+    border-radius: 4px;
+    margin-top: 50px;
+}
+.div_museu{
+    float: right;
+    margin-left: 1px;
+    width: fit-content;
+}
+.museu{
+    width: 300px;
+    font-size: 12px;
+}
+.museu td {
+    padding: 5px 0px;
+    }
+#img_logo{
+    Width: 200px;
+    Height: 200px;
+    Top: 301px;
+    Left: 1486px;
+
+}
+.div_logo {
+    text-align: center;
+    width: fit-content;
+}
+
+  #myTable {
+    border-radius: 6px;
+   margin-top: 40px;
+    width: 75%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+    border-radius: 5px;
+  }
+  
+  #myTable th, #myTable td {
+    text-align: left;
+    padding: 12px;
+  }
+  #myTable tr.header, #myTable tr:hover {
+    background-color: #f1f1f1;}
+  
+#table_intervalo td{
+        padding: 15px 150px;
+        border-radius: 4px;
+        margin-top: 50px;
+        border: 1px solid #ddd;
+        font-size: 18px;
+        border-radius: 5px;
+
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> <!-- Link onde são fornecidos os ícones  -->
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'> <!-- Link para o google fonts, por enquanto estaremos utilizando a fonte 'Inter' -->
+    <link rel="stylesheet" href="css/ajustes_style.css"> <!-- Css padrão para a estilização da parte do sistema do site -->
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="header">
+        <div id="perfil">
+            <p> Henrique </p>
+            <img id="perfil-avatar" src="https://cdn-icons-png.flaticon.com/512/3106/3106773.png" alt="Foto de perfil">
+        </div>
+    </div>
+    <div id="sidebar"> <!-- Div que representa o elemento menu  -->
+        <img id="logo" src="img/logo_museu.png" alt="Logo Museu"> <!-- Imagem da logo do museus cadastrado no sistema -->
+        <div id="sidebar-menu">
+            <a href="#Ajustes"> <i class="fa fa-fw fa-solid fa-gear"></i> Dashboard </a>
+            <a href="#Linha do Tempo"> <i class="fa fa-fw fa-solid fa-timeline"></i> Linha do Tempo </a>
+            <a href="#Relátorios"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relátorios </a>
+            <a class="active" href="#DASHBOARD"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Ajustes </a>
+            <a href="#Sair"> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
+        </div>
+    </div>
+    <div class="rigth-content"> <!-- Seção onde será inserido o conteúdo do sistema-->
+        <div class="container-bg-content"> 
+            <!-- Cabeçalho da div conteúdo, este elemento é opcional -->
+<!--             <div class="container-header"> 
+                <p> <i class="fa fa-fw fa-solid fa-arrow-left"></i> Modelo </p>
+            </div> -->
+            <div class="container-main-content">
+                <h1>Ajustes </h1>
+                <div class="div-container-menu">
+                    <div id="div_perfil">
+                        <h2>Perfil</h2>
+                        <table class="perfil">
+                            <tr>
+                                <td><b>Nome</b></td>
+                                <td>Henrique Mendes da silva</td>
+                            </tr>
+                            <tr>
+                                <td><b>Nome da Instuição</b></td>
+                                <td>Artemis Vintage</td>
+                            </tr>
+                            <tr>
+                                <td><b>Email</b></td>
+                                <td>henrique.silva@gamil.com</td>
+                            </tr>
+                            <tr>
+                                <td><b>Data de regiustro</b></td>
+                                <td>05-06-23  14:24:36</td>
+                            </tr>
+                        </table>
+                        <button class="botao" >Editar perfil</button>
+                    </div>
+                    <div class="div_museu">
+                        <h2>Museu</h2>
+                        <table class="museu">
+                            <tr>
+                                <td><b>Nome</b></td>
+                                <td>Artemis Vintage</td>
+                            </tr>
+                            <tr>
+                                <td><b>Quantidade de Obras</b></td>
+                                <td>42</td>
+                            </tr>
+                            <tr>
+                                <td><b>Numero</b></td>
+                                <td>777</td>
+                            </tr>
+                            <tr>
+                                <td><b>CNPJ</b></td>
+                                <td>75.313.493/0001-19</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="div_logo">
+                    
+                        <img id="img_logo" src="img/logo_museu.png" alt="Logo Museu">
+                        <p id="texto_logo">Logo</p>
+                            
+                    </div>
+                </div>
+            <div>
+                <h2>Lista de sensores</h2>
+                <table id="myTable">
+                    <tr>      
+                        <th>Sensor</th>
+                        <th>Localização</th>
+                        <th>Temp (min)</th>
+                        <th>Temp (max)</th>
+                        <th>Umidade (min)</th>
+                        <th>Umidade (max)</th>
+                    </tr>
+                    <tr>
+                        <td>sensor 1</td>
+                        <td>Galeria de arte, 2 Andar</td>
+                        <td>21</td>                   
+                        <td>26</td>
+                        <td>35%</td>
+                        <td>50%</td>
+                    </tr>
+                    <tr>
+                        <td>sensor 2</td>
+                        <td>Sala de escrituras, 1 Andar</td>
+                        <td>20</td>                   
+                        <td>24</td>
+                        <td>32%</td>
+                        <td>47%</td>
+                    </tr>
+                    <tr>
+                        <td>sensor 3</td>
+                        <td>Sala de esculturas, 2 Andar</td>
+                        <td>24</td>                   
+                        <td>28</td>
+                        <td>40%</td>
+                        <td>60%</td>
+                    </tr>
+                    </table>
+                    <table id="table_intervalo">
+                        <tr>
+                        <th>Intervalo dos regiustros</th>
+                        <td>15 min</td>
+                        </tr>
+                    </table>
+                    
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
