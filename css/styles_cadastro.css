@@ -1,40 +1,53 @@
-* {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+body, html {
+    height: 100%;
 }
 
 body {
-    background-image: url(../img/bg_login.jpeg);
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.70) 100%), url(../img/bg_login.jpeg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 85vh;
+    font-family: 'Inter';
+    margin: 0;
+    padding: 0;
     display: flex;
-    text-align: center;
     align-items: center;
     justify-content: center;
 
 }
 
-.titulo1 {
-    color: rgb(255, 255, 255);
-    width: 300px;
+.texto-quadro1 {
+    justify-content: center;
+    margin: 25% 10%;
+    width: 500px;
 }
 
+.container {
+    height: 80%;
+    width: 60%;
+    display: flex;
+}
+
+.titulo1{
+    color:white;
+    width: fit-content;
+    font-size: 32px;
+    font-weight: bolder;
+    margin: 0;
+}
+
+.titulo2{
+    color: white;
+    width: fit-content;
+    font-size: 14px;
+    margin-top: 10px;
+}
 .quadro1 {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    width: 125px;
-    height: 306px;
+    width: 35%;
     background-color: #103440;
     border: 1px black solid;
-    padding: 100px;
+    padding: 25px;
     border-radius: 30px 0px 0px 30px;
-    margin-top: 100px;
     border: none;
 }
 
@@ -43,10 +56,11 @@ body {
 
 }
 
-.campos>input {
-    color: rgb(130, 89, 89);
+.campos > input{
+    color: #11111399;
     width: 250px;
     height: 30px;
+    border: #11111333 1px solid;
     border-radius: 5px;
     padding: 5px;
     outline: 0;
@@ -61,19 +75,15 @@ body {
     outline: 0;
 }
 
-.quadro {
+.quadro2 {
     display: flex;
-    flex-direction: column;
-    text-align: center;
     align-items: center;
     justify-content: center;
-    width: 27%;
-    height: 466px;
+    width: 65%;
     background-color: rgb(255, 252, 252);
     border: 1px black solid;
     padding: 20px;
     border-radius: 0px 30px 30px 0px;
-    margin-top: 100px;
     border: none;
 }
 
@@ -101,6 +111,11 @@ body {
 
 }
 
+.form-footer {
+    margin-top: 10px;
+    font-size: 12px;
+}
+
 .msgDentro {
     position: absolute;
 }
@@ -124,8 +139,9 @@ body {
     color: red;
     font-size: 13px;
 }
-#div_empresa{
+
+#div_empresa {
     color: red;
-    font-size: 13px; 
+    font-size: 13px;
     text-align: left;
 }

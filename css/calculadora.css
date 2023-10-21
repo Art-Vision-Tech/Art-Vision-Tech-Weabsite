@@ -5,30 +5,30 @@
 
 /* Estilização da página */
 
-*{
-    font-family:Arial, Helvetica, sans-serif;
+* {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
     background-color: #103440;
-    background-image: url(/img/museu_transparente.png); 
+    background-image: url(/img/museu_transparente.png);
     background-position: left bottom;
     background-repeat: no-repeat;
     background-size: cover;
     height: max-content;
-    height: 100vh;
 }
 
 b {
     font-weight: bold;
 }
 
-main { /* Layout do conteúdo principal da página */
+main {
+    /* Layout do conteúdo principal da página */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 0px 20px 0px 20px;
+    margin: 5% 5%;
 }
 
 /* Estilização da seção sobre a calculadora */
@@ -40,7 +40,8 @@ main { /* Layout do conteúdo principal da página */
     width: 25%;
 }
 
-#div_sobre p { /* Estiliza apenas a tag <p> do escopo marcado pelo id 'div_sobre' */
+#div_sobre p {
+    /* Estiliza apenas a tag <p> do escopo marcado pelo id 'div_sobre' */
     font-size: 12px;
     font-family: 'Inter';
     font-weight: 500;
@@ -49,7 +50,8 @@ main { /* Layout do conteúdo principal da página */
     text-align: justify;
 }
 
-#div_sobre h1 { /* Estiliza apenas a tag <h1> do escopo marcado pelo id 'div_sobre' */
+#div_sobre h1 {
+    /* Estiliza apenas a tag <h1> do escopo marcado pelo id 'div_sobre' */
     font-family: 'Libre Caslon Text';
     font-weight: bold;
     font-size: 28px;
@@ -61,12 +63,12 @@ main { /* Layout do conteúdo principal da página */
     font-size: 24px;
 }
 
-/* Estilização da seção dos campos da calculadora */ 
+/* Estilização da seção dos campos da calculadora */
 
 #div_calculadora {
     background-color: white;
     padding: 30px;
-    width: 60%;
+    width: 50%;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.30);
     display: grid;
     align-items: center;
@@ -79,6 +81,7 @@ main { /* Layout do conteúdo principal da página */
     margin-bottom: 25px;
     color: #103440;
 }
+
 #div_calculadora h3 {
     font-family: 'Inter';
     font-weight: 600;
@@ -94,7 +97,7 @@ main { /* Layout do conteúdo principal da página */
 #grid_input {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px; 
+    gap: 10px;
 }
 
 .div_input {
@@ -105,14 +108,6 @@ main { /* Layout do conteúdo principal da página */
     margin: 5px 0 5px 0px;
     padding: 5px 11px;
     display: inline-block;
-}
-
-#i_real {
-    font-family: 'Libre Caslon Text';
-    padding: 5px 11px;
-    background-color: #8C2A44;
-    color: white;
-    text-align: center;
 }
 
 button {
@@ -128,19 +123,6 @@ button {
     margin-bottom: 15px;
 }
 
-
-#div_total { 
-    width: 40%;
-    text-align: center;
-    padding: 30px;
-    color: #D9AA1E; /* Fração a qual separada cada canto da image */
-    border-image-slice: 250 325 312 237;
-    border-image-width: 20px 20px 20px 20px; 
-    border-image-outset: 0px 0px 0px 0px;
-    border-image-repeat: stretch stretch; /* Prioridade que especifica como a imagem irá se repitir, no caso ela será prolongada (esticada)*/
-    border-image-source: url(frame2.png); /* Image utilizada para a borda */
-    margin: auto;
-}
 
 #div_total h1 {
     font-family: 'Libre Caslon Text';
@@ -169,9 +151,10 @@ button {
     font-size: 8px;
     display: flex;
     margin-bottom: 30px;
-    gap: 50px;
+    gap: 20px;
 }
-.div_tabela h2{
+
+.div_tabela h2 {
     font-family: 'Inter';
     margin: 20px 0px;
     font-size: 20px;
@@ -212,10 +195,12 @@ button {
     width: 100%;
 }
 
-#tabela_cliente td, #tabela_cliente th {
+#tabela_cliente td,
+#tabela_cliente th {
     border: 1px solid #ddd;
     padding: 8px;
 }
+
 #tabela_cliente tr:nth-child(even) {
     background-color: #f2f2f2;
 }

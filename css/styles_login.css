@@ -1,8 +1,9 @@
-body, html {
+body,
+html {
     height: 100%;
 }
 
-body{
+body {
     background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.70) 100%), url(../img/bg_login.jpeg);
     background-size: cover;
     background-position: center;
@@ -13,6 +14,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Inter';
 }
 
 .container {
@@ -27,22 +29,22 @@ body{
     width: 500px;
 }
 
-.titulo1{
-    color:white;
+.titulo1 {
+    color: white;
     width: fit-content;
     font-size: 32px;
     font-weight: bolder;
     margin: 0;
 }
 
-.titulo2{
+.titulo2 {
     color: white;
     width: fit-content;
     font-size: 14px;
     margin-top: 10px;
 }
 
-.quadro1{
+.quadro1 {
     width: 35%;
     background-color: #103440;
     border: 1px black solid;
@@ -51,7 +53,7 @@ body{
     border: none;
 }
 
-.quadro2{
+.quadro2 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,13 +66,13 @@ body{
 }
 
 
-.campos{
+.campos {
     margin-bottom: 30px;
 
 }
 
 
-.campos > input{
+.campos>input {
     color: #11111399;
     width: 250px;
     height: 30px;
@@ -80,7 +82,7 @@ body{
     outline: 0;
 }
 
-.botao{
+.botao {
     color: rgb(255, 255, 255);
     width: 265px;
     height: 36px;
@@ -98,22 +100,24 @@ body{
 }
 
 
-.senha{
+.senha {
     color: rgb(153, 0, 0);
     text-decoration: none;
     border: none;
 }
 
-.registro{
+.registro {
     color: rgb(85, 85, 85);
-    text-decoration:dashed ;
+    text-decoration: dashed;
 }
-#div_cpf{
+
+#div_cpf {
     color: red;
-font-size: 13px;
+    font-size: 13px;
 
 }
-#div_senha{
+
+#div_senha {
     color: red;
     font-size: 13px;
 }
