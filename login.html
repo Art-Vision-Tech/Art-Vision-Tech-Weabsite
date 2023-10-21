@@ -23,17 +23,19 @@
                 <div class="formulario">
                     <div class="campos">
                         <input type="text" id="input_CPF" max="11" placeholder="CPF">
+                        <div id="div_cpf"></div>
                     </div>
                     <div class="campos">
                         <input type="password" id="input_senha" placeholder="Senha">
+                        <div id="div_senha"></div>
                     </div>
                 </div>
                 <button onclick="Entrar()" class="botao">Entrar</button>
                 <div class="form-footer">
-                    <a href="/cadastro/cadastro.html"
-                        class="registro">Ainda não possui cadastro? <span style="color: #8c2a44;">Registre-se.</span></style>
+                    <a href="/cadastro/cadastro.html" class="registro">Ainda não possui cadastro? <span
+                            style="color: #8c2a44;">Registre-se.</span></style>
                     </a><br>
-                    <a href="#" class="senha">Esqueceu a senha?</a> 
+
                 </div>
             </div>
         </div>
@@ -42,30 +44,23 @@
 
 </html>
 <script>
-    var CPF;
-    var Senha;
+
 
     function Entrar() {
         CPF = input_CPF.value;
         Senha = input_senha.value;
-        if (CPF.length !== 11 ||  Senha.length < 8) {
-            alert("CPF ou Senha inválidos. Por favor, tente novamente");
-        } else {
-            alert("CPF e Senha válidos. Realizando autenticação...");
-            Logar();
-        }
-    }
 
-    function Logar() {
-        if (CPF == '012345678901' || Senha == 'senha123') {
-            alert("Login bem-sucedido!");
+        if (CPF.length != 11) {
+            div_cpf.innerHTML = "CPF invalido";
         } else {
-            alert("Falha de login, verifique os dados inseridos e tente novamente!");
+            div_cpf.innerHTML = " "
         }
-        /*if (CPF !== CPF_Usuario || Senha !== SENHA_Usuario) {
-            alert("Falha de login, verifique os dados inseridos e tente novamente!");
+
+        if (Senha.length < 8) {
+            div_senha.innerHTML = "A senha deve conter no minimo oito caracteres"
         } else {
-            alert("Login bem-sucedido!");
-        } */
+            div_senha.innerHTML = " "
+        }
+
     }
 </script>

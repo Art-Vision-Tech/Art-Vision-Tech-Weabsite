@@ -108,4 +108,12 @@ body{
     color: rgb(85, 85, 85);
     text-decoration:dashed ;
 }
+#div_cpf{
+    color: red;
+font-size: 13px;
 
+}
+#div_senha{
+    color: red;
+    font-size: 13px;
+}

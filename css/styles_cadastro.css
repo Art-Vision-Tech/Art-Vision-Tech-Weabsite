@@ -1,10 +1,10 @@
-*{
+* {
     margin: 0;
     padding: 0;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-body{
+body {
     background-image: url(../img/bg_login.jpeg);
     background-size: cover;
     background-position: center;
@@ -17,12 +17,12 @@ body{
 
 }
 
-.titulo1{
-    color:rgb(255, 255, 255);
+.titulo1 {
+    color: rgb(255, 255, 255);
     width: 300px;
 }
 
-.quadro1{
+.quadro1 {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -38,12 +38,12 @@ body{
     border: none;
 }
 
-.campos{
+.campos {
     margin-bottom: 19px;
 
 }
 
-.campos  > input{
+.campos>input {
     color: rgb(130, 89, 89);
     width: 250px;
     height: 30px;
@@ -52,7 +52,7 @@ body{
     outline: 0;
 }
 
-.campos > input{
+.campos>input {
     color: rgb(14, 13, 13);
     width: 250px;
     height: 30px;
@@ -61,7 +61,7 @@ body{
     outline: 0;
 }
 
-.quadro{
+.quadro {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -77,7 +77,7 @@ body{
     border: none;
 }
 
-.botao{
+.botao {
     color: rgb(255, 255, 255);
     width: 265px;
     height: 35px;
@@ -89,18 +89,43 @@ body{
     border: none;
 }
 
-.senha{
+.senha {
     color: rgb(153, 0, 0);
     text-decoration: none;
     border: none;
 }
 
-.login{
+.login {
     color: rgb(18, 19, 18);
-    text-decoration:dashed ;
+    text-decoration: dashed;
 
 }
 
-.msgDentro{
+.msgDentro {
     position: absolute;
+}
+
+#div_nome {
+    color: red;
+    font-size: 13px;
+}
+
+#div_email {
+    color: red;
+    font-size: 13px;
+}
+
+#div_cpf {
+    color: red;
+    font-size: 13px;
+}
+
+#div_senha {
+    color: red;
+    font-size: 13px;
+}
+#div_empresa{
+    color: red;
+    font-size: 13px; 
+    text-align: left;
 }
