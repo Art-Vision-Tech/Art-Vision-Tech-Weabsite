@@ -8,7 +8,8 @@
     <!-- Link onde são fornecidos os ícones  -->
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <!-- Link para o google fonts, por enquanto estaremos utilizando a fonte 'Inter' -->
-    <link rel="stylesheet" href="css/sistema_style.css"> <!-- Css padrão para a estilização da parte do sistema do site -->
+    <link rel="stylesheet" href="css/sistema_style.css">
+    <!-- Css padrão para a estilização da parte do sistema do site -->
     <link rel="stylesheet" href="css/dashboard_sala.css">
     <!-- Css padrão para a estilização da parte do sistema do site -->
     <title>Dashboard Sala</title>
@@ -28,21 +29,94 @@
             <a href="linha_do_tempo.html"> <i class="fa fa-fw fa-solid fa-timeline"></i> Linha do Tempo </a>
             <a href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relátorios </a>
             <a href="ajustes.html"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
-            <a class="active" href="dashboard.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores </a>
+            <a class="active" href="dashboard.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores
+            </a>
             <a href="login.html"> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
         </div>
     </div>
     <div class="rigth-content"> <!-- Seção onde será inserido o conteúdo do sistema-->
         <div class="container-bg-content">
+            <div class="container-header"> 
+                <p> <i class="fa fa-fw fa-solid fa-arrow-left"></i> Galeria de arte 2° andar - norte </p>
+            </div> 
             <div class="container-main-content">
-                <div class="container-column">
-                    <div class="grafico">
-                        <canvas id="kpi_chart"></canvas>
-                    </div>
-                    <div class="tabela-sensor-container">
-                        <table id="tabela-sensor">
-                            <i class="fa-solid fa-circle-exclamation"></i>
+                <div class="container-row row1">
+                    <div class="container-column">
+                        <div class="grafico">
+                            <canvas id="kpi_chart"></canvas>
+                        </div>
+                        <table class="tabela-sensor">
+                            <thead>
+                                <tr>
+                                    <th> ID </th>
+                                    <th> Sensor </th>
+                                    <th> Valor Mínimo </th>
+                                    <th> Valor Máximo </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td> DHT11 - 1</td>
+                                    <td>19º</td>
+                                    <td>24º</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>DHT11 - 1</td>
+                                    <td>40%</td>
+                                    <td>60%</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>DHT11 - 2</td>
+                                    <td>20º</td>
+                                    <td>25º</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>DHT11 - 2</td>
+                                    <td>30%</td>
+                                    <td>55%</td>
+                                </tr>
+                            </tbody>
                         </table>
+                    </div>
+                    <div class="container-log">
+                        <div class="log-header">
+                            <p> Histórico de registro </p>
+                        </div>
+                        <div class="log-mensagem">
+                            <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
+                            <p> Nível de temperatura registrado “+6º” do que esperado
+                                (03-09-2023 15:24 ) </p>
+                        </div>
+                        <div class="log-mensagem">
+                            <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
+                            <p> Nível de umidade registrado “+3%” do que esperado
+                                (03-09-2023 04:02 )</p>
+                        </div>
+                        <div class="log-mensagem">
+                            <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
+                            <p> Nível de umidade registrado “+4%” do que esperado
+                                (03-09-2023 03:52 ) </p>
+                        </div>
+                        <div class="log-mensagem">
+                            <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
+                            <p> Nível de temperatura registrado “-2º” do que esperado
+                                (03-09-2023 03:42 ) </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-row row2">
+                    <div class="kpi-donut">
+                        <canvas id="kpi_temperatura"></canvas>
+                    </div>
+                    <div class="kpi-donut">
+                        <canvas id="kpi_umidade"></canvas>
+                    </div>
+                    <div class="kpi-donut">
+                        <canvas id="kpi_ip"></canvas>
                     </div>
                 </div>
             </div>
@@ -50,6 +124,7 @@
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </html>
 
 
@@ -100,4 +175,148 @@
             }
         }
     });
+</script>
+
+<script>
+    const ctxTemp = document.getElementById('kpi_temperatura').getContext('2d');
+    const ctxUr = document.getElementById('kpi_umidade').getContext('2d');
+    const ctxIp = document.getElementById('kpi_ip').getContext('2d');
+
+    const dataTemp = {
+        labels: ['Atingido', 'Restante'],
+        datasets: [{
+            label: 'Temperatura',
+            data: [90, 10],
+            backgroundColor: ['rgba(255, 118, 51, 0.8)', 'rgba(255, 255, 255, 1)'],
+            borderColor: ['rgb(255, 118, 22)', 'rgb(255, 118, 22)'],
+            borderWidth: 1
+        }]
+    }
+
+    const dataUr = {
+        labels: ['Atingido', 'Restante'],
+        datasets: [{
+            label: 'Umidade',
+            data: [80, 20],
+            backgroundColor: ['rgba(0, 142, 252, 0.8)', 'rgba(255, 255, 255, 1)'],
+            borderColor: ['rgb(0, 31, 252)', 'rgb(0, 31, 252)'],
+            borderWidth: 1
+        }]
+    }
+    const dataIp = {
+        labels: ['Perigo', 'Ok', 'Bom'],
+        datasets: [{
+            label: 'TWIP',
+            data: [30, 40,30],
+            backgroundColor: ['rgba(255, 0, 0, 0.8)','rgba(255, 255, 255, 1)','rgba(7, 160, 0, 0.8)'],
+            borderColor: ['rgb(201, 5, 0)', 'rgba(250, 250, 250, 0.8)','rgb(7, 109, 0)'],
+            borderWidth: 1,
+            circumference: 180,
+            rotation: 270,
+            cutout: '90%',
+            needleValue: 50,
+        }]
+    }
+
+    const configTemp = {
+        type: 'doughnut',
+        data: dataTemp,
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Temperatura',
+                    color: '#ff7616',
+                    font: {
+                        size: 20,
+                    }
+                }
+            }
+        }
+    }
+
+    const configUr = {
+        type: 'doughnut',
+        data: dataUr,
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Umidade',
+                    color: '#001ffc',
+                    font: {
+                        size: 20,
+                    }
+                }
+            }
+        }
+    }
+
+    /* Gráfico velocimetro */
+
+    const gaugeNeedle = {
+        id: 'gaugeNeedle',
+        afterDatasetsDraw(grafico, args, plugins) {
+            const {ctx, data} = grafico;
+
+            ctx.save();
+
+            const needleValue = data.datasets[0].needleValue;
+            const xCenter = grafico.getDatasetMeta(0).data[0].x;
+            const yCenter = grafico.getDatasetMeta(0).data[0].y;
+            const outerRadius = grafico.getDatasetMeta(0).data[0].outerRadius - 6;
+            const angle = Math.PI;
+
+            const dataTotal = data.datasets[0].data.reduce((a, b) => 
+                a + b, 0) 
+            let circumference = ((grafico.getDatasetMeta(0).data[0].
+            circumference / Math.PI) / data.datasets[0].data[0]) * needleValue;
+            const needleValueAngle = circumference + 1.5;
+            
+            ctx.translate(xCenter, yCenter);
+            ctx.rotate(angle * needleValueAngle);
+
+            // Ponteiro
+            ctx.beginPath();
+            ctx.strokeStyle = 'darkgrey';
+            ctx.fillStyle = 'darkgrey';
+            ctx.moveTo(0 - 5, 0);
+            ctx.lineTo(0,  - outerRadius);
+            ctx.lineTo(0 + 5, 0);
+            ctx.stroke();
+            ctx.fill();
+
+            // Ponto
+            ctx.beginPath();
+            ctx.arc(0, 0, 10, angle * 0, angle *2, false);
+            ctx.fill();
+            ctx.restore();  
+        }
+    }
+
+    const configIp = {
+        type: 'doughnut',
+        data: dataIp,
+        options: {
+            aspectRatio: 1.2,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'IP',
+                    color: '#07a000',
+                    font: {
+                        size: 20,
+                    }
+                },
+                legend: {
+                    display: true,
+                }
+            }
+        },
+        plugins: [gaugeNeedle]
+    }
+
+    const kpiTemp = new Chart(ctxTemp, configTemp);
+    const kpiUr = new Chart(ctxUr, configUr);
+    const kpiIp = new Chart(ctxIp, configIp);
 </script>

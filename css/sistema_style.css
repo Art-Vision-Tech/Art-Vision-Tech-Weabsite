@@ -122,12 +122,12 @@ body {
 .container-header {
     background-color: #103440;
     color: white;
-    height: 70px;
+    height: 50px;
     display: flex;
     align-items: center;
     padding-left: 20px;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 /* Div onde será disponibilizado o conteúdo da página (espaço em branco) */
