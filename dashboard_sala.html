@@ -26,10 +26,10 @@
         <img id="logo" src="/img/logo_museu.png" alt="Logo Museu">
         <!-- Imagem da logo do museus cadastrado no sistema -->
         <div id="sidebar-menu">
+            <a class="active" href="dashboard.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores
             <a href="linha_do_tempo.html"> <i class="fa fa-fw fa-solid fa-timeline"></i> Linha do Tempo </a>
             <a href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relátorios </a>
             <a href="ajustes.html"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
-            <a class="active" href="dashboard.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores
             </a>
             <a href="login.html"> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
         </div>
@@ -37,7 +37,7 @@
     <div class="rigth-content"> <!-- Seção onde será inserido o conteúdo do sistema-->
         <div class="container-bg-content">
             <div class="container-header"> 
-                <p> <i class="fa fa-fw fa-solid fa-arrow-left"></i> Galeria de arte 2° andar - norte </p>
+                <p> <a href="dashboard.html"> <i class="fa fa-fw fa-solid fa-arrow-left"></i> </a>  Galeria de arte 2° andar - norte </p>
             </div> 
             <div class="container-main-content">
                 <div class="container-row row1">
@@ -108,6 +108,7 @@
                         </div>
                     </div>
                 </div>
+                <h2>KPI's Art Vision Tech</h2>
                 <div class="container-row row2">
                     <div class="kpi-donut">
                         <canvas id="kpi_temperatura"></canvas>
@@ -208,7 +209,7 @@
         datasets: [{
             label: 'TWIP',
             data: [30, 40,30],
-            backgroundColor: ['rgba(255, 0, 0, 0.8)','rgba(255, 255, 255, 1)','rgba(7, 160, 0, 0.8)'],
+            backgroundColor: ['rgba(255, 0, 0, 0.8)','rgba(240, 240, 240, 1)','rgba(7, 160, 0, 0.8)'],
             borderColor: ['rgb(201, 5, 0)', 'rgba(250, 250, 250, 0.8)','rgb(7, 109, 0)'],
             borderWidth: 1,
             circumference: 180,

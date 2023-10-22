@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> <!-- Link onde são fornecidos os ícones  -->
-    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'> <!-- Link para o google fonts, por enquanto estaremos utilizando a fonte 'Inter' -->
-    <link rel="stylesheet" href="css/sistema_style.css"> <!-- Css padrão para a estilização da parte do sistema do site -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Link onde são fornecidos os ícones  -->
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <!-- Link para o google fonts, por enquanto estaremos utilizando a fonte 'Inter' -->
+    <link rel="stylesheet" href="css/sistema_style.css">
+    <!-- Css padrão para a estilização da parte do sistema do site -->
     <link rel="stylesheet" href="css/dashboard_style.css"> <!-- Css padrão para a estilização da parte do dashboard -->
     <title>Dashboard</title>
 </head>
@@ -19,54 +22,60 @@
         </div>
     </div>
     <div id="sidebar"> <!-- Div que representa o elemento menu  -->
-        <img id="logo" src="img/logo_museu.png" alt="Logo Museu"> <!-- Imagem da logo do museus cadastrado no sistema -->
+        <img id="logo" src="img/logo_museu.png" alt="Logo Museu">
+        <!-- Imagem da logo do museus cadastrado no sistema -->
         <div id="sidebar-menu">
+            <a class="active" href="dashboard.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores
+            </a>
             <a href="linha_do_tempo.html"> <i class="fa fa-fw fa-solid fa-timeline"></i> Linha do Tempo </a>
             <a href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relátorios </a>
             <a href="ajustes.html"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
-            <a class="active" href="dashboard.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores </a>
             <a href="login.html"> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
         </div>
     </div>
     <div class="rigth-content"> <!-- Seção onde será inserido o conteúdo do sistema-->
-        <div class="container-bg-content"> 
+        <div class="container-bg-content">
             <!-- Cabeçalho da div conteúdo, este elemento é opcional -->
             <div class="container-main-content">
-                <h2> Dashboard </h2>
+                <h2> Sensores </h2>
                 <div class="linha">
                     <!-- Coluna 1 -->
                     <div class="coluna">
                         <div class="card">
                             <div class="card-body">
-                                <h3>Galeria de arte 2° andar - norte</h3>
-                                <div class="container-card">
-                                    <div class="card-img">
-                                        <img src="img/icone.jpg" alt="">
+                                <a href="dashboard_sala.html">
+                                    <h3>Galeria de arte 2° andar - norte</h3>
+                                    <div class="container-card">
+                                        <div class="card-img">
+                                            <img src="img/icone.jpg" alt="">
+                                        </div>
+                                        <div class="card-texto">
+                                            <p>Média de temperatura: 22°</p>
+                                            <p>Média de umidade: 56%</p>
+                                        </div>
                                     </div>
-                                    <div class="card-texto">
-                                        <p>Média de temperatura: 22°</p>
-                                        <p>Média de umidade: 56%</p>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="status-card ok">
-                                <p>os sensores estão funcionando</p>
+                                <p>Os sensores estão funcionando</p>
                             </div>
                         </div>
-                        
+
                         <div class="card">
                             <div class="card-body">
-                                <h3>Sala de escrituras 1º andar - leste</h3>
-                                <div class="container-card">
-                                    <div class="card-img">
-                                        <img src="img/icone.jpg" alt="">
+                                <a href="dashboard_sala.html">
+                                    <h3>Sala de escrituras 1º andar - leste</h3>
+                                    <div class="container-card">
+                                        <div class="card-img">
+                                            <img src="img/icone.jpg" alt="">
+                                        </div>
+                                        <div class="card-img"></div>
+                                        <div class="card-texto">
+                                            <p>Média de temperatura: 36°</p>
+                                            <p>Média de umidade: 67%</p>
+                                        </div>
                                     </div>
-                                    <div class="card-img"></div>
-                                    <div class="card-texto">
-                                        <p>Média de temperatura: 36°</p>
-                                        <p>Média de umidade: 67%</p>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="status-card erro">
                                 <p>Problema de conectvidade, manutenção necessária</p>
@@ -74,17 +83,19 @@
                         </div>
                         <div class="card">
                             <div class="card-body">
-                                <h3>Sala de esculturas 2º andar - sul</h3>
-                                <div class="container-card">
-                                    <div class="card-img">
-                                        <img src="img/icone.jpg" alt="">
+                                <a href="dashboard_sala.html">
+                                    <h3>Sala de esculturas 2º andar - sul</h3>
+                                    <div class="container-card">
+                                        <div class="card-img">
+                                            <img src="img/icone.jpg" alt="">
+                                        </div>
+                                        <div class="card-img"></div>
+                                        <div class="card-texto">
+                                            <p>Média de temperatura: 36°</p>
+                                            <p>Média de umidade: 67%</p>
+                                        </div>
                                     </div>
-                                    <div class="card-img"></div>
-                                    <div class="card-texto">
-                                        <p>Média de temperatura: 36°</p>
-                                        <p>Média de umidade: 67%</p>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="status-card atencao">
                                 <p>Carga de energia baixa</p>
@@ -95,20 +106,22 @@
                     <div class="coluna">
                         <div class="card">
                             <div class="card-body">
-                                <h3>Sala de relíquias  1º andar - oeste</h3>
-                                <div class="container-card">
-                                    <div class="card-img">
-                                        <img src="img/icone.jpg" alt="">
+                                <a href="dashboard_sala.html">
+                                    <h3>Sala de relíquias 1º andar - oeste</h3>
+                                    <div class="container-card">
+                                        <div class="card-img">
+                                            <img src="img/icone.jpg" alt="">
+                                        </div>
+                                        <div class="card-img"></div>
+                                        <div class="card-texto">
+                                            <p>Média de temperatura: 22°</p>
+                                            <p>Média de umidade: 56%</p>
+                                        </div>
                                     </div>
-                                    <div class="card-img"></div>
-                                    <div class="card-texto">
-                                        <p>Média de temperatura: 22°</p>
-                                        <p>Média de umidade: 56%</p>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="status-card ok">
-                                <p>os sensores estão funcionando</p>
+                                <p>Os sensores estão funcionando</p>
                             </div>
                         </div>
                     </div>

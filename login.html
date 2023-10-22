@@ -51,8 +51,10 @@
 
         if (CPF.length != 11) {
             div_cpf.innerHTML = "CPF invalido";
+
         } else {
-            div_cpf.innerHTML = " "
+            div_cpf.innerHTML = ""
+            window.location.href = 'dashboard.html'
         }
 
         if (Senha.length < 8) {

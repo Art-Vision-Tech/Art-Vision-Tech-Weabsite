@@ -61,8 +61,8 @@
     z-index: 1; 
 }
 .evento::before  {
-    content: '12:30';
+    content: attr(data-content);
     position: absolute;
     left: -100px;
-    top: 45px;
+    top: 50px;
 }

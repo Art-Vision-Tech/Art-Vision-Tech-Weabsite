@@ -130,6 +130,11 @@ body {
     font-size: 14px;
 }
 
+.container-header a {
+    color: white;
+    text-decoration: none;
+}
+
 /* Div onde será disponibilizado o conteúdo da página (espaço em branco) */
 
 .container-main-content {
