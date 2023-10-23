@@ -63,6 +63,8 @@
 .evento::before  {
     content: attr(data-content);
     position: absolute;
-    left: -100px;
+    left: -125px;
     top: 50px;
+    white-space: pre-line;
+    text-align: center;
 }

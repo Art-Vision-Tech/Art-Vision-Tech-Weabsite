@@ -37,21 +37,20 @@
                 <h2> Relatório </h2>
                 <div class="container-relatorio">
                     <div class="grafico-relatorio">
-                        <h3> Registros </h3>
+                        <h3> Relatório - 31/10 </h3>
                         <div class="divider"></div>
-                        <div style="height: 200px; width: 300px;">
+                        <div class="grafico-chartjs">
                             <canvas id="myChart"></canvas>
-                          </div>
+                        </div>
                           
                           <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                           
                           <script>
                             const ctx = document.getElementById('myChart');
-                          
                             new Chart(ctx, {
                               type: 'pie',
                               data: {
-                                labels: ['Funcional', 'Problemas'],
+                                labels: ['Válido', 'Inválido'],
                                 datasets: [{
                                   data: [3, 1],
                                   backgroundColor: [
@@ -62,6 +61,7 @@
                                 }]
                               },
                               options: {
+                                aspectRatio: 1.2,
                                 legend: {
                                     position: 'right',
                                 }
