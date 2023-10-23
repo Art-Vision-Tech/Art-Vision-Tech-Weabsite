@@ -30,189 +30,142 @@
     </div>
     <main>
         <div id="div_sobre"> <!-- Coluna da esquerda -->
-            <h1> Calculadora Financeira</h1>
+            <h1> Calculadora AVT </h1>
             <p> Com a Art Vision Tech (AVT), oferecemos a melhor relação custo-benefício do mercado, garantindo que seus
                 sensores atendam plenamente às necessidades de conservação de obras em seu museu.</p>
             <h2> Como funciona: </h2>
-            <p> Na primeira tabela, pegamos o valor atual dos seus acervos e subtraímos pelo gasto com a restauração
-                deles, assim você consegue verificar o quanto ganha e perde sem a nossa empresa. Já na segunda, pegamos
-                o valor dos gastos e subtraímos pela efetividade dos sensores no aumento de vida das obras de arte.
-                Assim, contribuindo de forma indireta para a redução dos gastos. Importante lembrar que não somos
-                responsáveis pela redução dos valores e sim pelo monitoramento, onde garantimos que o seu acervo seja
-                cuidado da melhor forma possível dentro de nossos limites. </p>
+            <p> Valores de PI foram projetados para que 20°C e 45% UR sejam aproximadamente 50 anos.
+                Através destes valores, a AVT com seu sistema de monitoramento, consegue estimar a rapidez
+                a qual sua coleção está se deteriorando em comparação com a taxa de deterioração estimada
+                em seu ambiente.</p>
         </div>
         <div id="div_calculadora"> <!-- Coluna da direita -->
+            <h1> Calculadora de preservação </h1>
             <div id="formulario"> <!-- Formulário (esquerda) -->
-                <h1> Informe-nos sobre sua situação </h1>
-                <div id="grid_input">
-                    <div class="div_input">
-                        <h3> A instituição que você representa: </h3>
-                        <input type="text" class="input" id="input_instituto" placeholder="Instituição">
-                        <h3> Quantidade de sensores estimadas por região: </h3>
-                        <input type="text" class="input" id="input_qtdsensor" placeholder="Numero de sensores">
-                    </div>
-                    <div class="div_input">
-                        <h3> Valor do acervo museologico: </h3>
-                        <input type="text" class="input" id="input_valor_museo" placeholder="Valor museologico">
-                        <h3> Gasto com a restauração de acervo museologico: </h3>
-                        <input type="text" class="input" id="input_restauracao_museo"
-                            placeholder="Restauração museológico">
-                    </div>
-<!--                     <div class="div_input">
-                        <h3> Valor do acervo bibliográfico: </h3>
-                        <input type="text" class="input" id="input_valor_biblio" placeholder="Valor bibliográfico">
-                        <h3> Gasto com a restauração de acervo bibliográfico: </h3>
-                        <input type="text" class="input" id="input_restauracao_biblio"
-                            placeholder="Restauração bibliográfico">
-                    </div>
-                    <div class="div_input">
-                        <h3> Valor do acervo arquivistico: </h3>
-                        <input type="text" class="input" id="input_valor_arquivo" placeholder="Valor arquivistico">
-                        <h3> Gasto com a restauração de acervo arquivistico: </h3>
-                        <input type="text" class="input" id="input_restauracao_arquivo"
-                            placeholder="Restauração arquivistico">
-                    </div> -->
+                <div class="div_input">
+                    <h3> A instituição que você representa: </h3>
+                    <input type="text" class="input" id="input_instituto" placeholder="Instituição">
+                    <h3> Temperatura: </h3>
+                    <input type="text" class="input" id="input_temp" placeholder="Temperatura">
+                    <h3> Umidade Relativa (%) </h3>
+                    <input type="text" class="input" id="input_ur" placeholder="Umidade">
+                </div>
+                <div class="div_tabela">
+                    <h2 class="titulo-tabela"> Resultados da análise </h2>
+                    <table id="tabela_cliente">
+                        <tr>
+                            <th> Temperatura (cº) </th>
+                            <th> Umidade Relativa (%) </th>
+                            <th> Velocidade do desgaste por ano </th>
+                            <th> Tempo de vida (anos) </th>
+                        </tr>
+                    </table>
                 </div>
             </div>
             <div class="resultado"> <!-- Saída do programa -->
-                <h3> Período de manutenção (Semanal / Mensal): </h3>
-<!--                 <select id="opcao_periodo">
-                    <option value="semanal"> Semanal </option>
-                    <option value="mensal"> Mensal </option>
-                </select> -->
                 <button onclick="calculadora()"> Consultar valores </button>
             </div>
             <h4 id="mensagem_instituto"></h4>
-            <div class="div_tabela">
-                <p class="p_resultado" id="resultado1">
-                </p>
-                <br><br>
-                <p class="p_resultado" id="resultado2">
-                </p>
+            <div id="resultado_dano">
             </div>
-            <p> Obs: Com o nosso sistema é estimado uma redução de até 25% no custo total na conservação dos acervos
-                + os valor total de todos os sensores. </p>
         </div>
     </main>
+    <section>
+        <h2> Contexto </h2>
+        <div class="container-contexto">
+            <div class="texto-contexto">
+                </p>
+                <p> A temperatura e a umidade relativa do ar devem ser sistematicamente medidas e registradas. Isto é
+                    muito importante, já que os dados produzidos: documentam as condições ambientais existentes; dão
+                    suporte aos pedidos de instalação de controles ambientais; e indicam se o equipamento disponível de
+                    controle climático está ou não funcionando adequadamente e produzindo as condições desejadas.</p>
+                <p> Mas o que estes valores significam para a longevidade dos objetos da sua coleção exatamente? Essas
+                    condições podem estar causando danos ou não? Quanto dano? É difícil dizer apenas olhando apenas os
+                    dados de temperatura e umidade relativa, mas quando reunidos as coisas ficam mais claras.</p>
+                <p>Para avaliar os riscos associados a condições ambientais específicas, o IPI desenvolveu duas
+                    ferramentas: o Índice de Preservação (PI) e o Índice de Preservação Tempo para preservação (IETP). O
+                    PI fornece uma medida comparativa de quanto tempo os materiais orgânicos vulneráveis (por exemplo,
+                    aqueles com vida útil curta, como fita magnética ou papel de jornal) podem sobreviver sob diversas
+                    condições ambientais. A linha de base para esta medição é 20Cº e 45% UR, o que resulta em um IP de
+                    50 anos.</p>
+                <p>
+                    À medida que a temperatura e a umidade aumentam e diminuem, o PI muda. Se uma condição de
+                    armazenamento tiver um IP de 200 anos, então os materiais orgânicos durariam quatro vezes mais tempo
+                    naquela condição específica do que à temperatura ambiente, onde o PI tem apenas 50 anos. É
+                    importante lembrar, contudo, que esta é uma medida comparativa e não uma medida literal de anos. Os
+                    números pretendem ilustrar como diferentes ambientes de armazenamento podem retardar ou acelerar a
+                    deterioração.</p>
+            </div>
+            <div class="container-image">
+                <a href="https://store.imagepermanenceinstitute.org/sustainable-preservation-practices-guidebook" target="_blank">
+                    <img src="img/pi_livro.jpg" alt="Guia prático de preservação sustentavel">
+                </a>
+            </div>
+        </div>
+    </section>
     <footer>
         <div class="container-footer">
-          <div class="navegacao-footer">
-            <h3> NAVEGAÇÃO </h3>
-            <ul>
-              <li><a href="Index_Home.html">Home</a></li>
-              <li><a href="sobre/index_sobre.html">Sobre</a></li>
-              <li><a href="#">Calculadora</a></li>
-            </ul>
-          </div>
-          <div class="sobre-footer">
-            <h3>ART VISION TECH</h3>
-            <p>A Art Vision Tech é uma empresa especializada no controle de ambientes importantes para nossa cultura e
-              história do país. Com a utilização de tecnologias modernas, ajudamos nossos clientes na preservarão de sua
-              instituição</p>
-          </div>
-          <div class="contato-footer">
-            <h3>CONTATO</h3>
-            <p>Endreço: Rua Haddock Lobo,
-              595 São Paulo - SP</p>
-            <p>Tel: (11) 2759-8172</p>
-            <p>Email: consultoria@artvisiontech.com</p>
-          </div>
+            <div class="navegacao-footer">
+                <h3> NAVEGAÇÃO </h3>
+                <ul>
+                    <li><a href="Index_Home.html">Home</a></li>
+                    <li><a href="sobre/index_sobre.html">Sobre</a></li>
+                    <li><a href="#">Calculadora</a></li>
+                </ul>
+            </div>
+            <div class="sobre-footer">
+                <h3>ART VISION TECH</h3>
+                <p>A Art Vision Tech é uma empresa especializada no controle de ambientes importantes para nossa cultura
+                    e
+                    história do país. Com a utilização de tecnologias modernas, ajudamos nossos clientes na preservarão
+                    de sua
+                    instituição</p>
+            </div>
+            <div class="contato-footer">
+                <h3>CONTATO</h3>
+                <p>Endreço: Rua Haddock Lobo,
+                    595 São Paulo - SP</p>
+                <p>Tel: (11) 2759-8172</p>
+                <p>Email: consultoria@artvisiontech.com</p>
+            </div>
         </div>
-      </footer>
+    </footer>
 </body>
 
 </html>
 <script>
     function calculadora() {
         var instituto = input_instituto.value;
-        var qtd_sensor = Number(input_qtdsensor.value);
-        var valor_museo = Number(input_valor_museo.value);
-        var restauracao_museo = Number(input_restauracao_museo.value);
-        var valor_biblio = Number(input_valor_biblio.value);
-        var restauracao_biblio = Number(input_restauracao_biblio.value);
-        var valor_arquivo = Number(input_valor_arquivo.value);
-        var restauracao_arquivo = Number(input_restauracao_arquivo.value);
+        var temp = Number(input_temp.value);
+        var ur = Number(input_ur.value);
+        //Formula elabora por Tim Padfield https://www.conservationphysics.org/twpi/twpi_01.html.
+        var ip = Math.exp((95220 - 134.9 * ur) / (8.314 * (temp + 273.15)) + (0.0284 * ur) - 28.023) / 365;
+        var desgaste = 1 / ip * 100;
+        var ip_ideal = 51;
+        // Porcentagem: índice de preservação calculado através dos inputs / índice de preservação ideal para um ambiente
+        var porcentagem_dano = ip / ip_ideal;
+        // Se porcentaul for maior do que 1 (ou seja 100%) calcular acréscimo se não calcular redução
+        if (porcentagem_dano > 1) {
+            // Exemplo: 58 / 50  = 1,6 -> 1,16 - 1 = 0,16 -> 0,16 * 100 = 16% de acréscimo 
+            porcentagem_dano = (porcentagem_dano - 1) * 100;
+            resultado_dano.innerHTML = `${instituto} utilizando nosso sistema, sua coleção terá  expecatativa de vida 
+            aumentado em <span style="color: green"> ${porcentagem_dano.toFixed(2)}% </span>`
+        } else if (porcentagem_dano < 1) {
+            // Exemplo: 45 / 50  = 0,9 -> 1 - 0,9 = 0,1 -> 0,1 * 100 = 10% de redução 
+            porcentagem_dano = (1 - porcentagem_dano) * 100;
+            resultado_dano.innerHTML = `${instituto}, sem o nosso sistema, sua coleção terá expecatativa de vida reduzida em 
+            <span style="color: red"> ${porcentagem_dano.toFixed(2)}% </span>, seu acervo está correndo riscos!`
+        }
 
-        var sensor_total = qtd_sensor * 150;
-
-        /* Gasto total do cliente sem a nossa empresa */
-
-        var museo_total = valor_museo - restauracao_museo;
-        var biblio_total = valor_biblio - restauracao_biblio;
-        var arquivo_total = valor_arquivo - restauracao_arquivo;
-
-        /* Gasto total do cliente com a nossa empresa */
-
-        var sensor_museo = (museo_total * 0.75) + sensor_total;
-        var sensor_biblio = (biblio_total * 0.75) + sensor_total;
-        var sensor_arquivo = (arquivo_total * 0.75) + sensor_total;
-
-
-        mensagem_instituto.innerHTML = `Olá, representante do ${instituto}! `
-
-        resultado1.innerHTML = `
+        tabela_cliente.innerHTML += `
         <div>
-            <h2> Sem nossa solução </h2>
-            <table id="tabela_cliente">
             <tr>
-                <th> Acervos </th>
-                <th> Valor acervo (R$) </th>
-                <th> Restauração (R$) </th>
-                <th> Total (R$) </th>
+                <td> ${temp} </td>
+                <td> ${ur}</td>
+                <td> ${desgaste.toFixed(1)}</td>
+                <td> ${ip.toFixed(0)}</td>
             </tr>
-            <tr>
-                <td> Museológico </td>
-                <td> ${valor_museo}</td>
-                <td> ${restauracao_museo}</td>
-                <td> ${museo_total}</td>
-            </tr>
-            <tr>
-                <td> Bibliográfico</td>
-                <td> ${valor_biblio}</td>
-                <td> ${restauracao_biblio}</td>
-                <td> ${biblio_total}</td>
-            </tr>
-            <tr>
-                <td> Arquivistico </td>
-                <td> ${valor_arquivo}</td>
-                <td> ${restauracao_arquivo}</td>
-                <td> ${arquivo_total}</td>
-            </tr>
-                </table>
         </div>`
-
-        resultado2.innerHTML = `
-        <h2> Com o nossa solução  </h2> 
-        <table id="tabela_cliente">
-        <tr>
-            <th> Acervos </th>
-            <th> Valor acervo (R$)</th>
-            <th> Restauração (R$) </th>
-            <th> Total + Sensores (R$) </th>
-        </tr>
-        <tr>
-            <td> Museológico </td>
-            <td> ${valor_museo}</td>
-            <td> ${restauracao_museo}</td>
-            <td> ${sensor_museo}</td>
-        </tr>
-        <tr>
-            <td> Bibliográfico</td>
-            <td> ${valor_biblio}</td>
-            <td> ${restauracao_biblio}</td>
-            <td> ${sensor_biblio}</td>
-        </tr>
-        <tr>
-            <td> Arquivistico </td>
-            <td> ${valor_arquivo}</td>
-            <td> ${restauracao_arquivo}</td>
-            <td> ${sensor_arquivo}</td>
-        </tr>
-    </table>
-    
-    `
-
-
 
     }
 </script>

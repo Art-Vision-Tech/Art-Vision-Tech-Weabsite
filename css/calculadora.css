@@ -68,10 +68,8 @@ main {
 #div_calculadora {
     background-color: white;
     padding: 30px;
-    width: 50%;
+    width: 60%;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.30);
-    display: grid;
-    align-items: center;
 }
 
 #div_calculadora h1 {
@@ -91,14 +89,16 @@ main {
 }
 
 #formulario {
-    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-#grid_input {
+/* #grid_input {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-}
+} */
 
 .div_input {
     width: 250px;
@@ -149,9 +149,7 @@ button {
     font-weight: 500;
     font-family: 'Inter';
     font-size: 8px;
-    display: flex;
-    margin-bottom: 30px;
-    gap: 20px;
+    width: 50%;
 }
 
 .div_tabela h2 {
@@ -159,12 +157,6 @@ button {
     margin: 20px 0px;
     font-size: 20px;
     color: #103440;
-}
-
-.p_resultado {
-    font-size: 12px;
-    text-align: justify;
-    width: 100%;
 }
 
 #mensagem_instituto {
@@ -182,13 +174,6 @@ button {
     margin-bottom: 20px;
 }
 
-#opcao_periodo {
-    background-color: #8C2A44;
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 5px;
-}
 
 #tabela_cliente {
     border-collapse: collapse;
@@ -216,3 +201,28 @@ button {
     background-color: #8C2A44;
     color: white;
 }
+
+section {
+    background-color: white;
+    padding: 20px;
+    margin: 30px 5%;
+}
+
+section h2 {
+    color: #103440;
+}
+
+.container-contexto {
+    display: flex;
+    justify-content: space-between;
+}
+
+.texto-contexto {
+    width: 50%;
+    font-size: 14px;
+}
+
+.texto-contexto p{
+    margin-bottom: 15px;
+}
+
