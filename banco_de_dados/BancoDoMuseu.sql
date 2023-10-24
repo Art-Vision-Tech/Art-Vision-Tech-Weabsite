@@ -2,46 +2,27 @@ create database museu;
 
 use museu;
 
-
 -- 
 
 create table registro (
-idRegistro int,
-fkSensor int,
-primary key (idRegistro, fkSensor),
-temperatura float,
-umidade float,
-dtRegistro timestamp, -- atualizar o horario que foi capturado a temperatura e a umidade (lembrando que para aparecer no gráfico e feita a ligação pela API no vscode)
-foreign key (fkSensor)
-references sensor(idSensor)
-);
-
---
-
--- insert into registro (temperatura, umidade, dtRegistro) values
--- ('24.7', '20', '23:30:07'),
--- ('24.7', '20', '23:30:07'),
--- ('24.7', '20', '23:30:07'),
--- ('24.7', '20', '23:30:07');
-
-
---
-
-create table sensor (
-idSensor int primary key auto_increment,
-nome varchar (45),
+idRegistro int primary key auto_increment,
+dht11_temperatura float,
+dht11_umidade float,
+dtRegistro timestamp default now(), -- atualizar o horario que foi capturado a temperatura e a umidade (lembrando que para aparecer no gráfico e feita a ligação pela API no vscode)
 fkAmbiente int,
-constraint fkAmbientes foreign key (fkAmbiente)
+constraint fkAmbiente foreign key (fkAmbiente)
 references ambiente(idAmbiente)
 );
 
 --
 
-insert into sensor (nome) values
-('DTH11');
+ insert into registro (dht11_temperatura, dht11_umidade) values
+ ('24.7', '20'),
+ ('24.7', '27'),
+('22.2', '22'),
+ ('21.9', '29');
 
 --
-
 
 create table ambiente (
 idAmbiente int primary key auto_increment,
