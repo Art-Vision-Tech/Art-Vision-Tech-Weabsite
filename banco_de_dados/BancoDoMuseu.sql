@@ -18,6 +18,15 @@ references sensor(idSensor)
 
 --
 
+-- insert into registro (temperatura, umidade, dtRegistro) values
+-- ('24.7', '20', '23:30:07'),
+-- ('24.7', '20', '23:30:07'),
+-- ('24.7', '20', '23:30:07'),
+-- ('24.7', '20', '23:30:07');
+
+
+--
+
 create table sensor (
 idSensor int primary key auto_increment,
 nome varchar (45),
@@ -117,7 +126,22 @@ insert into endereço (cep, estado, cidade, bairro, numero) values
 
 
 
+-- selects
 
+select * from registro as reg join sensor as sen
+on reg.fkSensor = sen.idSensor;
+
+select * from sensor as sen join ambiente as amb
+on sen.fkAmbiente = amb.idAmbiente;
+
+select * from ambiente as amb join museu as mus
+on amb.fkMuseu = mus.idMuseu;
+
+select * from funcionario as func join museu as mus
+on func.fkMuseu = mus.idMuseu;
+
+select * from museu as mus join endereço as ende
+on mus.FkEndereço = ende.idEndereço;
 
 
 
