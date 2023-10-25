@@ -44,6 +44,14 @@
                     <div class="container-column">
                         <div class="grafico">
                             <canvas id="kpi_chart"></canvas>
+                            <canvas id="kpi_chartUmd" style="display: none;"></canvas>
+                        </div>
+                        <div>
+                            <select name="select_grafico" id="select_grafico" onchange="tipoGrafico()">
+                                <option value="opt_temp"> Temperatura </option>
+                                <option value="opt_umd"> Umidade </option>
+                            </select>
+                            <!-- <button class="botao-select" > Atualizar </button> -->
                         </div>
                         <table class="tabela-sensor">
                             <thead>
@@ -131,6 +139,20 @@
 
 
 <script>
+    function tipoGrafico() {
+        
+        let tipo_grafico = select_grafico.value;
+        console.log(tipo_grafico)
+        if(tipo_grafico == "opt_umd") {
+            kpi_chart.style.display = "none";
+            kpi_chartUmd.style.display = "block";
+        } else {
+            kpi_chart.style.display = "block";
+            kpi_chartUmd.style.display = "none";
+        }
+
+        // Função para alterar o gráfico
+    }
     const ctx = document.getElementById('kpi_chart').getContext('2d');
 
     const chart = new Chart(ctx, {
@@ -140,20 +162,13 @@
             datasets: [
                 {
                     yAxisID: 'A',
-                    label: 'Temperatura',
-                    data: [18, 20, 19, 17, 19, 21, 23, 22, 25, 26, 25, 28],
+                    label: 'Temperatura Cº',
+                    data: [18, 20, 20, 21, 22, 21, 23, 22, 23, 24, 24, 22, 23],
                     borderWidth: 1,
+                    tension: 0.1,
                     backgroundColor: 'orange',
                     borderColor: 'orange'
                 },
-                {
-                    yAxisID: 'B',
-                    label: 'UR %',
-                    data: [47, 55, 53, 60, 57, 51, 47, 46, 50, 52, 48, 56],
-                    borderWidth: 1,
-                    backgroundColor: 'blue',
-                    borderColor: 'blue'
-                }
             ]
         },
         options: {
@@ -162,17 +177,44 @@
                 A: {
                     type: 'linear',
                     position: 'left',
-                    ticks: { beginAtZero: true, color: 'orange' },
-                    // Hide grid lines, otherwise you have separate grid lines for the 2 y axes
-                    grid: { display: false }
+                    ticks: { beginAtZero: true, color: 'orange', stepSize: 5},
+                    grid: { display: false },
+                    suggestedMin: 5,
+                    suggestedMax: 35,
+                    
                 },
-                B: {
+            },
+        }
+    });
+
+    const ctxUmd = document.getElementById('kpi_chartUmd').getContext('2d');
+    const chartUmd = new Chart(ctxUmd, {
+        type: 'line',
+        data: {
+            labels: ['0:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00'],
+            datasets: [
+                {
+                    yAxisID: 'A',
+                    label: 'Umidade Relativa %',
+                    data: [47, 55, 53, 60, 57, 51, 47, 46, 50, 52, 48, 56, 60],
+                    borderWidth: 1,
+                    backgroundColor: 'blue',
+                    borderColor: 'blue'
+                } 
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {                
+               A: {
                     type: 'linear',
-                    position: 'right',
-                    ticks: { beginAtZero: true, color: 'blue' },
-                    grid: { display: false }
+                    position: 'left',
+                    ticks: { beginAtZero: true, color: 'blue', stepSize: 10 },
+                    grid: { display: false },
+                    suggestedMin: 10,
+                    suggestedMax: 90,
                 },
-                x: { ticks: { beginAtZero: true } }
+                x: { ticks: { beginAtZero: true } } 
             }
         }
     });
