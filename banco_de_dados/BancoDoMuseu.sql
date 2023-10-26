@@ -2,7 +2,7 @@ create database museu;
 
 use museu;
 
--- 
+--
 
 create table registro (
 idRegistro int auto_increment,
