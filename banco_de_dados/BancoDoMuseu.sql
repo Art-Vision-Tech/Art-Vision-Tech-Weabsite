@@ -2,15 +2,16 @@ create database museu;
 
 use museu;
 
--- 
+--
 
 create table registro (
-idRegistro int primary key auto_increment,
+idRegistro int auto_increment,
 dht11_temperatura float,
 dht11_umidade float,
 dtRegistro timestamp default now(), -- atualizar o horario que foi capturado a temperatura e a umidade (lembrando que para aparecer no gráfico e feita a ligação pela API no vscode)
 fkAmbiente int,
-constraint fkAmbiente foreign key (fkAmbiente)
+primary key (idRegistro, fkAmbiente),
+foreign key (fkAmbiente)
 references ambiente(idAmbiente)
 );
 
@@ -106,14 +107,10 @@ insert into endereço (cep, estado, cidade, bairro, numero) values
 ('87055607', 'Paraná', 'Maringá', 'Conjunto Habitacional Céu Azul', '45');	
 
 
-
 -- selects
 
-select * from registro as reg join sensor as sen
-on reg.fkSensor = sen.idSensor;
-
-select * from sensor as sen join ambiente as amb
-on sen.fkAmbiente = amb.idAmbiente;
+select * from registro as reg join ambiente as amb
+on  reg.fkAmbiente = amb.idAmbiente;
 
 select * from ambiente as amb join museu as mus
 on amb.fkMuseu = mus.idMuseu;
@@ -123,8 +120,6 @@ on func.fkMuseu = mus.idMuseu;
 
 select * from museu as mus join endereço as ende
 on mus.FkEndereço = ende.idEndereço;
-
-
 
 -- 
 
