@@ -34,6 +34,7 @@
 .texto-nossaMissao {
   width: 40%;
   color: white;
+  font-size: 18px;
 }
 
 .container-oqfazemos {
@@ -48,6 +49,7 @@
 
 .texto-oqFazemos {
   width: 40%;
+  font-size: 19px;
 }
 
 .texto-oqFazemos h2 {
@@ -77,9 +79,9 @@
   background-color: #8c2a44;
   color: white;
   text-align: center;
-  height: 150px;
+  height: 160px;
   padding: 7px;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .card-texto p,
@@ -124,6 +126,7 @@ h3 {
 
 .texto-nossavisao p {
   margin-bottom: 15px;
+  font-size: 18px;
 }
 
 .texto-nossavisao h2 {

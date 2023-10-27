@@ -42,7 +42,7 @@ main {
 
 #div_sobre p {
     /* Estiliza apenas a tag <p> do escopo marcado pelo id 'div_sobre' */
-    font-size: 12px;
+    font-size: 15px;
     font-family: 'Inter';
     font-weight: 500;
     margin: 20px 0px 20px 0px;
@@ -149,7 +149,7 @@ button {
     font-weight: 500;
     font-family: 'Inter';
     font-size: 8px;
-    width: 50%;
+    width: 59%;
 }
 
 .div_tabela h2 {
@@ -184,6 +184,7 @@ button {
 #tabela_cliente th {
     border: 1px solid #ddd;
     padding: 8px;
+    font-size: 14px;
 }
 
 #tabela_cliente tr:nth-child(even) {
@@ -200,6 +201,7 @@ button {
     text-align: left;
     background-color: #8C2A44;
     color: white;
+    font-size: 12px;
 }
 
 section {
@@ -219,7 +221,7 @@ section h2 {
 
 .texto-contexto {
     width: 50%;
-    font-size: 14px;
+    font-size: 17px;
 }
 
 .texto-contexto p{
