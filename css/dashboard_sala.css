@@ -88,7 +88,7 @@ table.tabela-sensor thead {
 
 .row2 {
     margin-top: 30px;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .kpi-donut {
@@ -117,4 +117,10 @@ table.tabela-sensor thead {
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 15px;
+}
+
+#input_ip {
+    width: 40px;
+    border: white;
+    display: inline;
 }

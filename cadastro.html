@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
-    <link rel="stylesheet" href="css/styles_cadastro.css">
+    <title>Tela de Cadastro</title>
+    <link rel="stylesheet" href="css/styles_CADASTRO2.css">
 </head>
 
 <body>
@@ -20,54 +20,47 @@
         <div class="quadro2">
             <div class="container-quadro2">
                 <h1 class="titulo">Registre-se</h1>
-                <div class="campos">
-                    <input type="text" id="input_nome" placeholder="Nome">
-                    <div id="div_nome" class="msgDentro"></div> <br>
-                </div>
-                <div class="campos">
-                    <input type="email" id="input_email" placeholder="Email">
-                    <div id="div_email" class="msgDentro"></div> <br>
-                </div>
-                <div class="campos">
-                    <input type="text" id="input_CPF" placeholder="CPF">
-                    <div id="div_cpf" class="msgDentro"></div> <br>
-                </div>
-                <div class="campos">
-                    <input type="text" id="input_empresa" placeholder="Empresa">
-                    <div id="div_empresa"></div>
-                </div>
-                <div class="campos">
-                    <input type="password" id="input_senha" placeholder="Senha">
-                    <div id="div_senha"></div>
-                </div>
-                <div>
-                    <button onclick="validar()" class="botao">Criar conta</button>
-                    <div class="form-footer">
-                        <a href="login.html" class="login">Já possui uma conta?  
-                           <span style="color: #8c2a44;"> Login. </span> </a>
+                <div class="formulario">
+                    <div class="campos">
+                        <input type="text" id="input_nome" placeholder="Nome">
+                    </div>
+                    <div class="campos">
+                        <input type="text" id="input_email" placeholder="Email">
+                    </div>
+                    <div class="campos">
+                        <input type="number" id="input_CPF" max="11" placeholder="CPF">
+                    </div>
+                    <div class="campos">
+                        <input type="text" id="inupt_empresa" placeholder="Empresa">
+                    </div>
+                    <div class="campos">
+                        <input type="password" id="input_senha" placeholder="Senha">
                     </div>
                 </div>
+                <button onclick="Criar()" class="botao">Criar conta</button>
+                <div class="form-footer">
+
+                    <a href="login.html"
+                        class="registro">Já possui uma conta?<span style="color: #8c2a44;"><b> Login.</b></span></style>
+                    </a><br>
+                    <a href="#" class="senha">Esqueceu a senha?</a> 
+                </div>
             </div>
+        </div>
     </div>
 </body>
 
 </html>
 <script>
-    function validar() {
-        var nome = input_nome.value;
-        var email = input_email.value;
-        var cpf = input_CPF.value;
-        var empresa = input_empresa.value;
-        var senha = input_senha.value;
-        var empresa_vazia = empresa.length == 0;
-        
+    var CPF;
+    var Senha;
 
-        var emailValido =
-            email.endsWith('@gmail.com') ||
-            email.endsWith('@hotmail.com') ||
-            email.endsWith('@outlook.com') ||
-            email.endsWith('@sptech.school');
-
+    function Criar() {
+        var nome = input_nome.value
+        var email = input_email.value
+        var cpf = input_CPF.value
+        var empresa = input_empresa.value
+        var senha = input_senha.value
         var nome_especial =
             nome.indexOf('1') >= 0 || nome.indexOf('2') >= 0 ||
             nome.indexOf('3') >= 0 || nome.indexOf('4') >= 0 ||
@@ -86,31 +79,28 @@
             nome.indexOf('}') >= 0 || nome.indexOf(';') >= 0 ||
             nome.indexOf('[') >= 0 || nome.indexOf('|') >= 0 ||
             nome.indexOf('/') >= 0 || nome.indexOf('º') >= 0 ||
-            nome.indexOf('?') >= 0 || nome.length == 0 ||
-            nome.indexOf('°') >= 0;
+            nome.indexOf('?') >= 0 || nome.indexOf('°') >= 0;
 
 
-
-        if (empresa_vazia) {
-            div_empresa.innerHTML = "Este campo não deve ficar vazio"
-        }else{
-            div_empresa.innerHTML = " "
-        }
+        var emailValido = email.endsWith('@gmail.com') ||
+            email.endsWith('@hotmail.com') ||
+            email.endsWith('@outlook.com') ||
+            email.endsWith('@sptech.school')
 
         if (nome_especial) {
             div_nome.innerHTML = 'O Nome deve conter apenas letras <br>'
-        } else {
-            div_nome.innerHTML = " "
+        } else{
+            div_nome.innerHTML =" "
         }
         if (emailValido)
-            div_email.innerHTML = ' '
+            div_email.innerHTML = ''
         else { div_email.innerHTML = 'Digite um endereço de email valido ' }
 
 
         if (cpf.length != 11) {
-            div_cpf.innerHTML = 'Insira um CPF válido'
+            div_cpf.innerHTML = 'insira um CPF válido'
         } else {
-            div_cpf.innerHTML = " "
+            div_cpf.innerHTML = ` `
         }
 
 
@@ -118,9 +108,8 @@
         if (senha.length < 8) {
             div_senha.innerHTML = 'A senha deve conter pelo menos oito digitos'
         } else {
-            div_senha.innerHTML = ""
-            window.location.href = 'login.html'
+            div_BemVindo.innerHTML = ''
         }
-    }
 
+    }
 </script>
