@@ -54,13 +54,14 @@
 
         } else {
             div_cpf.innerHTML = ""
-            window.location.href = 'dashboard.html'
+            
         }
 
         if (Senha.length < 8) {
             div_senha.innerHTML = "A senha deve conter no minimo oito caracteres"
         } else {
             div_senha.innerHTML = " "
+            window.location.href = 'dashboard.html'
         }
 
     }
