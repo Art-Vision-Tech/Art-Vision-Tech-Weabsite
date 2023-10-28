@@ -26,7 +26,7 @@
         <div id="sidebar-menu">
             <a href="dashboard.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores </a>
             <a href="linha_do_tempo.html"> <i class="fa fa-fw fa-solid fa-timeline"></i> Linha do Tempo </a>
-            <a class="active" href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relátorios </a>
+            <a class="active" href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relatório </a>
             <a href="ajustes.html"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
             <a href="login.html"> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
         </div>
@@ -57,7 +57,8 @@
                                     'green',
                                     'red',
                                   ],
-                                  borderWidth: 1
+                                  borderWidth: 1,
+                                  radius: '80%',
                                 }]
                               },
                               options: {
@@ -72,19 +73,19 @@
                     </div>
                     <div class="lista-avaliacao">
                         <div class="lista-header">
-                            <p> Lista de avaliação </p>
+                            <p> Avaliação do Sistema </p>
                         </div>
                         <div class="lista-componente">
                             <i class="fa fa-fw fa-solid fa-check"></i>
-                            <p> A variação de temperatura e umidade manteve-se nos valores previstos durante o dia </p>
+                            <p> A variação de temperatura manteve-se nos valores previstos durante o dia </p>
+                        </div>
+                        <div class="lista-componente">
+                            <i class="fa fa-fw fa-solid fa-check"></i>
+                            <p> A variação de umidade manteve-se nos valores previstos durante o dia  </p>
                         </div>
                         <div class="lista-componente">
                             <i class="fa fa-fw fa-solid fa-check"></i>
                             <p> O índice de preservação (IP) nos ambientes monitorados estão avaliados como: <span style="color: green;"> "Bom" </span> </p>
-                        </div>
-                        <div class="lista-componente">
-                            <i class="fa fa-fw fa-solid fa-check"></i>
-                            <p> A conexão se montável estável por um grande período de tempo </p>
                         </div>
                         <div class="lista-componente">
                             <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>

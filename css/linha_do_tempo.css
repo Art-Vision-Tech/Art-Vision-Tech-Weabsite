@@ -68,3 +68,13 @@
     white-space: pre-line;
     text-align: center;
 }
+
+.mensagem-evento {
+    width: 40%;
+}
+.mensagem-local {
+    width: 20%;
+}
+.mensagem-solucao {
+    width: 20%;
+}
