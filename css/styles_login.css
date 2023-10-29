@@ -40,7 +40,7 @@ body {
 .titulo2 {
     color: white;
     width: fit-content;
-    font-size: 14px;
+    font-size: 18px;
     margin-top: 10px;
 }
 
@@ -109,6 +109,7 @@ body {
 .registro {
     color: rgb(85, 85, 85);
     text-decoration: dashed;
+    font-size: 14px;
 }
 
 #div_cpf {
