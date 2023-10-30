@@ -32,9 +32,10 @@
                 </div>
                 <button onclick="Entrar()" class="botao">Entrar</button>
                 <div class="form-footer">
-                    <a href="cadastro.html" class="registro"> <b>Ainda não possui cadastro? </b> <span
-                            style="color: #8c2a44;"><b>Registre-se.</b></span></style>
-                    </a>
+                    <b class="registro">Ainda não possui cadastro? <a href="cadastro.html" style="text-decoration: none;"> <span
+                                style="color: #8c2a44; "><b>Registre-se.</b></span>
+                        </a></b>
+
                 </div>
             </div>
         </div>
@@ -48,19 +49,25 @@
     function Entrar() {
         CPF = input_CPF.value;
         Senha = input_senha.value;
+        var verifica = 0;
 
         if (CPF.length != 11) {
             div_cpf.innerHTML = "CPF invalido";
 
         } else {
             div_cpf.innerHTML = ""
-            
+            verifica++;
+
         }
 
         if (Senha.length < 8) {
             div_senha.innerHTML = "A senha deve conter no minimo oito caracteres"
         } else {
             div_senha.innerHTML = " "
+            verifica++
+        }
+
+        if (verifica == 2) {
             window.location.href = 'dashboard.html'
         }
 
