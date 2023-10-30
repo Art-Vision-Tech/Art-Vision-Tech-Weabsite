@@ -4,7 +4,7 @@ use museu;
 
 --
 
-create table registro (
+create table Registro_sensor (
 idRegistro int auto_increment,
 dht11_temperatura float,
 dht11_umidade float,
@@ -17,7 +17,7 @@ references ambiente(idAmbiente)
 
 --
 
- insert into registro (dht11_temperatura, dht11_umidade) values
+ insert into Registro_sensor (dht11_temperatura, dht11_umidade) values
  ('24.7', '20'),
  ('24.7', '27'),
 ('22.2', '22'),
@@ -25,10 +25,10 @@ references ambiente(idAmbiente)
 
 --
 
-create table ambiente (
+create table Ambiente (
 idAmbiente int primary key auto_increment,
 nome_ambiente varchar (45),
-andar varchar(45),
+andar varchar(10),
 qtd_acervo int,
 fkMuseu int,
 constraint fkMuseu foreign key (FkMuseu) references museu(idMuseu)
@@ -36,7 +36,7 @@ constraint fkMuseu foreign key (FkMuseu) references museu(idMuseu)
 
 --
 
- insert into ambiente (nome_ambiente, andar, qtd_acervo, fkMuseu) values
+ insert into Ambiente (nome_ambiente, andar, qtd_acervo, fkMuseu) values
  ('Sala 1', '1º andar', '200', 1),
  ('Sala 1', '1º andar', '67', 2),
  ('Sala 1', '1º andar', '240', 3),
@@ -50,7 +50,7 @@ constraint fkMuseu foreign key (FkMuseu) references museu(idMuseu)
  
 --
  
-create table funcionario(
+create table Funcionario(
 idFuncionario int auto_increment,
 FkMuseu int,
 primary key (IdFuncionario, FkMuseu),
@@ -64,18 +64,18 @@ references museu(idMuseu)
 
 -- 
 
-insert into funcionario (nome, cpf, email, senha, fkMuseu) values
+insert into Funcionario (nome, cpf, email, senha, fkMuseu) values
 ('Lucas', '00565860860', 'lucas1990@outlook.com', 'Lluquinhas123', 1),
 ('Marcos', '16321760846', 'marcoslindo@gmail.com', 'mar55cosS', 2),
 ('Bruno', '86793705849', 'nanatsunotazai@sptech.school', 'brunoBruno231', 3);
 
 --
 
-create table museu (
+create table Museu (
 idMuseu int primary key auto_increment,
 cnpj char (14) unique,
 nome varchar (45),
-telefone varchar (45),
+telefone varchar (11),
 fkEndereço int,
 constraint fkEndereço foreign key (fkEndereço)
 references 	endereço(idEndereço)
@@ -83,52 +83,52 @@ references 	endereço(idEndereço)
 
 --
 
-insert into museu (cnpj, nome, telefone, fkEndereço) values
+insert into Museu (cnpj, nome, telefone, fkEndereço) values
 ('27685616000108', 'Catavento', '958238976', 1),
 ('92486446000196', 'Nacional', '998838976', 2),
 ('15123795000100', 'Bacia', '999784576', 3);
 
 --
 
-create table endereço (
+create table Endereço (
 idEndereço int primary key auto_increment,
 cep char(8),
-estado varchar(45),
-cidade varchar(45),
-bairro varchar(45),
+estado char(2),
+cidade varchar(35),
+bairro varchar(35),
 numero varchar(4)
 );
 
 -- 
 
-insert into endereço (cep, estado, cidade, bairro, numero) values
-('04856680', 'São Paulo', 'São Paulo', 'Jardim das Pedras(Zona Sul)', '239'),
-('39990972', 'Minas Gerais', 'Água Vermelhas', 'Mocó', '560'),
-('87055607', 'Paraná', 'Maringá', 'Conjunto Habitacional Céu Azul', '45');	
+insert into Endereço (cep, estado, cidade, bairro, numero) values
+('04856680', 'SP', 'São Paulo', 'Jardim das Pedras(Zona Sul)', '239'),
+('39990972', 'MG', 'Água Vermelhas', 'Mocó', '560'),
+('87055607', 'PR', 'Maringá', 'Conjunto Habitacional Céu Azul', '45');	
 
 
 -- selects
 
-select * from registro as reg join ambiente as amb
+select * from Registro as reg join Ambiente as amb
 on  reg.fkAmbiente = amb.idAmbiente;
 
-select * from ambiente as amb join museu as mus
+select * from Ambiente as amb join Museu as mus
 on amb.fkMuseu = mus.idMuseu;
 
-select * from funcionario as func join museu as mus
+select * from Funcionario as func join Museu as mus
 on func.fkMuseu = mus.idMuseu;
 
-select * from museu as mus join endereço as ende
+select * from Museu as mus join Endereço as ende
 on mus.FkEndereço = ende.idEndereço;
 
 -- 
 
-select * from registro;
-select * from sensor;
-select * from ambiente;
-select * from museu;
-select * from funcionario;
-select * from endereço;
+select * from Registro;
+select * from Sensor;
+select * from Ambiente;
+select * from Museu;
+select * from Funcionario;
+select * from Endereço;
 
 drop database museu;
 
