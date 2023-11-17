@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gráfico Art Vision Tech</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      .chartMenu {
+        width: 100vw;
+        height: 40px;
+        background: #1A1A1A;
+        color: rgba(54, 162, 235, 1);
+        display: flex;
+      }
+      .chartMenu h1 {
+        padding: 100px;
+        font-size: 30px;
+        text-align: center;
+      }
+      .chartCard {
+        width: 100vw;
+        height: calc(100vh - 40px);
+        background: rgba(54, 162, 235, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .chartBox {
+        width: 400px;
+        padding: 20px;
+        border-radius: 20px;
+        border: solid 3px rgba(54, 162, 235, 1);
+        background: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chartMenu">
+      
+      <br><br><h1>Índice de Qualidade do Acervo no Ambiente em 24 Horas</h1>
+    </div>
+    <div class="chartCard">
+      <div class="chartBox">
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js" integrity="sha512-JPcRR8yFa8mmCsfrw4TNte1ZvF1e3+1SdGMslZvmrzDYxS69J7J49vkFL8u6u8PlPJK+H3voElBtUCzaXj+6ig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      // setup
+      const data = {
+        labels: ['Ótimo', 'Normal', 'Ruim'],
+        datasets: [{
+          label: 'IETP',
+          data: [10, 9, 5],
+          backgroundColor: [
+            'rgba(0, 260, 0)',
+            'rgba(159, 159, 159)',
+            'rgba(250, 0, 0)',
+          ],
+          borderWidth: 1
+        }]
+      };
+    
+      // Calculate percentages
+      const total = data.datasets[0].data.reduce((acc, value) => acc + value, 0);
+      const percentages = data.datasets[0].data.map(value => ((value / total) * 100).toFixed(2));
+    
+      // config
+      const config = {
+        type: 'pie',
+        data: {
+          labels: data.labels.map((label, index) => `${label} (${percentages[index]}%)`),
+          datasets: [{
+            label: 'IETP',
+            data: percentages,
+            backgroundColor: data.datasets[0].backgroundColor,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {},
+          plugins: {
+            tooltip: {
+              enabled: false
+            }
+          },
+        },
+        plugins: [ChartDataLabels]
+      };
+    
+      // Render the chart
+      const ctx = document.getElementById('myChart').getContext('2d');
+      new Chart(ctx, config);
+    </script>
+    
+
+    // render init block
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+
+    // Instantly assign Chart.js version
+    const chartVersion = document.getElementById('chartVersion');
+    chartVersion.innerText = Chart.version;
+    </script>
+
+  </body>
+</html>
