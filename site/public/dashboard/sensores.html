@@ -4,33 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/sessao.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Link onde são fornecidos os ícones  -->
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <!-- Link para o google fonts, por enquanto estaremos utilizando a fonte 'Inter' -->
-    <link rel="stylesheet" href="css/sistema_style.css">
+    <link rel="stylesheet" href="../css/sistema_style.css">
     <!-- Css padrão para a estilização da parte do sistema do site -->
-    <link rel="stylesheet" href="css/dashboard_style.css"> <!-- Css padrão para a estilização da parte do dashboard -->
+    <link rel="stylesheet" href="../css/dashboard_style.css"> <!-- Css padrão para a estilização da parte do dashboard -->
     <title>Sensores</title>
 </head>
 
-<body>
+<body onload="validarSessao()">
     <div class="header">
         <div id="perfil">
-            <p> Henrique </p>
+            <p id="b_usuario"> Henrique </p>
             <img id="perfil-avatar" src="https://cdn-icons-png.flaticon.com/512/3106/3106773.png" alt="Foto de perfil">
         </div>
     </div>
     <div id="sidebar"> <!-- Div que representa o elemento menu  -->
-        <img id="logo" src="img/logo_museu.png" alt="Logo Museu">
+        <img id="logo" src="../assets/img/logo_museu.png" alt="Logo Museu">
         <!-- Imagem da logo do museus cadastrado no sistema -->
         <div id="sidebar-menu">
-            <a class="active" href="dashboard.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores
+            <a class="active" href="sensores.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores
             </a>
             <a href="linha_do_tempo.html"> <i class="fa fa-fw fa-solid fa-timeline"></i> Linha do Tempo </a>
             <a href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relatório </a>
             <a href="ajustes.html"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
-            <a href="login.html"> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
+            <a onclick="limparSessao()"> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
         </div>
     </div>
     <div class="rigth-content"> <!-- Seção onde será inserido o conteúdo do sistema-->
@@ -47,7 +48,7 @@
                                     <h3>Galeria de arte 2° andar - norte</h3>
                                     <div class="container-card">
                                         <div class="card-img">
-                                            <img src="img/icone.jpg" alt="">
+                                            <img src="../assets/../assets/img/icone.jpg" alt="">
                                         </div>
                                         <div class="card-texto">
                                             <p>Temperatura média: 20°</p>
@@ -67,7 +68,7 @@
                                     <h3>Sala de escrituras 1º andar - leste</h3>
                                     <div class="container-card">
                                         <div class="card-img">
-                                            <img src="img/icone.jpg" alt="">
+                                            <img src="../assets/img/icone.jpg" alt="">
                                         </div>
                                         <div class="card-texto">
                                             <p>Temperatura média: 27°</p>
@@ -77,7 +78,7 @@
                                 </a>
                             </div>
                             <div class="status-card erro">
-                                <p>O sensor registrou XC° e Y% de úmidade, acervos em risco!</p>
+                                <p>Problema de conectvidade, manutenção necessária</p>
                             </div>
                         </div>
                         <div class="card">
@@ -86,7 +87,7 @@
                                     <h3>Sala de esculturas 2º andar - sul</h3>
                                     <div class="container-card">
                                         <div class="card-img">
-                                            <img src="img/icone.jpg" alt="">
+                                            <img src="../assets/img/icone.jpg" alt="">
                                         </div>
                                         <div class="card-texto">
                                             <p>Temperatura média: 22°</p>
@@ -96,7 +97,7 @@
                                 </a>
                             </div>
                             <div class="status-card atencao">
-                                <p>O sensor registrou XC° e Y% de úmidade, cuidado!</p>
+                                <p>Carga de energia baixa</p>
                             </div>
                         </div>
                     </div>
@@ -108,7 +109,7 @@
                                     <h3>Sala de relíquias 1º andar - oeste</h3>
                                     <div class="container-card">
                                         <div class="card-img">
-                                            <img src="img/icone.jpg" alt="">
+                                            <img src="../assets/img/icone.jpg" alt="">
                                         </div>
                                         <div class="card-texto">
                                             <p> Temperatura média: 24°</p>

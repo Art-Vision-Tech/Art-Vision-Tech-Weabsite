@@ -3,7 +3,8 @@ body, html {
 }
 
 body {
-    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.70) 100%), url(../img/bg_login.jpeg);
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.70) 100%), 
+    url(../assets/img/bg_login.jpeg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
