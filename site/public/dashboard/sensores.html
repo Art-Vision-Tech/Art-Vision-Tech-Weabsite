@@ -5,17 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../js/sessao.js"></script>
+    <script src="../js/alerta.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Link onde são fornecidos os ícones  -->
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <!-- Link para o google fonts, por enquanto estaremos utilizando a fonte 'Inter' -->
     <link rel="stylesheet" href="../css/sistema_style.css">
     <!-- Css padrão para a estilização da parte do sistema do site -->
-    <link rel="stylesheet" href="../css/dashboard_style.css"> <!-- Css padrão para a estilização da parte do dashboard -->
+    <link rel="stylesheet" href="../css/dashboard_style.css">
+    <!-- Css padrão para a estilização da parte do dashboard -->
     <title>Sensores</title>
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), /* atualizacaoPeriodica(), */ exibirAmbientes()">
     <div class="header">
         <div id="perfil">
             <p id="b_usuario"> Henrique </p>
@@ -28,7 +30,7 @@
         <div id="sidebar-menu">
             <a class="active" href="sensores.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores
             </a>
-            <a href="linha_do_tempo.html"> <i class="fa fa-fw fa-solid fa-timeline"></i> Linha do Tempo </a>
+            <!-- <a href="linha_do_tempo.html"> <i class="fa fa-fw fa-solid fa-timeline"></i> Linha do Tempo </a> -->
             <a href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relatório </a>
             <a href="ajustes.html"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
             <a onclick="limparSessao()"> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
@@ -40,93 +42,44 @@
             <div class="container-main-content">
                 <h2> Sensores </h2>
                 <div class="linha">
-                    <!-- Coluna 1 -->
-                    <div class="coluna">
-                        <div class="card">
-                            <div class="card-body">
-                                <a href="dashboard_sala.html">
-                                    <h3>Galeria de arte 2° andar - norte</h3>
-                                    <div class="container-card">
-                                        <div class="card-img">
-                                            <img src="../assets/../assets/img/icone.jpg" alt="">
-                                        </div>
-                                        <div class="card-texto">
-                                            <p>Temperatura média: 20°</p>
-                                            <p>Umidade média: 42%</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="status-card ok">
-                                <p>Os sensores estão funcionando</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-body">
-                                <a href="dashboard_sala.html">
-                                    <h3>Sala de escrituras 1º andar - leste</h3>
-                                    <div class="container-card">
-                                        <div class="card-img">
-                                            <img src="../assets/img/icone.jpg" alt="">
-                                        </div>
-                                        <div class="card-texto">
-                                            <p>Temperatura média: 27°</p>
-                                            <p>Umidade média: 45%</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="status-card erro">
-                                <p>Problema de conectvidade, manutenção necessária</p>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <a href="dashboard_sala.html">
-                                    <h3>Sala de esculturas 2º andar - sul</h3>
-                                    <div class="container-card">
-                                        <div class="card-img">
-                                            <img src="../assets/img/icone.jpg" alt="">
-                                        </div>
-                                        <div class="card-texto">
-                                            <p>Temperatura média: 22°</p>
-                                            <p>Umidade média: 41%</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="status-card atencao">
-                                <p>Carga de energia baixa</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Coluna 2 -->
-                    <div class="coluna">
-                        <div class="card">
-                            <div class="card-body">
-                                <a href="dashboard_sala.html">
-                                    <h3>Sala de relíquias 1º andar - oeste</h3>
-                                    <div class="container-card">
-                                        <div class="card-img">
-                                            <img src="../assets/img/icone.jpg" alt="">
-                                        </div>
-                                        <div class="card-texto">
-                                            <p> Temperatura média: 24°</p>
-                                            <p> Umidade média: 37%</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="status-card ok">
-                                <p>Os sensores estão funcionando</p>
-                            </div>
-                        </div>
+                    <div class="coluna" id="area-card">                      
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </body>
 
 </html>
+
+<script>
+    function exibirAmbientes() {
+        JSON.parse(sessionStorage.AMBIENTE).forEach(item => {
+            document.getElementById("area-card").innerHTML += `
+            <div class="card">
+                <div class="card-body">
+                    <button onClick="abrirDashboard()">
+                        <h3>${item.nome_ambiente} - ${item.andar}</h3>
+                            <div class="container-card">
+                                <div class="card-img">
+                                    <img src="../assets/../assets/img/icone.jpg" alt="">
+                                </div>
+                                <div class="card-texto">
+                                    <p>Temperatura média: ${item.id}</p>
+                                    <p>Umidade média: ${item.id}</p>
+                                    <p>Quantidade Acervo: ${item.qtd_acervo}</p>
+                                </div>
+                            </div>
+                    </button>
+                </div>
+                <div class="status-card ok">
+                    <p>Temperatura e umidade ideal</p>
+                </div>
+            </div>
+            `
+        });
+    }
+
+    function abrirDashboard() {
+        window.location = "dashboard_sala.html";
+    }
+</script>

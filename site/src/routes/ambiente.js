@@ -1,14 +1,11 @@
 var express = require("express");
 var router = express.Router();
 
-var aquarioController = require("../controllers/sensorController");
+var ambienteController = require("../controllers/ambienteController");
 
-router.get("/:idMuseu", function (req, res) {
-  aquarioController.buscarAquariosPorEmpresa(req, res);
+router.get("/:museuId", function (req, res) {
+  ambienteController.buscarAmbientesPorMuseu(req, res);
 });
 
-router.post("/cadastrar", function (req, res) {
-  aquarioController.cadastrar(req, res);
-})
 
 module.exports = router;

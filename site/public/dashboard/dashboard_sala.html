@@ -12,13 +12,15 @@
     <!-- Css padrão para a estilização da parte do sistema do site -->
     <link rel="stylesheet" href="../css/dashboard_sala.css">
     <!-- Css padrão para a estilização da parte do sistema do site -->
+    <script src="../js/sessao.js"></script>
+    <script src="../js/alerta.js"></script>
     <title>Dashboard Sala</title>
 </head>
 
-<body>
+<body onload="validarSessao(), pegarDadosAmbiente()">
     <div class="header">
         <div id="perfil">
-            <p> Henrique </p>
+            <p id="b_usuario">  </p>
             <img id="perfil-avatar" src="https://cdn-icons-png.flaticon.com/512/3106/3106773.png" alt="Foto de perfil">
         </div>
     </div>
@@ -27,18 +29,16 @@
         <!-- Imagem da logo do museus cadastrado no sistema -->
         <div id="sidebar-menu">
             <a class="active" href="sensores.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores
-                <a href="linha_do_tempo.html"> <i class="fa fa-fw fa-solid fa-timeline"></i> Linha do Tempo </a>
-                <a href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relatório </a>
-                <a href="ajustes.html"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
+           <!--  <a href="linha_do_tempo.html"> <i class="fa fa-fw fa-solid fa-timeline"></i> Linha do Tempo </a> -->
+            <a href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relatório </a>
+            <a href="ajustes.html"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
             </a>
             <a> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
         </div>
     </div>
     <div class="rigth-content"> <!-- Seção onde será inserido o conteúdo do sistema-->
         <div class="container-bg-content">
-            <div class="container-header">
-                <p> <a href="dashboard.html"> <i class="fa fa-fw fa-solid fa-arrow-left"></i> </a> Galeria de arte 2°
-                    andar - norte </p>
+            <div class="container-header"> 
             </div> 
             <div class="container-main-content">
                 <div class="container-row row1">
@@ -127,7 +127,29 @@
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 </html>
 
+<script>
+    function pegarDadosAmbiente() {
+        var ambiente = JSON.parse(sessionStorage.AMBIENTE);
+        ambiente.forEach(item => {
+            document.getElementById("container-titulo").innerHTML += `
+            <p id="titulo-header${item.id}">   
+                <a href="sensores.html"> <i class="fa fa-fw fa-solid fa-arrow-left"></i> ${item.nome_ambiente} - ${item.andar}</a>
+            </p>
+            `
+        })
+    }
 
+
+    function alterarTitulo(idAmbiente) {
+        var elementoTitulo = document.getElementById(`titulo-header${idAmbiente}`)
+        var nome_ambiente = JSON.parse(sessionStorage.AMBIENTE).find(item => item.id == idAmbiente).nome_ambiente;
+        var andar = JSON.parse(sessionStorage.AMBIENTE).find(item => item.id == idAmbiente).andar;
+        
+        elementoTitulo.innerHTML = "<a href='sensores.html'> <i class='fa fa-fw fa-solid fa-arrow-left'></i>" + nome_ambiente + "-" + andar + "</a>";
+        
+
+    }
+</script>
 
 <script>
     function tipoGrafico() {
