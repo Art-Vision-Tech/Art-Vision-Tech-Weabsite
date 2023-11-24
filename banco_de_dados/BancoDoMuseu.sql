@@ -84,16 +84,16 @@ dht11_umidade float,
 dtRegistro timestamp default now(), -- atualizar o horario que foi capturado a temperatura e a umidade (lembrando que para aparecer no gráfico e feita a ligação pela API no vscode)
 fkAmbiente int,
 fkSensor int,
-primary key (fkAmbiente, fkSensor, idRegistro),
+primary key (idRegistro, fkAmbiente, fkSensor),
 foreign key (fkAmbiente) references ambiente(idAmbiente),
 constraint fkS foreign key Registro(fkSensor) references Sensor(idSensor)
 );
 
- insert into Registro (idRegistro ,dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values
- ('1','24.7', '20', 1, 1),
- ('2','24.7', '27', 1, 1),
-('1','22.2', '22', 2, 1),
- ('1','21.9', '29', 2, 2);
+ insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values
+ ('24.7', '20', 1, 1),
+ ('24.7', '27', 1, 1),
+('22.2', '22', 2, 1),
+ ('21.9', '29', 2, 2);
 
 -- selects
 
