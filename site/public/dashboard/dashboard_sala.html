@@ -27,17 +27,18 @@
         <!-- Imagem da logo do museus cadastrado no sistema -->
         <div id="sidebar-menu">
             <a class="active" href="sensores.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores
-            <a href="linha_do_tempo.html"> <i class="fa fa-fw fa-solid fa-timeline"></i> Linha do Tempo </a>
-            <a href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relatório </a>
-            <a href="ajustes.html"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
+                <a href="linha_do_tempo.html"> <i class="fa fa-fw fa-solid fa-timeline"></i> Linha do Tempo </a>
+                <a href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relatório </a>
+                <a href="ajustes.html"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
             </a>
             <a> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
         </div>
     </div>
     <div class="rigth-content"> <!-- Seção onde será inserido o conteúdo do sistema-->
         <div class="container-bg-content">
-            <div class="container-header"> 
-                <p> <a href="sensores.html"> <i class="fa fa-fw fa-solid fa-arrow-left"></i> </a>  Galeria de arte 2° andar - norte </p>
+            <div class="container-header">
+                <p> <a href="dashboard.html"> <i class="fa fa-fw fa-solid fa-arrow-left"></i> </a> Galeria de arte 2°
+                    andar - norte </p>
             </div> 
             <div class="container-main-content">
                 <div class="container-row row1">
@@ -65,13 +66,13 @@
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td> DHT11 - 1</td>
+                                    <td>DHT11(1)</td>
                                     <td>19º</td>
                                     <td>40%</td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
-                                    <td>DHT11 - 2</td>
+                                    <td>DHT11(2)</td>
                                     <td>20º</td>
                                     <td>45%</td>
                                 </tr>
@@ -80,7 +81,7 @@
                     </div>
                     <div class="container-log">
                         <div class="log-header">
-                            <p> Histórico de registro </p>
+                            <p> Histórico de Alertas </p>
                         </div>
                         <div class="log-mensagem">
                             <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
@@ -113,7 +114,7 @@
                         <canvas id="kpi_umidade"></canvas>
                     </div>
                     <div class="kpi-donut">
-                        IETP: 53 <!-- <input type="text" id="input_ip" oninput="needleValue()" placeholder="IP">  -->
+                        <!-- <input type="text" id="input_ip" oninput="needleValue()" placeholder="IP">  -->
                         <canvas id="kpi_ip"></canvas>
                     </div>
                     
@@ -123,7 +124,7 @@
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 </html>
 
 
@@ -152,7 +153,7 @@
             datasets: [
                 {
                     yAxisID: 'A',
-                    label: 'DHT11- 1 Cº',
+                    label: 'DHT11(1) Cº',
                     data: [18, 20, 20, 21, 22, 21, 23, 22, 23, 24, 24, 22, 23],
                     borderWidth: 1,
                     tension: 0.1,
@@ -161,7 +162,7 @@
                 },
                 {
                     yAxisID: 'B',
-                    label: 'DHT11 - 2 Cº',
+                    label: 'DHT11(2) Cº',
                     data: [19, 21, 21, 21, 23, 22, 23, 23, 24, 25, 26, 24, 23],
                     borderWidth: 1,
                     tension: 0.1,
@@ -202,7 +203,7 @@
             datasets: [
                 {
                     yAxisID: 'A',
-                    label: 'DHT11- 1 %',
+                    label: 'DHT11(1) UR%',
                     data: [47, 55, 53, 60, 57, 51, 47, 46, 50, 52, 48, 56, 60],
                     borderWidth: 1,
                     backgroundColor: 'blue',
@@ -210,7 +211,7 @@
                 },
                 {
                     yAxisID: 'B',
-                    label: 'DHT11 - 2 %',
+                    label: 'DHT11(2) UR%',
                     data: [50, 52, 50, 56, 53, 49, 47, 42, 47, 50, 46, 51, 54],
                     borderWidth: 1,
                     backgroundColor: 'rgba(0, 142, 252, 0.8)',
@@ -268,7 +269,7 @@
     const textoPorcentagemTemp = {
         id: 'textoPorcentagemTemp',
         afterDatasetsDraw(chart, args, pluginOptions) {
-            const {ctx} = chart;
+            const { ctx } = chart;
             ctx.save();
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
@@ -360,88 +361,118 @@
 
 
 
-    const dataIp = {
-        labels: ['Perigo', 'Ok', 'Bom'],
-        datasets: [{
-            label: 'IETP',
-            data: [30, 40,30],
-            backgroundColor: ['rgba(255, 0, 0, 0.8)','rgba(240, 240, 240, 1)','rgba(7, 160, 0, 0.8)'],
-            borderColor: ['rgb(201, 5, 0)', 'rgba(255, 255, 255, 1)','rgb(7, 109, 0)'],
-            borderWidth: 1,
-            circumference: 180,
-            rotation: 270,
-            cutout: '90%',
-            needleValue: /* needleValue() */ 53,
-            radius: '80%',
-        }]
-    }
+    // const dataIp = {
+    //     labels: ['Perigo', 'Ok', 'Bom'],
+    //     datasets: [{
+    //         label: 'IETP',
+    //         data: [30, 40,30],
+    //         backgroundColor: ['rgba(255, 0, 0, 0.8)','rgba(240, 240, 240, 1)','rgba(7, 160, 0, 0.8)'],
+    //         borderColor: ['rgb(201, 5, 0)', 'rgba(255, 255, 255, 1)','rgb(7, 109, 0)'],
+    //         borderWidth: 1,
+    //         circumference: 180,
+    //         rotation: 270,
+    //         cutout: '90%',
+    //         needleValue: /* needleValue() */ 53,
+    //         radius: '80%',
+    //     }]
+    // }
 
     /* Gráfico velocimetro */
 
-    const gaugeNeedle = {
-        id: 'gaugeNeedle',
-        afterDatasetsDraw(grafico, args, plugins) {
-            const {ctx, data} = grafico;
+    // const gaugeNeedle = {
+    //     id: 'gaugeNeedle',
+    //     afterDatasetsDraw(grafico, args, plugins) {
+    //         const {ctx, data} = grafico;
 
-            ctx.save(); 
+    //         ctx.save(); 
             
 
-            const needleValue = data.datasets[0].needleValue;
-            const xCenter = grafico.getDatasetMeta(0).data[0].x;
-            const yCenter = grafico.getDatasetMeta(0).data[0].y;
-            const outerRadius = grafico.getDatasetMeta(0).data[0].outerRadius - 6;
-            const angle = Math.PI;
+    //         const needleValue = data.datasets[0].needleValue;
+    //         const xCenter = grafico.getDatasetMeta(0).data[0].x;
+    //         const yCenter = grafico.getDatasetMeta(0).data[0].y;
+    //         const outerRadius = grafico.getDatasetMeta(0).data[0].outerRadius - 6;
+    //         const angle = Math.PI;
 
-            const dataTotal = data.datasets[0].data.reduce((a, b) => 
-                a + b, 0) 
-            let circumference = ((grafico.getDatasetMeta(0).data[0].
-            circumference / Math.PI) / data.datasets[0].data[0]) * needleValue;
-            const needleValueAngle = circumference + 1.5;
+    //         const dataTotal = data.datasets[0].data.reduce((a, b) => 
+    //             a + b, 0) 
+    //         let circumference = ((grafico.getDatasetMeta(0).data[0].
+    //         circumference / Math.PI) / data.datasets[0].data[0]) * needleValue;
+    //         const needleValueAngle = circumference + 1.5;
             
-            ctx.translate(xCenter, yCenter);
-            ctx.rotate(angle * needleValueAngle);
+    //         ctx.translate(xCenter, yCenter);
+    //         ctx.rotate(angle * needleValueAngle);
 
-            // Ponteiro
-            ctx.beginPath();
-            ctx.strokeStyle = 'darkgrey';
-            ctx.fillStyle = 'darkgrey';
-            ctx.moveTo(0 - 5, 0);
-            ctx.lineTo(0,  - outerRadius);
-            ctx.lineTo(0 + 5, 0);
-            ctx.stroke();
-            ctx.fill();
+    //         // Ponteiro
+    //         ctx.beginPath();
+    //         ctx.strokeStyle = 'darkgrey';
+    //         ctx.fillStyle = 'darkgrey';
+    //         ctx.moveTo(0 - 5, 0);
+    //         ctx.lineTo(0,  - outerRadius);
+    //         ctx.lineTo(0 + 5, 0);
+    //         ctx.stroke();
+    //         ctx.fill();
 
-            // Ponto
-            ctx.beginPath();
-            ctx.arc(0, 0, 10, angle * 0, angle *2, false);
-            ctx.fill();
-            ctx.restore();  
-        }
-    }
+    //         // Ponto
+    //         ctx.beginPath();
+    //         ctx.arc(0, 0, 10, angle * 0, angle *2, false);
+    //         ctx.fill();
+    //         ctx.restore();  
+    //     }
+    // }
 
-    const configIp = {
-        type: 'doughnut',
-        data: dataIp,
+
+    const data = {
+        labels: ['Ótimo', 'Normal', 'Ruim'],
+        datasets: [{
+            label: 'IETP',
+            data: [10, 9, 5],
+            backgroundColor: [
+                'rgb(3, 166, 60)',
+                'rgba(159, 159, 159)',
+                'rgba(250, 0, 0)',
+            ],
+            color: 'rgb(3, 166, 60)',
+            borderWidth: 1
+        }]
+    };
+
+    // Calculate percentages
+    const total = data.datasets[0].data.reduce((acc, value) => acc + value, 0);
+    const percentages = data.datasets[0].data.map(value => ((value / total) * 100).toFixed(2));
+
+
+    // config
+    const config = {
+        type: 'pie',
+        data: {
+            labels: data.labels.map((label, index) => `${label}`),
+            datasets: [{
+                label: 'IETP',
+                data: percentages,
+                backgroundColor: data.datasets[0].backgroundColor,
+                borderWidth: 1,
+                color: '#03A63C',
+            }]
+        },
         options: {
-            aspectRatio: 1.2,
+            scales: {},
             plugins: {
-                title: {
-                    display: true,
-                    text: 'IETP',
-                    color: '#07a000',
+                tooltip: {
+                    enabled: false
+                },
+                datalabels: {
+                    color: 'rgb(255, 255, 255)',
                     font: {
-                        size: 20,
+                        size: 14
                     }
                 },
-                legend: {
-                    display: true,
-                }
-            }
+            },
         },
-        plugins: [gaugeNeedle]
-    }
+        plugins: [ChartDataLabels]
+    };
 
     const kpiTemp = new Chart(ctxTemp, configTemp);
     const kpiUr = new Chart(ctxUr, configUr);
-    const kpiIp = new Chart(ctxIp, configIp);
+    new Chart(ctxIp, config);
+    // const kpiIp = new Chart(ctxIp, configIp);
 </script>
