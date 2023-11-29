@@ -52,7 +52,7 @@
 .secao-solucao {
     background-color: #F7F8FA;
     padding:  5%;
-    background-image: url(../img/img_section2_home.png);
+    background-image: url(/assets/img/img_section2_home.png);
     background-repeat: no-repeat;
     background-position: bottom right;
     background-size: contain;
@@ -75,7 +75,7 @@
 .secao-porque {
     background-color: #8C2A44;
     padding: 40px 5%;
-    background-image: url(../img/img_section_museu.png);
+    background-image: url(../assets/img/img_section_museu.png);
     background-repeat: no-repeat;
     color: white;
     background-size: cover;
@@ -124,7 +124,7 @@
 .secao-interesse {
     padding: 75px 5%;
     margin: 30px 0;
-    background-image: url(../img/section_negocio.png);
+    background-image: url(../assets/img/section_negocio.png);
     background-repeat: no-repeat;
     color: white;
     background-size: cover;
