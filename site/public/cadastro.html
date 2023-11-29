@@ -41,7 +41,7 @@
 
                     </div>
                     <div class="campos">
-                        <input id="input_CPF" max="11" placeholder="CPF">
+                        <input id="input_CPF" placeholder="CPF">
                         <div id="div_cpf"></div>
                     </div>
                     <div class="campos">
@@ -75,6 +75,12 @@
         var cpfVar = input_CPF.value;
         var senhaVar = input_senha.value;
         var museusVar = listaMuseus.value;
+
+        div_cpf.innerHTML =""
+        div_email.innerHTML =""
+        div_empresa.innerHTML =""
+        div_senha.innerHTML =""
+        div_nome.innerHTML =""
 
 
 
@@ -125,7 +131,7 @@
         } else {
             div_nome.innerHTML += " "
         }
-        if (cpfVar.length != 14) {
+        if (cpfVar.length != 11) {
             div_cpf.innerHTML = 'Numero de CPF invalido'
         }
         else {
