@@ -113,8 +113,15 @@ select * from Museu;
 select * from Funcionario;
 select * from Endereço;
 
-drop database museu;
+UPDATE Ambiente SET nome_ambiente = 'Galeria de Arte' WHERE idAmbiente = 1;
+UPDATE Ambiente SET nome_ambiente = 'Sala de objetos históricos ' WHERE idAmbiente = 4;
+UPDATE Ambiente SET nome_ambiente = 'Reserva Técnica - Museu Catavento' WHERE idAmbiente = 7;
 
 
+SELECT  dht11_temperatura as temperatura, dht11_umidade as umidade,
+		dtRegistro, DATE_FORMAT(dtRegistro,'%H:%i:%s') as momento_grafico
+		from Registro where fkAmbiente = 1
+                    order by idRegistro desc limit 7; 
+                    
 
 

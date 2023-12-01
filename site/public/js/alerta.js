@@ -1,26 +1,6 @@
 var alertas = [];
 
-/* function obterdados(idAmbiente) {
-    fetch(`/medidas/tempo-real/${idAmbiente}`)
-        .then(resposta => {
-            if (resposta.status == 200) {
-                resposta.json().then(resposta => {
-
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                    alertar(resposta, idAmbiente);
-                });
-            } else {
-                console.error(`Nenhum dado encontrado para o id ${idAmbiente} ou erro na API`);
-            }
-        })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados do ambiente p/ gráfico: ${error.message}`);
-        });
-
-} */
-
-/* function alertar(resposta, idAmbiente) {
+function alertar(resposta, idAmbiente) {
     var temp = resposta[0].temperatura;
 
     var grauDeAviso = '';
@@ -91,9 +71,9 @@ function exibirAlerta(temp, idAmbiente, grauDeAviso, grauDeAvisoCor) {
 function removerAlerta(idAmbiente) {
     alertas = alertas.filter(item => item.idAmbiente != idAmbiente);
     exibirCards();
-} */
+} 
 
-/* function exibirCards() {
+function exibirCards() {
     alerta.innerHTML = '';
 
     for (var i = 0; i < alertas.length; i++) {
@@ -102,7 +82,7 @@ function removerAlerta(idAmbiente) {
     }
 }
 
-function alertaEmDiv({ idAmbiente, temp, grauDeAviso, grauDeAvisoCor }) {
+/* function alertaEmDiv({ idAmbiente, temp, grauDeAviso, grauDeAvisoCor }) {
 
     var nome_ambiente = JSON.parse(sessionStorage.AMBIENTE).find(item => item.id == idAmbiente).nome_ambiente;
     return `
@@ -115,11 +95,6 @@ function alertaEmDiv({ idAmbiente, temp, grauDeAviso, grauDeAvisoCor }) {
         <div class="alarme-sino"></div>
     </div>
     `;
-} */
+}  */
 
-function atualizacaoPeriodica() {
-    JSON.parse(sessionStorage.AMBIENTE).forEach(item => {
-        obterdados(item.id)
-    });
-    setTimeout(atualizacaoPeriodica, 5000);
-}
+

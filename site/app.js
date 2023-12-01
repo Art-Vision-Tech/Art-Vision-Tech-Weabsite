@@ -12,6 +12,7 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var museuRouter = require("./src/routes/museu");
 var ambienteRouter = require("./src/routes/ambiente");
+var medidasRouter = require("./src/routes/medidas");
 
 
 app.use(express.json());
@@ -24,6 +25,7 @@ app.use("/calculadora", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/museus", museuRouter);
 app.use("/ambientes", ambienteRouter);
+app.use("/medidas", medidasRouter);
 
 
 app.listen(PORTA, function () {

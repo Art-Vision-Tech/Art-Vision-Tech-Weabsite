@@ -124,3 +124,15 @@ table.tabela-sensor thead {
     border: white;
     display: inline;
 }
+
+.display-none {
+    display: none;
+  }
+  
+  .display-flex {
+    display: flex;
+  }
+  
+  .display-block {
+    display: block;
+  }
