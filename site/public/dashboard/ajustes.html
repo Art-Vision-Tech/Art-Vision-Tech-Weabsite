@@ -17,7 +17,7 @@
 <body>
     <div class="header">
         <div id="perfil">
-            <p> Henrique </p>
+            <div id="p_username"> Henrique </div>
             <img id="perfil-avatar" src="https://cdn-icons-png.flaticon.com/512/3106/3106773.png" alt="Foto de perfil">
         </div>
     </div>
@@ -42,29 +42,32 @@
                         <table class="perfil">
                             <tr>
                                 <td><b>Nome</b></td>
-                                <td>Henrique Mendes da silva</td>
+                                <td><input type="text" id="input_nomeUser" style="display: none;"><div id="div_nomeUser"></div></td>
                             </tr>
                             <tr>
                                 <td><b>Nome da Instuição</b></td>
-                                <td>Artemis Vintage</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td><b>Email</b></td>
-                                <td>henrique.silva@gmail.com</td>
+                                <td><input type="text" id="input_emailUser" style="display: none;"><div id="div_emailUser"></div></td>
                             </tr>
                             <tr>
                                 <td><b>Data de registro</b></td>
                                 <td>05-06-23 14:24:36</td>
                             </tr>
                         </table>
-                        <button class="botao">Editar perfil</button>
+                        <button class="botao" id="botão1" onclick="editar()">Editar Usuário</button>
+                        <button class="botao" id="botão2" style="display: none" onclick="atualizar()">Atualizar Usuário</button>
+                        <button class="botao" id="botão3" onclick="editarMuseu()">Editar Museu</button>
+                        <button class="botao" id="botão4" style="display: none" onclick="atualizarMuseu()">Atualizar Museu</button>
                     </div>
                     <div class="div_museu">
                         <h2>Museu</h2>
                         <table class="museu">
                             <tr>
                                 <td><b>Nome</b></td>
-                                <td>Artemis Vintage</td>
+                                <td><input type="text" id="input_museuUser" style="display: none;"><div id="div_museuUser"></div></td>
                             </tr>
                             <tr>
                                 <td><b>Quantidade de Obras</b></td>
@@ -76,7 +79,7 @@
                             </tr>
                             <tr>
                                 <td><b>CNPJ</b></td>
-                                <td>75.313.493/0001-19</td>
+                                <td><input type="text" id="input_cnpjUser" style="display: none;"><div id="div_cnpjUser"></div></td>
                             </tr>
                         </table>
                     </div>
@@ -134,7 +137,7 @@
                             <option value="60"> 1 hora </option>
                         </select>
                     </div>
-                    
+                    <input type="text" id="input_nome">
 
                 </div>
             </div>
@@ -142,3 +145,79 @@
 </body>
 
 </html>
+<script>
+    var username = sessionStorage.NOME_USUARIO
+    p_username.innerHTML = `${username}`
+    div_nomeUser.innerHTML = `${username}`
+    div_emailUser.innerHTML = `${sessionStorage.EMAIL_USUARIO}`
+    function editar(){
+        div_nomeUser.innerHTML = ""
+        div_emailUser.innerHTML = ""
+        document.getElementById("input_nomeUser").style.display = "block";
+        document.getElementById("input_emailUser").style.display = "block";
+        document.getElementById("botão2").style.display = "block";
+        document.getElementById("botão1").style.display = "none";
+    }
+    function editarMuseu(){
+        div_museuUser.innerHTML = ""
+        div_cnpjUser.innerHTML = ""
+        document.getElementById("input_museuUser").style.display = "block";
+        document.getElementById("input_cnpjUser").style.display = "block";
+        document.getElementById("botão2").style.display = "block";
+        document.getElementById("botão1").style.display = "none";
+    }
+
+    function atualizar(){
+        var nomeVar = input_nomeUser.value;
+        var emailVar = input_emailUser.value;
+        div_nomeUser.innerHTML = `${nomeVar}`
+        div_emailUser.innerHTML = `${emailVar}`
+        document.getElementById("input_nomeUser").style.display = "none";
+        document.getElementById("input_emailUser").style.display = "none";
+
+        document.getElementById("botão2").style.display = "none";
+        document.getElementById("botão1").style.display = "block";
+
+        fetch("/usuarios/atualizarPerfil", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/perfil.js
+               
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                
+            }),
+        })
+
+        .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    alert("Perfil atualizado com sucesso!")
+                        
+                    limparSessao()
+                    setTimeout(() => {
+                        window.location = "ajustes.html";
+                    }, "2000");
+                    
+                    limparFormulario();
+/*                     finalizarAguardar(); */
+                } else {
+                    throw "Houve um erro ao tentar realizar o perfil!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                /* finalizarAguardar(); */
+            });
+
+          
+
+        return false;
+}
+    
+</script>

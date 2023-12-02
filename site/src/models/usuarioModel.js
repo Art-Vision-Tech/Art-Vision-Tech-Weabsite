@@ -22,7 +22,16 @@ function cadastrar(nome, cpf, email, senha, fkMuseu) {
     return database.executar(instrucao);
 }
 
+function atualizarPerfil(nome, email) {
+    var instrucao = `
+        
+    UPDATE Funcionario set nome = '${nome}', email = '${email}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    atualizarPerfil
 };

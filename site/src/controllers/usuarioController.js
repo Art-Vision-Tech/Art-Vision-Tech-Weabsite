@@ -94,8 +94,28 @@ function cadastrar(req, res) {
             );
     }
 }
+function atualizarPerfil(req, res) {
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    
+    
+    
 
+    if (nome == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    }
+    if (email == undefined) {
+        res.status(400).send("Seu nome está undefined!");
+    }
+
+    usuarioModel.atualizarPerfil(nome, email).then(function(resultado){
+        res.status(200).send("Perfil atualizado com sucesso");
+    }).catch(function(erro){
+        res.status(500).json(erro.sqlMessage);
+    })
+}
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    atualizarPerfil,
 }
