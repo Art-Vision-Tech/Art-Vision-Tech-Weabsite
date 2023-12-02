@@ -89,11 +89,14 @@ foreign key (fkAmbiente) references ambiente(idAmbiente),
 constraint fkS foreign key Registro(fkSensor) references Sensor(idSensor)
 );
 
- insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values
- ('24.7', '20', 1, 1),
- ('24.7', '27', 1, 1),
-('22.2', '22', 2, 1),
- ('21.9', '29', 2, 2);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (24.7, 20, 1, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (24.7, 27, 1, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (22.5, 31, 1, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (23.2, 35, 1, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (23, 40, 1, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (22.2, 38, 1, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (22.2, 22, 2, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (21.9, 29, 2, 2);
 
 -- selects
 
@@ -125,3 +128,5 @@ SELECT  dht11_temperatura as temperatura, dht11_umidade as umidade,
                     
 
 
+
+DROP DATABASE museu;

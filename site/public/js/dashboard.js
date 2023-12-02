@@ -245,7 +245,7 @@ function plotarGrafico(resposta, idAmbiente) {
         configTempLine
     });
 
-    setTimeout(() => atualizarGrafico(idAmbiente, dataTempLine, chartTempLine), 2000);
+    /* setTimeout(() => atualizarGrafico(idAmbiente, dataTempLine, chartTempLine), 2000); */
 
 
     /* const ctxUmd = document.getElementById(`kpi_chartUmd${idAmbiente}`).getContext('2d');
@@ -458,7 +458,7 @@ function plotarGrafico(resposta, idAmbiente) {
     new Chart(ctxIp, config);
 }
 
-function atualizarGrafico(idAmbiente, dados, myChart) {
+/* function atualizarGrafico(idAmbiente, dados, myChart) {
 
     fetch(`/medidas/tempo-real/${idAmbiente}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
@@ -470,14 +470,10 @@ function atualizarGrafico(idAmbiente, dados, myChart) {
                 console.log(`Dados atuais do gráfico:`);
                 console.log(dados);
 
-                /*                 let avisoCaptura = document.getElementById(`avisoCaptura${idAmbiente}`)
-                                avisoCaptura.innerHTML = "" */
-
-
                 if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
                     console.log("---------------------------------------------------------------")
                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                    /*                     avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará." */
+
                     console.log("Horário do novo dado capturado:")
                     console.log(novoRegistro[0].momento_grafico)
                     console.log("Horário do último dado capturado:")
@@ -510,19 +506,19 @@ function atualizarGrafico(idAmbiente, dados, myChart) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
 
-}
+} */
 
 
 
 
-function atualizacaoPeriodica(idAmbiente) {
+/* function atualizacaoPeriodica(idAmbiente) {
     obterdados(idAmbiente)
     setTimeout(atualizacaoPeriodica, 5000);
-} 
+}  */
 
 window.onload = function () {
     exibirDadosAmbiente(sessionStorage.ID_AMBIENTE);
     alterarTitulo(sessionStorage.ID_AMBIENTE);
-    atualizacaoPeriodica(sessionStorage.ID_AMBIENTE); 
+    /* atualizacaoPeriodica(sessionStorage.ID_AMBIENTE);  */
 }
 

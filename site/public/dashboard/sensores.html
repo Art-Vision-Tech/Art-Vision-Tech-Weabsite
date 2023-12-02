@@ -17,7 +17,7 @@
     <title>Sensores</title>
 </head>
 
-<body onload="validarSessao(), /* atualizacaoPeriodica(), */ exibirAmbientes()">
+<body onload="validarSessao(), exibirAmbientes()">
     <div class="header">
         <div id="perfil">
             <p id="b_usuario"> Henrique </p>
@@ -28,9 +28,8 @@
         <img id="logo" src="../assets/img/logo_museu.png" alt="Logo Museu">
         <!-- Imagem da logo do museus cadastrado no sistema -->
         <div id="sidebar-menu">
-            <a class="active" href="sensores.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores
-            </a>
-            <!-- <a href="linha_do_tempo.html"> <i class="fa fa-fw fa-solid fa-timeline"></i> Linha do Tempo </a> -->
+            <a class="active" href="sensores.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores </a>
+            <a href="atendimento.html"> <i class="fa fa-fw fa-solid fa-headset"></i> Atendimento </a>
             <a href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relatório </a>
             <a href="ajustes.html"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
             <a onclick="limparSessao()"> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
@@ -41,9 +40,10 @@
             <!-- Cabeçalho da div conteúdo, este elemento é opcional -->
             <div class="container-main-content">
                 <h2> Sensores </h2>
-                <div class="linha">
-                    <div class="coluna" id="area-card">
-                    </div>
+<!--                 <div class="container-pipefy">
+                    <button> Pipefy </button>
+                </div> -->
+                <div class="linha" id="area-card">
                 </div>
             </div>
         </div>
@@ -67,8 +67,8 @@
                                 <img src="../assets/../assets/img/icone.jpg" alt="">
                             </div>
                             <div class="card-texto">
-                                <p>Temperatura média: ${item.id}</p>
-                                <p>Umidade média: ${item.id}</p>
+                                <p id=''>Temperatura média: </p>
+                                <p>Umidade média: ${item.idAmbiente}</p>
                                 <p>Quantidade Acervo: ${item.qtd_acervo}</p>
                             </div>
                         </div>
@@ -84,8 +84,6 @@
 
     function abrirDashboard(idAmbiente) {
         sessionStorage.ID_AMBIENTE = idAmbiente
-        console.log(sessionStorage.ID_AMBIENTE)
-
         window.location = "dashboard_sala.html";
 
     }

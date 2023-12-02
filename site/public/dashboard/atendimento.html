@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/sessao.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/atendimento.css">
+    <link rel="stylesheet" href="../css/sistema_style.css">
+    <title> Atendimento </title>
+</head>
+
+<body onload="validarSessao()">
+    <div class="header">
+        <div id="perfil">
+            <p id="b_usuario"> Henrique </p>
+            <img id="perfil-avatar" src="https://cdn-icons-png.flaticon.com/512/3106/3106773.png" alt="Foto de perfil">
+        </div>
+    </div>
+    <div id="sidebar">
+        <img id="logo" src="../assets/img/logo_museu.png" alt="Logo Museu">
+        <div id="sidebar-menu">
+            <a href="sensores.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores </a>
+            <a class="active" href="atendimento.html"> <i class="fa fa-fw fa-headset"></i> Atendimento </a>
+            <a href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relatório </a>
+            <a href="ajustes.html"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
+            <a onclick="limparSessao()"> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
+        </div>
+    </div>
+    <div class="rigth-content">
+        <div class="container-bg-content">
+            <div class="container-main-content">
+                <h1> Central de atendimento </h1>
+                <iframe class="form-pipefy" width='560' height='580' src='https://app.pipefy.com/public/form/feaDeh-9?embedded=true'
+                    frameborder='0'></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
