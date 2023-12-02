@@ -22,10 +22,10 @@ function cadastrar(nome, cpf, email, senha, fkMuseu) {
     return database.executar(instrucao);
 }
 
-function atualizarPerfil(nome, email) {
+function atualizarPerfil(nome, email, idFuncionario) {
     var instrucao = `
         
-    UPDATE Funcionario set nome = '${nome}', email = '${email}';
+    UPDATE Funcionario set nome = '${nome}', email = '${email}' WHERE idFuncionario = ${idFuncionario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

@@ -170,6 +170,7 @@
     function atualizar(){
         var nomeVar = input_nomeUser.value;
         var emailVar = input_emailUser.value;
+        var idFuncionarioVar = sessionStorage.ID_FUNCIONARIO;
         div_nomeUser.innerHTML = `${nomeVar}`
         div_emailUser.innerHTML = `${emailVar}`
         document.getElementById("input_nomeUser").style.display = "none";
@@ -189,6 +190,7 @@
                
                 nomeServer: nomeVar,
                 emailServer: emailVar,
+                idServer: idFuncionarioVar,
                 
             }),
         })

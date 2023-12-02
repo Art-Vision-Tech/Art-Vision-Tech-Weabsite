@@ -97,6 +97,7 @@ function cadastrar(req, res) {
 function atualizarPerfil(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
+    var idFuncionario = req.body.idServer;
     
     
     
@@ -108,7 +109,7 @@ function atualizarPerfil(req, res) {
         res.status(400).send("Seu nome está undefined!");
     }
 
-    usuarioModel.atualizarPerfil(nome, email).then(function(resultado){
+    usuarioModel.atualizarPerfil(nome, email, idFuncionario).then(function(resultado){
         res.status(200).send("Perfil atualizado com sucesso");
     }).catch(function(erro){
         res.status(500).json(erro.sqlMessage);
