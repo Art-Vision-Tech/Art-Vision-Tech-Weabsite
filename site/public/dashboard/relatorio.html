@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/sessao.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Link onde são fornecidos os ícones  -->
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
@@ -13,7 +14,7 @@
     <title>Relatório</title>
 </head>
 
-<body>
+<body onload="validarSessao()">
     <div class="header">
         <div id="perfil">
             <p> Henrique </p>
@@ -28,7 +29,7 @@
             <a href="atendimento.html"> <i class="fa fa-fw fa-headset"></i> Atendimento </a>
             <a class="active" href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relatório </a>
             <a href="ajustes.html"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
-            <a> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
+            <a onclick="limparSessao()"> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
         </div>
     </div>
     <div class="rigth-content"> <!-- Seção onde será inserido o conteúdo do sistema-->
