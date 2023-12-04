@@ -9,6 +9,7 @@ function obterdados(idAmbiente) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                     alertar(resposta, idAmbiente);
+                    atualizarTabela(resposta,idAmbiente);
                 });
             } else {
                 console.error(`Nenhum dado encontrado para o id ${idAmbiente} ou erro na API`);
@@ -21,6 +22,7 @@ function obterdados(idAmbiente) {
 
 function alertar(resposta, idAmbiente) {
     var temp = resposta[0].temperatura;
+    var umd = resposta[0].umidade;
 
     var limites = {
         quente: 28,
@@ -39,7 +41,17 @@ function alertar(resposta, idAmbiente) {
     }
 
     if (document.getElementById(`temp_ambiente_${idAmbiente}`) != null) {
-        document.getElementById(`temp_ambiente_${idAmbiente}`).innerHTML = `Temperatura média: ${temp}°C`;
+        document.getElementById(`temp_ambiente_${idAmbiente}`).innerHTML = `Temperatura atual: ${temp}°C`;
+        document.getElementById(`temp_tabela${idAmbiente}`).innerHTML = `${temp}º`;
+    }
+
+    if (document.getElementById(`umd_ambiente_${idAmbiente}`) != null) {
+        document.getElementById(`umd_ambiente_${idAmbiente}`).innerHTML = `Umidade atual: ${umd}%`;
+    }
+
+    if (document.getElementById(`temp_tabela${idAmbiente}`) != null) {
+        document.getElementById(`temp_tabela${idAmbiente}`).innerHTML = `${temp}º`;
+        document.getElementById(`umd_tabela${idAmbiente}`).innerHTML = `${umd}%`;
     }
 
     if (document.getElementById(`card_${idAmbiente}`)) {

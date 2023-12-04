@@ -10,16 +10,16 @@ function exibirDadosAmbiente(idAmbiente) {
         </p>
     `
 
-    /* <canvas id='kpi_chartUmd${idAmbiente}' style="display: none;"></canvas> */
-    document.getElementById("dashbaord").innerHTML = `
+    document.getElementById("dashboard").innerHTML = `
         <div class="container-main-content">
         <div class="container-row row1">
             <div class="container-column" >
                 <div class="grafico">
                     <canvas id="kpi_chart${idAmbiente}"></canvas>
+                    <canvas id='kpi_chartUmd${idAmbiente}' style="display: none;"></canvas>
                 </div>
                 <div>
-                    <select name="select_grafico" id="select_grafico" onchange="tipoGrafico()">
+                    <select name="select_grafico" id="select_grafico" onchange="tipoGrafico(${idAmbiente})">
                         <option value="opt_temp"> Temperatura </option>
                         <option value="opt_umd"> Umidade </option>
                     </select>
@@ -37,13 +37,13 @@ function exibirDadosAmbiente(idAmbiente) {
                         <tr>
                             <td>1</td>
                             <td>DHT11(1)</td>
-                            <td>19º</td>
-                            <td>40%</td>
+                            <td id='temp_tabela${idAmbiente}'>19º</td>
+                            <td id='umd_tabela${idAmbiente}'>40%</td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>DHT11(2)</td>
-                            <td>20º</td>
+                            <td >20º</td>
                             <td>45%</td>
                         </tr>
                     </tbody>
@@ -112,7 +112,7 @@ function obtarDadosAmbiente(idAmbiente) {
         clearTimeout(proximaAtualizacao);
     }
 
-    console.log(parseInt(idAmbiente)) 
+    console.log(parseInt(idAmbiente))
 
     fetch(`/medidas/ultimas/${idAmbiente}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
@@ -133,8 +133,9 @@ function obtarDadosAmbiente(idAmbiente) {
 }
 
 
-/* function tipoGrafico(idAmbiente) {
-    const kpi_chartTemp = getElementById(`kpi_chart${idAmbiente}`)
+function tipoGrafico(idAmbiente) {
+    const kpi_chartTemp = document.getElementById(`kpi_chart${idAmbiente}`)
+    const kpi_chartUmd = document.getElementById(`kpi_chartUmd${idAmbiente}`)
     let tipo_grafico = select_grafico.value;
     console.log(tipo_grafico)
     if (tipo_grafico == "opt_umd") {
@@ -146,17 +147,17 @@ function obtarDadosAmbiente(idAmbiente) {
     }
 
     // Função para alterar o gráfico
-}  */
+}
 
 function plotarGrafico(resposta, idAmbiente) {
     const ctx = document.getElementById(`kpi_chart${idAmbiente}`).getContext('2d');
 
     console.log('iniciando plotagem do gráfico...');
 
-    let labels = [];
+    let labelsTemp = [];
 
     let dataTempLine = {
-        labels: labels,
+        labels: labelsTemp,
         datasets: [
             {
                 yAxisID: 'A',
@@ -204,22 +205,22 @@ function plotarGrafico(resposta, idAmbiente) {
         },
     };
 
-/*     console.log('----------------------------------------------')
-    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-    console.log(resposta) */
+    /*     console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta) */
 
     // Inserindo valores recebidos em estrutura para plotar o gráfico
     for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
-        labels.push(registro.momento_grafico);
+        labelsTemp.push(registro.momento_grafico);
         dataTempLine.datasets[0].data.push(registro.temperatura);
-        dataTempLine.datasets[1].data.push(registro.umidade);
+        dataTempLine.datasets[1].data.push(registro.temperatura);
     }
 
     console.log('----------------------------------------------')
     console.log('O gráfico será plotado com os respectivos valores:')
     console.log('Labels:')
-    console.log(labels)
+    console.log(labelsTemp)
     console.log('Dados:')
     console.log(dataTempLine.datasets)
     console.log('----------------------------------------------')
@@ -235,57 +236,74 @@ function plotarGrafico(resposta, idAmbiente) {
         configTempLine
     );
 
-    setTimeout(() => atualizarGrafico(idAmbiente, dataTempLine, chartTempLine), 2000); 
+    setTimeout(() => atualizarGrafico(idAmbiente, dataTempLine, chartTempLine), 2000);
 
 
-    /* const ctxUmd = document.getElementById(`kpi_chartUmd${idAmbiente}`).getContext('2d');
-    const chartUmd = new Chart(ctxUmd, {
-        type: 'line',
-        data: {
-            labels: ['0:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00'],
-            datasets: [
-                {
-                    yAxisID: 'A',
-                    label: 'DHT11(1) UR%',
-                    data: [47, 55, 53, 60, 57, 51, 47, 46, 50, 52, 48, 56, 60],
-                    borderWidth: 1,
-                    backgroundColor: 'blue',
-                    borderColor: 'blue'
-                },
-                {
-                    yAxisID: 'B',
-                    label: 'DHT11(2) UR%',
-                    data: [50, 52, 50, 56, 53, 49, 47, 42, 47, 50, 46, 51, 54],
-                    borderWidth: 1,
-                    backgroundColor: 'rgba(0, 142, 252, 0.8)',
-                    borderColor: 'rgb(0, 31, 252)'
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                A: {
-                    type: 'linear',
-                    position: 'left',
-                    ticks: { beginAtZero: true, color: 'blue', stepSize: 10 },
-                    grid: { display: false },
-                    suggestedMin: 10,
-                    suggestedMax: 90,
-                },
-                x: { ticks: { beginAtZero: true } },
-                B: {
-                    type: 'linear',
-                    position: 'left',
-                    display: false,
-                    ticks: { beginAtZero: true, color: 'blue', stepSize: 5 },
-                    grid: { display: false },
-                    suggestedMin: 10,
-                    suggestedMax: 90,
-                }
+    const ctxUmd = document.getElementById(`kpi_chartUmd${idAmbiente}`).getContext('2d');
+    let labelsUmd = []
+
+    let dataUmdLine = {
+        labels: labelsUmd,
+        datasets: [
+            {
+                yAxisID: 'A',
+                label: 'DHT11(1) UR%',
+                data: [],
+                borderWidth: 1,
+                backgroundColor: 'blue',
+                borderColor: 'blue'
+            },
+            {
+                yAxisID: 'B',
+                label: 'DHT11(2) UR%',
+                data: [],
+                borderWidth: 1,
+                backgroundColor: 'rgba(0, 142, 252, 0.8)',
+                borderColor: 'rgb(0, 31, 252)'
+            }
+        ]
+    }
+
+    const opcoes_umd = {
+        responsive: true,
+        scales: {
+            A: {
+                type: 'linear',
+                position: 'left',
+                ticks: { beginAtZero: true, color: 'blue', stepSize: 10 },
+                grid: { display: false },
+                suggestedMin: 10,
+                suggestedMax: 90,
+            },
+            x: { ticks: { beginAtZero: true } },
+            B: {
+                type: 'linear',
+                position: 'left',
+                display: false,
+                ticks: { beginAtZero: true, color: 'blue', stepSize: 5 },
+                grid: { display: false },
+                suggestedMin: 10,
+                suggestedMax: 90,
             }
         }
-    }); */
+    };
+
+    for (i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        labelsUmd.push(registro.momento_grafico);
+        dataUmdLine.datasets[0].data.push(registro.umidade);
+        dataUmdLine.datasets[1].data.push(registro.umidade);
+    }
+
+    const configUmdLine = { 
+        type: 'line',
+        data: dataUmdLine,
+        options: opcoes_umd
+    }
+
+    let chartUmd = new Chart(ctxUmd, configUmdLine);
+
+    setTimeout(() => atualizarGrafico(idAmbiente, dataUmdLine, chartUmd), 2000);
 
     const ctxTemp = document.getElementById(`kpi_temperatura${idAmbiente}`).getContext('2d');
     const ctxUr = document.getElementById(`kpi_umidade${idAmbiente}`).getContext('2d');
@@ -475,7 +493,7 @@ function atualizarGrafico(idAmbiente, dados, myChart) {
                     dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
 
                     dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                    dados.datasets[0].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de umidade
+                    dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
 
                     dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
                     dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
@@ -496,15 +514,11 @@ function atualizarGrafico(idAmbiente, dados, myChart) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
 
-} 
-
-
-
-
+}
 
 
 window.onload = function () {
     exibirDadosAmbiente(sessionStorage.ID_AMBIENTE);
-    
+
 }
 

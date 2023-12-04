@@ -68,7 +68,7 @@
                             </div>
                             <div class="card-texto">
                                 <p id='temp_ambiente_${item.idAmbiente}'>Temperatura média: </p>
-                                <p>Umidade média: ${item.idAmbiente}</p>
+                                <p id='umd_ambiente_${item.idAmbiente}'>Umidade média: </p>
                                 <p>Quantidade Acervo: ${item.qtd_acervo}</p>
                             </div>
                         </div>
@@ -94,39 +94,5 @@
     })
     setTimeout(atualizacaoPeriodica, 5000);
     }
-
-
-
-    /*     function abrirDashboard(idAmbiente) {
-            console.log("Abriu");
-            window.location = "dashboard_sala.html";
-        }
-    
-        function exibirAmbientes() {
-            JSON.parse(sessionStorage.AMBIENTE).forEach(item => {
-                document.getElementById("area-card").innerHTML += `
-                <div class="card">
-                    <div class="card-body">
-                        <button onClick="abrirDashboard(${item.idAmbiente})">
-                            <h3>${item.nome_ambiente} - ${item.andar}</h3>
-                                <div class="container-card">
-                                    <div class="card-img">
-                                        <img src="../assets/../assets/img/icone.jpg" alt="">
-                                    </div>
-                                    <div class="card-texto">
-                                        <p>Temperatura média: ${item.id}</p>
-                                        <p>Umidade média: ${item.id}</p>
-                                        <p>Quantidade Acervo: ${item.qtd_acervo}</p>
-                                    </div>
-                                </div>
-                        </button>
-                    </div>
-                    <div class="status-card ok">
-                        <p>Temperatura e umidade ideal</p>
-                    </div>
-                </div>
-                `
-            });
-        } */
 
 </script>
