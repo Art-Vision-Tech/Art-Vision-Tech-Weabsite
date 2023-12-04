@@ -9,7 +9,6 @@ function obterdados(idAmbiente) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                     alertar(resposta, idAmbiente);
-                    atualizarTabela(resposta,idAmbiente);
                 });
             } else {
                 console.error(`Nenhum dado encontrado para o id ${idAmbiente} ou erro na API`);
@@ -42,7 +41,6 @@ function alertar(resposta, idAmbiente) {
 
     if (document.getElementById(`temp_ambiente_${idAmbiente}`) != null) {
         document.getElementById(`temp_ambiente_${idAmbiente}`).innerHTML = `Temperatura atual: ${temp}°C`;
-        document.getElementById(`temp_tabela${idAmbiente}`).innerHTML = `${temp}º`;
     }
 
     if (document.getElementById(`umd_ambiente_${idAmbiente}`) != null) {
