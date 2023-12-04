@@ -34,7 +34,7 @@ primary key (IdFuncionario, FkMuseu),
 nome varchar(45),
 cpf char(11) unique,
 email varchar (45),
-senha varchar (45),
+senha varchar (45),	
 foreign key (FkMuseu)
 references museu(idMuseu)
 ) auto_increment = 1000;
@@ -94,6 +94,8 @@ insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) va
 insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (22.5, 31, 1, 1);
 insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (23.2, 35, 1, 1);
 insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (23, 40, 1, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (27, 31, 4, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (26, 32, 4, 1);
 insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (22.2, 38, 1, 1);
 insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (22.2, 22, 2, 1);
 insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (21.9, 29, 2, 2);

@@ -1,53 +1,45 @@
 var alertas = [];
 
+function obterdados(idAmbiente) {
+    fetch(`/medidas/tempo-real/${idAmbiente}`)
+        .then(resposta => {
+            if (resposta.status == 200) {
+                resposta.json().then(resposta => {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    alertar(resposta, idAmbiente);
+                });
+            } else {
+                console.error(`Nenhum dado encontrado para o id ${idAmbiente} ou erro na API`);
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados do ambiente p/ gráfico: ${error.message}`);
+    });
+}  
+
 function alertar(resposta, idAmbiente) {
     var temp = resposta[0].temperatura;
 
-    var grauDeAviso = '';
-
     var limites = {
-        muito_quente: 23,
-        quente: 22,
-        ideal: 20,
-        frio: 10,
-        muito_frio: 5
+        quente: 28,
+        ideal: 21,
+        ruim: 12,
     };
 
-    var classe_temperatura = 'cor-alerta';
-
-    if (temp >= limites.muito_quente) {
-        classe_temperatura = 'cor-alerta perigo-quente';
-        grauDeAviso = 'perigo quente'
-        grauDeAvisoCor = 'cor-alerta perigo-quente'
-        exibirAlerta(temp, idAmbiente, grauDeAviso, grauDeAvisoCor)
-    }
-    else if (temp < limites.muito_quente && temp >= limites.quente) {
-        classe_temperatura = 'cor-alerta alerta-quente';
-        grauDeAviso = 'alerta quente'
-        grauDeAvisoCor = 'cor-alerta alerta-quente'
-        exibirAlerta(temp, idAmbiente, grauDeAviso, grauDeAvisoCor)
-    }
-    else if (temp < limites.quente && temp > limites.frio) {
-        classe_temperatura = 'cor-alerta ideal';
-        removerAlerta(idAmbiente);
-    }
-    else if (temp <= limites.frio && temp > limites.muito_frio) {
-        classe_temperatura = 'cor-alerta alerta-frio';
-        grauDeAviso = 'alerta frio'
-        grauDeAvisoCor = 'cor-alerta alerta-frio'
-        exibirAlerta(temp, idAmbiente, grauDeAviso, grauDeAvisoCor)
+    if (temp >= limites.quente) {
+        classe_temperatura = 'status-card atencao';
     }
     else if (temp <= limites.muito_frio) {
-        classe_temperatura = 'cor-alerta perigo-frio';
-        grauDeAviso = 'perigo frio'
-        grauDeAvisoCor = 'cor-alerta perigo-frio'
-        exibirAlerta(temp, idAmbiente, grauDeAviso, grauDeAvisoCor)
+        classe_temperatura = 'status-card erro';
+    }
+    else if (temp < limites.quente && temp > limites.ruim) {
+        classe_temperatura = 'status-card ok';
     }
 
-    var card;
-
     if (document.getElementById(`temp_ambiente_${idAmbiente}`) != null) {
-        document.getElementById(`temp_ambiente_${idAmbiente}`).innerHTML = temp + "°C";
+        document.getElementById(`temp_ambiente_${idAmbiente}`).innerHTML = `Temperatura média: ${temp}°C`;
     }
 
     if (document.getElementById(`card_${idAmbiente}`)) {
@@ -56,7 +48,7 @@ function alertar(resposta, idAmbiente) {
     }
 }
 
-function exibirAlerta(temp, idAmbiente, grauDeAviso, grauDeAvisoCor) {
+/* function exibirAlerta(temp, idAmbiente, grauDeAviso, grauDeAvisoCor) {
     var indice = alertas.findIndex(item => item.idAmbiente == idAmbiente);
 
     if (indice >= 0) {
@@ -71,16 +63,16 @@ function exibirAlerta(temp, idAmbiente, grauDeAviso, grauDeAvisoCor) {
 function removerAlerta(idAmbiente) {
     alertas = alertas.filter(item => item.idAmbiente != idAmbiente);
     exibirCards();
-} 
+}   */
 
-function exibirCards() {
+/* function exibirCards() {
     alerta.innerHTML = '';
 
     for (var i = 0; i < alertas.length; i++) {
         var mensagem = alertas[i];
         alerta.innerHTML += alertaEmDiv(mensagem);
     }
-}
+} */
 
 /* function alertaEmDiv({ idAmbiente, temp, grauDeAviso, grauDeAvisoCor }) {
 

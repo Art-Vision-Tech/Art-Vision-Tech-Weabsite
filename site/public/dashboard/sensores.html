@@ -17,7 +17,7 @@
     <title>Sensores</title>
 </head>
 
-<body onload="validarSessao(), exibirAmbientes()">
+<body onload="validarSessao(), exibirAmbientes(), atualizacaoPeriodica(sessionStorage.ID_AMBIENTE)">
     <div class="header">
         <div id="perfil">
             <p id="b_usuario"> Henrique </p>
@@ -67,14 +67,14 @@
                                 <img src="../assets/../assets/img/icone.jpg" alt="">
                             </div>
                             <div class="card-texto">
-                                <p id=''>Temperatura média: </p>
+                                <p id='temp_ambiente_${item.idAmbiente}'>Temperatura média: </p>
                                 <p>Umidade média: ${item.idAmbiente}</p>
                                 <p>Quantidade Acervo: ${item.qtd_acervo}</p>
                             </div>
                         </div>
                 </button>
             </div>
-            <div class="status-card ok">
+            <div class="status-card ok" id="card_${item.idAmbiente}">
                 <p>Temperatura e umidade ideal</p>
             </div>
         </div>
@@ -87,6 +87,14 @@
         window.location = "dashboard_sala.html";
 
     }
+
+    function atualizacaoPeriodica() {
+    ambiente.forEach(item => {
+        obterdados(item.idAmbiente)
+    })
+    setTimeout(atualizacaoPeriodica, 5000);
+    }
+
 
 
     /*     function abrirDashboard(idAmbiente) {

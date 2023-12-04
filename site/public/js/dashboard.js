@@ -16,8 +16,7 @@ function exibirDadosAmbiente(idAmbiente) {
         <div class="container-row row1">
             <div class="container-column" >
                 <div class="grafico">
-                    <canvas id='kpi_chart${idAmbiente}'></canvas>
-                    
+                    <canvas id="kpi_chart${idAmbiente}"></canvas>
                 </div>
                 <div>
                     <select name="select_grafico" id="select_grafico" onchange="tipoGrafico()">
@@ -104,36 +103,18 @@ function alterarTitulo(idAmbiente) {
     elementoTitulo.innerHTML = "<a href='sensores.html'> <i class='fa fa-fw fa-solid fa-arrow-left'></i> " + nome_ambiente + " - " + andar + "</a>";
 }
 
-function obterdados(idAmbiente) {
-    fetch(`/medidas/tempo-real/${idAmbiente}`)
-        .then(resposta => {
-            if (resposta.status == 200) {
-                resposta.json().then(resposta => {
-
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                    /* alertar(resposta, idAmbiente); */
-                });
-            } else {
-                console.error(`Nenhum dado encontrado para o id ${idAmbiente} ou erro na API`);
-            }
-        })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados do ambiente p/ gráfico: ${error.message}`);
-        });
-
-}  
 
 function obtarDadosAmbiente(idAmbiente) {
+
+    alterarTitulo(sessionStorage.ID_AMBIENTE);
+
     if (proximaAtualizacao != undefined) {
         clearTimeout(proximaAtualizacao);
     }
 
-    var idAmbienteNumero = parseInt(idAmbiente);
-
     console.log(parseInt(idAmbiente)) 
 
-    fetch(`/medidas/ultimas/${idAmbienteNumero}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/medidas/ultimas/${idAmbiente}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -152,20 +133,20 @@ function obtarDadosAmbiente(idAmbiente) {
 }
 
 
-/* function tipoGrafico() {
-
+/* function tipoGrafico(idAmbiente) {
+    const kpi_chartTemp = getElementById(`kpi_chart${idAmbiente}`)
     let tipo_grafico = select_grafico.value;
     console.log(tipo_grafico)
     if (tipo_grafico == "opt_umd") {
-        kpi_chart.style.display = "none";
+        kpi_chartTemp.style.display = "none";
         kpi_chartUmd.style.display = "block";
     } else {
-        kpi_chart.style.display = "block";
+        kpi_chartTemp.style.display = "block";
         kpi_chartUmd.style.display = "none";
     }
 
     // Função para alterar o gráfico
-} */
+}  */
 
 function plotarGrafico(resposta, idAmbiente) {
     const ctx = document.getElementById(`kpi_chart${idAmbiente}`).getContext('2d');
@@ -181,6 +162,7 @@ function plotarGrafico(resposta, idAmbiente) {
                 yAxisID: 'A',
                 label: 'DHT11(1) Cº',
                 data: [],
+                fill: false,
                 borderWidth: 1,
                 tension: 0.1,
                 backgroundColor: 'orange',
@@ -190,6 +172,7 @@ function plotarGrafico(resposta, idAmbiente) {
                 yAxisID: 'B',
                 label: 'DHT11(2) Cº',
                 data: [],
+                fill: false,
                 borderWidth: 1,
                 tension: 0.1,
                 backgroundColor: 'rgba(255, 118, 51, 0.8)',
@@ -221,31 +204,38 @@ function plotarGrafico(resposta, idAmbiente) {
         },
     };
 
-    const configTempLine = {
-        type: 'line',
-        data: dataTempLine,
-        options: opcoes_temp
-    }
-
-    console.log('----------------------------------------------')
+/*     console.log('----------------------------------------------')
     console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-    console.log(resposta)
+    console.log(resposta) */
 
     // Inserindo valores recebidos em estrutura para plotar o gráfico
     for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
         labels.push(registro.momento_grafico);
         dataTempLine.datasets[0].data.push(registro.temperatura);
-        dataTempLine.datasets[1].data.push(registro.temperatura);
+        dataTempLine.datasets[1].data.push(registro.umidade);
     }
 
-    console.log(dataTempLine)
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(labels)
+    console.log('Dados:')
+    console.log(dataTempLine.datasets)
+    console.log('----------------------------------------------')
 
-    let chartTempLine = new Chart(ctx, {
+    const configTempLine = {
+        type: 'line',
+        data: dataTempLine,
+        options: opcoes_temp
+    }
+
+    let chartTempLine = new Chart(
+        ctx,
         configTempLine
-    });
+    );
 
-    /* setTimeout(() => atualizarGrafico(idAmbiente, dataTempLine, chartTempLine), 2000); */
+    setTimeout(() => atualizarGrafico(idAmbiente, dataTempLine, chartTempLine), 2000); 
 
 
     /* const ctxUmd = document.getElementById(`kpi_chartUmd${idAmbiente}`).getContext('2d');
@@ -458,7 +448,7 @@ function plotarGrafico(resposta, idAmbiente) {
     new Chart(ctxIp, config);
 }
 
-/* function atualizarGrafico(idAmbiente, dados, myChart) {
+function atualizarGrafico(idAmbiente, dados, myChart) {
 
     fetch(`/medidas/tempo-real/${idAmbiente}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
@@ -506,19 +496,15 @@ function plotarGrafico(resposta, idAmbiente) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
 
-} */
+} 
 
 
 
 
-/* function atualizacaoPeriodica(idAmbiente) {
-    obterdados(idAmbiente)
-    setTimeout(atualizacaoPeriodica, 5000);
-}  */
+
 
 window.onload = function () {
     exibirDadosAmbiente(sessionStorage.ID_AMBIENTE);
-    alterarTitulo(sessionStorage.ID_AMBIENTE);
-    /* atualizacaoPeriodica(sessionStorage.ID_AMBIENTE);  */
+    
 }
 
