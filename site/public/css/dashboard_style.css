@@ -63,14 +63,22 @@ h3 {
 }
 
 .ok {
+    color: green;
+}
+
+.alerta {
+    color: red;
+}
+
+.bom {
     background-color: green;
 }
 
-.atencao {
-    background-color: #D9AA1E;
+.normal {
+    background-color: #999999;
 }
 
-.erro {
+.ruim {
     background-color: red;
 }
 

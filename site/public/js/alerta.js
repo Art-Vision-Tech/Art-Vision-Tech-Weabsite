@@ -8,7 +8,8 @@ function obterdados(idAmbiente) {
 
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                    alertar(resposta, idAmbiente);
+                    exibirRegistros(resposta, idAmbiente);
+                    calcularIp(resposta, idAmbiente);
                 });
             } else {
                 console.error(`Nenhum dado encontrado para o id ${idAmbiente} ou erro na API`);
@@ -19,42 +20,64 @@ function obterdados(idAmbiente) {
     });
 }  
 
-function alertar(resposta, idAmbiente) {
+function calcularIp(resposta, idAmbiente) {
     var temp = resposta[0].temperatura;
     var umd = resposta[0].umidade;
-
-    var limites = {
-        quente: 28,
-        ideal: 21,
-        ruim: 12,
+    var ip = Math.exp((95220 - 134.9 * umd) / (8.314 * (temp + 273.15)) + (0.0284 * umd) - 28.023) / 365;
+    var limites_ip = {
+        bom: 70,
+        normal: 45,
     };
 
-    if (temp >= limites.quente) {
-        classe_temperatura = 'status-card atencao';
-    }
-    else if (temp <= limites.muito_frio) {
-        classe_temperatura = 'status-card erro';
-    }
-    else if (temp < limites.quente && temp > limites.ruim) {
-        classe_temperatura = 'status-card ok';
-    }
+    console.log("Valor ip:" + parseInt(ip));
 
-    if (document.getElementById(`temp_ambiente_${idAmbiente}`) != null) {
-        document.getElementById(`temp_ambiente_${idAmbiente}`).innerHTML = `Temperatura atual: ${temp}°C`;
-    }
-
-    if (document.getElementById(`umd_ambiente_${idAmbiente}`) != null) {
-        document.getElementById(`umd_ambiente_${idAmbiente}`).innerHTML = `Umidade atual: ${umd}%`;
-    }
-
-    if (document.getElementById(`temp_tabela${idAmbiente}`) != null) {
-        document.getElementById(`temp_tabela${idAmbiente}`).innerHTML = `${temp}º`;
-        document.getElementById(`umd_tabela${idAmbiente}`).innerHTML = `${umd}%`;
+    if (ip >= limites_ip.bom) {
+        classe_status = 'status-card bom';
+    } else if (ip >= limites_ip.normal && ip <= limites_ip.bom) {
+        classe_status = 'status-card normal';
+    } else {
+        classe_status = 'status-card ruim';
     }
 
     if (document.getElementById(`card_${idAmbiente}`)) {
         card = document.getElementById(`card_${idAmbiente}`)
-        card.className = classe_temperatura;
+        card.className = classe_status;
+    }
+}
+
+function exibirRegistros(resposta, idAmbiente) {
+    var temp = resposta[0].temperatura;
+    var umd = resposta[0].umidade;
+    var ip = Math.exp((95220 - 134.9 * umd) / (8.314 * (temp + 273.15)) + (0.0284 * umd) - 28.023) / 365;
+
+    if(temp > 24 || temp < 20) {
+        classe_temperatura = 'alerta'
+    } else {
+        classe_temperatura = 'ok'
+    }
+
+    if(umd > 60|| umd < 45) {
+        classe_umd = 'alerta'
+    } else {
+        classe_umd = 'ok'
+    }
+
+    if (document.getElementById(`temp_ambiente_${idAmbiente}`) != null && document.getElementById(`umd_ambiente_${idAmbiente}`) != null) {
+        const textoTemp = document.getElementById(`temp_ambiente_${idAmbiente}`)
+        const textoUmd = document.getElementById(`umd_ambiente_${idAmbiente}`)
+        textoTemp.innerHTML = ` ${temp}°C`;
+        textoTemp.className = classe_temperatura;
+        textoUmd.innerHTML = ` ${umd}%`;
+        textoUmd.className = classe_umd;
+        document.getElementById(`ip_ambiente_${idAmbiente}`).innerHTML = `${parseInt(ip)} anos`;
+        document.getElementById(`mensagem_status_${idAmbiente}`).innerHTML = `Temperatura ${temp} | Umidade ${umd} | IP ${parseInt(ip)}`
+    }
+
+
+
+    if (document.getElementById(`temp_tabela${idAmbiente}`) != null) {
+        document.getElementById(`temp_tabela${idAmbiente}`).innerHTML = `${temp}º`;
+        document.getElementById(`umd_tabela${idAmbiente}`).innerHTML = `${umd}%`;
     }
 }
 
