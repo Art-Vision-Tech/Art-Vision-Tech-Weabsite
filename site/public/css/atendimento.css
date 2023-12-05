@@ -82,3 +82,14 @@
 .form-pipefy {
     float: right;
 }
+
+.pipefy{
+    display: flex;
+    justify-content: center;
+}
+
+.pipefy h1{
+    display: flex;
+    justify-content: center;
+    padding: 3%;
+}
