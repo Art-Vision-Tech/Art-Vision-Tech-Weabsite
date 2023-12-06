@@ -40,12 +40,6 @@ function exibirDadosAmbiente(idAmbiente) {
                             <td id='temp_tabela${idAmbiente}'>19º</td>
                             <td id='umd_tabela${idAmbiente}'>40%</td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>DHT11(2)</td>
-                            <td >20º</td>
-                            <td>45%</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -54,26 +48,7 @@ function exibirDadosAmbiente(idAmbiente) {
                     <p> Histórico de Alertas </p>
                 </div>
                 <div id='historicoAlerta${idAmbiente}'>
-                    <div class="log-mensagem">
-                    <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
-                    <p> Nível de temperatura registrado “+6º” do que esperado
-                        (03-09-2023 15:24 ) </p>
-                </div>
-                <div class="log-mensagem">
-                    <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
-                    <p> Nível de umidade registrado “+3%” do que esperado
-                        (03-09-2023 04:02 )</p>
-                </div>
-                <div class="log-mensagem">
-                    <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
-                    <p> Nível de umidade registrado “+4%” do que esperado
-                        (03-09-2023 03:52 ) </p>
-                </div>
-                <div class="log-mensagem">
-                    <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
-                    <p> Nível de temperatura registrado “-2º” do que esperado
-                        (03-09-2023 03:42 ) </p>
-                </div>
+
                 </div>
             </div>
         </div>
@@ -169,16 +144,6 @@ function plotarGrafico(resposta, idAmbiente) {
                 backgroundColor: 'orange',
                 borderColor: 'orange'
             },
-            {
-                yAxisID: 'B',
-                label: 'DHT11(2) Cº',
-                data: [],
-                fill: false,
-                borderWidth: 1,
-                tension: 0.1,
-                backgroundColor: 'rgba(255, 118, 51, 0.8)',
-                borderColor: 'rgb(255, 118, 22)'
-            },
         ]
     }
 
@@ -193,15 +158,6 @@ function plotarGrafico(resposta, idAmbiente) {
                 suggestedMin: 5,
                 suggestedMax: 35,
             },
-            B: {
-                type: 'linear',
-                position: 'left',
-                display: false,
-                ticks: { beginAtZero: true, color: 'orange', stepSize: 5 },
-                grid: { display: false },
-                suggestedMin: 5,
-                suggestedMax: 35,
-            }
         },
     };
 
@@ -214,7 +170,6 @@ function plotarGrafico(resposta, idAmbiente) {
         var registro = resposta[i];
         labelsTemp.push(registro.momento_grafico);
         dataTempLine.datasets[0].data.push(registro.temperatura);
-        dataTempLine.datasets[1].data.push(registro.temperatura);
     }
 
     console.log('----------------------------------------------')
@@ -253,14 +208,6 @@ function plotarGrafico(resposta, idAmbiente) {
                 backgroundColor: 'blue',
                 borderColor: 'blue'
             },
-            {
-                yAxisID: 'B',
-                label: 'DHT11(2) UR%',
-                data: [],
-                borderWidth: 1,
-                backgroundColor: 'rgba(0, 142, 252, 0.8)',
-                borderColor: 'rgb(0, 31, 252)'
-            }
         ]
     }
 
@@ -276,15 +223,6 @@ function plotarGrafico(resposta, idAmbiente) {
                 suggestedMax: 90,
             },
             x: { ticks: { beginAtZero: true } },
-            B: {
-                type: 'linear',
-                position: 'left',
-                display: false,
-                ticks: { beginAtZero: true, color: 'blue', stepSize: 5 },
-                grid: { display: false },
-                suggestedMin: 10,
-                suggestedMax: 90,
-            }
         }
     };
 
@@ -292,7 +230,6 @@ function plotarGrafico(resposta, idAmbiente) {
         var registro = resposta[i];
         labelsUmd.push(registro.momento_grafico);
         dataUmdLine.datasets[0].data.push(registro.umidade);
-        dataUmdLine.datasets[1].data.push(registro.umidade);
     }
 
     const configUmdLine = { 

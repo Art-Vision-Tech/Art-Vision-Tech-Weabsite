@@ -10,6 +10,7 @@ function obterdados(idAmbiente) {
 
                     exibirRegistros(resposta, idAmbiente);
                     calcularIp(resposta, idAmbiente);
+                    cardHistoricoAlerta(resposta, idAmbiente);
                 });
             } else {
                 console.error(`Nenhum dado encontrado para o id ${idAmbiente} ou erro na API`);
@@ -78,6 +79,37 @@ function exibirRegistros(resposta, idAmbiente) {
     if (document.getElementById(`temp_tabela${idAmbiente}`) != null) {
         document.getElementById(`temp_tabela${idAmbiente}`).innerHTML = `${temp}º`;
         document.getElementById(`umd_tabela${idAmbiente}`).innerHTML = `${umd}%`;
+    }
+}
+
+function cardHistoricoAlerta(resposta, idAmbiente) {
+    var listaAlertas = [];
+    var listaHorario = []; 
+    for (i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        if(registro.temperatura > 24 || registro.temperatura < 20) {
+            listaHorario.push(registro.momento_grafico);
+            listaAlertas.push(registro.temperatura);
+        } else{
+            console.log("Não tem alerta")
+        }
+    }
+
+    console.log(listaAlertas)
+    console.log(listaHorario)
+
+    var elementoHistoricoAlerta = document.getElementById(`historicoAlerta${idAmbiente}`);
+
+    for (var i = 0; i < listaAlertas.length; i++) {
+        var alertaAtual = listaAlertas[i];
+        var horarioAtual = listaHorario[i];
+        elementoHistoricoAlerta.innerHTML += `
+        <div class="log-mensagem">
+            <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
+                <p> Nível de temperatura registrado “+${alertaAtual}º” do que esperado
+                (${horarioAtual})
+            </p>
+        </div>`
     }
 }
 
