@@ -33,14 +33,15 @@
                     </div>
                     
                     <div class="campos">
-                        
-                        <input type="number" id="listaMuseus" placeholder="CNPJ" max="14">
-                    </input>
-                    <div id="div_cnpj"></div>
-                    </div>
+                        <span>Empresas</span>
+                        <select id="listaMuseus">
+                            <option selected></option>
+                        </select>
+                    <div id="div_empresa"></div>
 
+                    </div>
                     <div class="campos">
-                        <input id="input_CPF" placeholder="CPF" max="11">
+                        <input id="input_CPF" placeholder="CPF">
                         <div id="div_cpf"></div>
                     </div>
                     <div class="campos">
@@ -71,16 +72,15 @@
         // Agora vá para o método fetch logo abaixo
         var nomeVar = input_nome.value;
         var emailVar = input_email.value;
-        var cnpjVar = listaMuseus.value;
         var cpfVar = input_CPF.value;
         var senhaVar = input_senha.value;
         var museusVar = listaMuseus.value;
 
-        div_cpf.innerHTML = ""
-        div_email.innerHTML = ""
-        div_cnpj.innerHTML = ""
-        div_senha.innerHTML = ""
-        div_nome.innerHTML = ""
+        div_cpf.innerHTML =""
+        div_email.innerHTML =""
+        div_empresa.innerHTML =""
+        div_senha.innerHTML =""
+        div_nome.innerHTML =""
 
 
 
@@ -105,47 +105,42 @@
             nomeVar.indexOf('?') >= 0 || nomeVar.indexOf('°') >= 0;
 
 
-        if (nomeVar == "" || emailVar == "" || cnpjVar == "" || cpfVar == "" ||
+        if (nomeVar == "" || emailVar == "" || cpfVar == "" ||
             senhaVar == "" || museusVar == "") {
             alert("Não é permitido campos em branco")
         }
 
         if (nomeVar == "") {
-            div_nome.innerHTML = '<span style= "color: red";> Este campo não pode ficar vazio <br></span>'
+            div_nome.innerHTML = 'Este campo não pode ficar vazio <br>'
         } else {
 
         }
         if (emailVar == "") {
-            div_email.innerHTML = '<span style= "color: red";> Este campo não pode ficar vazio <br></span>'
+            div_email.innerHTML = 'Este campo não pode ficar vazio <br>'
         } else {
 
         }
         if (museusVar=="") {
-            div_empresa.innerHTML = '<span style= "color: red";> Este campo não pode ficar vazio <br></span>'
+            div_empresa.innerHTML = 'Este campo não pode ficar vazio <br>'
         } else {
             div_nome.innerHTML += " "
         }
 
         if (nome_especial) {
-            div_nome.innerHTML = '<span style= "color: red";> O Nome deve conter apenas letras <br></span>'
+            div_nome.innerHTML = 'O Nome deve conter apenas letras <br>'
         } else {
             div_nome.innerHTML += " "
         }
         if (cpfVar.length != 11) {
-            div_cpf.innerHTML = '<span style= "color: red";> Numero de CPF invalido</span>'
+            div_cpf.innerHTML = 'Numero de CPF invalido'
         }
         else {
             div_cpf.innerHTML += " "
         }
         if (senhaVar.length < 8) {
-            div_senha.innerHTML = '<span style= "color: red";> A senha deve conter pelo menos oito digitos</span>'
+            div_senha.innerHTML = 'A senha deve conter pelo menos oito digitos'
         } else {
-            div_senha.innerHTML += " "
-        }
-        if (cnpjVar.length < 14) {
-            div_cnpj.innerHTML = `<span style= "color: red";> Numero de CNPJ invalido</span>`
-        } else {
-        
+
         }
 
 
@@ -160,7 +155,6 @@
                 // Agora vá para o arquivo routes/usuario.js
                 nomeServer: nomeVar,
                 cpfServer: cpfVar,
-                cnpjServer: cnpjVar,
                 emailServer: emailVar,
                 senhaServer: senhaVar,
                 museuServer: museusVar
