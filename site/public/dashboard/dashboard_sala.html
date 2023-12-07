@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/sessao.js"></script>
+    <script src="../js/alerta.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Link onde são fornecidos os ícones  -->
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
@@ -12,26 +14,25 @@
     <!-- Css padrão para a estilização da parte do sistema do site -->
     <link rel="stylesheet" href="../css/dashboard_sala.css">
     <!-- Css padrão para a estilização da parte do sistema do site -->
-    <script src="../js/sessao.js"></script>
-    <script src="../js/alerta.js"></script>
+
 
     <title>Dashboard Sala</title>
 </head>
-
-<body onload="validarSessao()">
+ 
+<body>
     <div class="header">
         <div id="perfil">
-            <p id="b_usuario"> </p>
+            <p id="b_usuario"> Teste</p>
             <img id="perfil-avatar" src="https://cdn-icons-png.flaticon.com/512/3106/3106773.png" alt="Foto de perfil">
         </div>
     </div>
-    <div id="sidebar"> <!-- Div que representa o elemento menu  -->
-        <img id="logo" src="../assets/img/logo_museu.png" alt="Logo Museu">
-        <!-- Imagem da logo do museus cadastrado no sistema -->
+    <div id="sidebar"> 
+        <div id="div_logoSidebar">
+        </div>
         <div id="sidebar-menu">
             <a class="active" href="sensores.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores
                 <a href="atendimento.html"> <i class="fa fa-fw fa-headset"></i> Atendimento </a>
-                <a href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relatório </a>
+                <!-- <a href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relatório </a> -->
                 <a href="ajustes.html"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
             </a>
             <a> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
@@ -52,3 +53,16 @@
 </html>
 
 <script src="../js/dashboard.js"></script>
+
+
+<script>
+    var nome = sessionStorage.NOME_USUARIO;
+    var b_usuario = document.getElementById("b_usuario");
+    b_usuario.innerHTML = nome;
+
+
+    var museuFuncionario = sessionStorage.MUSEU_FUNCIONARIO;
+    div_logoSidebar.innerHTML = `<img style="width: 150px; height: 150px;" src="../assets/img/${museuFuncionario}.png" alt="">`
+    div_logo.innerHTML = `<img style="width: 150px; height: 150px;" src="../assets/img/${museuFuncionario}.png" alt="">`
+    texto_logo.innerHTML = `${museuFuncionario} logo`
+</script>

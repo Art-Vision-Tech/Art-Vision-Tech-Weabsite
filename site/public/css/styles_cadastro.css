@@ -131,6 +131,11 @@ body {
     font-size: 13px;
 }
 
+#div_cnpj {
+    color: red;
+    font-size: 13px;
+}
+
 #div_cpf {
     color: red;
     font-size: 13px;

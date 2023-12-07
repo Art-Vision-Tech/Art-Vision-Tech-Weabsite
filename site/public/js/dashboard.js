@@ -68,6 +68,7 @@ function exibirDadosAmbiente(idAmbiente) {
     `
 
     obtarDadosAmbiente(idAmbiente);
+    obtarDadosKpi(idAmbiente);
 }
 
 function alterarTitulo(idAmbiente) {
@@ -87,15 +88,14 @@ function obtarDadosAmbiente(idAmbiente) {
         clearTimeout(proximaAtualizacao);
     }
 
-    console.log(parseInt(idAmbiente))
-
     fetch(`/medidas/ultimas/${idAmbiente}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                 resposta.reverse();
 
-                plotarGrafico(resposta, idAmbiente);
+                plotarGraficoTemp(resposta, idAmbiente);
+                plotarGraficoUmd(resposta, idAmbiente);
 
             });
         } else {
@@ -105,6 +105,29 @@ function obtarDadosAmbiente(idAmbiente) {
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
+}
+
+function obtarDadosKpi(idAmbiente) {
+    if (proximaAtualizacao != undefined) {
+        clearTimeout(proximaAtualizacao);
+    }
+
+    fetch(`/medidas/kpi/${idAmbiente}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                resposta.reverse();
+
+                plotarKpi(resposta, idAmbiente);
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+    .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
 }
 
 
@@ -124,7 +147,7 @@ function tipoGrafico(idAmbiente) {
     // Função para alterar o gráfico
 }
 
-function plotarGrafico(resposta, idAmbiente) {
+function plotarGraficoTemp(resposta, idAmbiente) {
     const ctx = document.getElementById(`kpi_chart${idAmbiente}`).getContext('2d');
 
     console.log('iniciando plotagem do gráfico...');
@@ -172,13 +195,13 @@ function plotarGrafico(resposta, idAmbiente) {
         dataTempLine.datasets[0].data.push(registro.temperatura);
     }
 
-    console.log('----------------------------------------------')
+/*     console.log('----------------------------------------------')
     console.log('O gráfico será plotado com os respectivos valores:')
-    console.log('Labels:')
+    console.log('Labels:') */
     console.log(labelsTemp)
-    console.log('Dados:')
+/*     console.log('Dados:') */
     console.log(dataTempLine.datasets)
-    console.log('----------------------------------------------')
+/*     console.log('----------------------------------------------') */
 
     const configTempLine = {
         type: 'line',
@@ -191,9 +214,11 @@ function plotarGrafico(resposta, idAmbiente) {
         configTempLine
     );
 
-    setTimeout(() => atualizarGrafico(idAmbiente, dataTempLine, chartTempLine), 2000);
+    setTimeout(() => atualizarGraficoTemp(idAmbiente, dataTempLine, chartTempLine), 2000);
 
+}
 
+function plotarGraficoUmd(resposta, idAmbiente) {
     const ctxUmd = document.getElementById(`kpi_chartUmd${idAmbiente}`).getContext('2d');
     let labelsUmd = []
 
@@ -240,18 +265,34 @@ function plotarGrafico(resposta, idAmbiente) {
 
     let chartUmd = new Chart(ctxUmd, configUmdLine);
 
-    setTimeout(() => atualizarGrafico(idAmbiente, dataUmdLine, chartUmd), 2000);
+    setTimeout(() => atualizarGraficoUmd(idAmbiente, dataUmdLine, chartUmd), 2000);
+}
 
+
+function plotarKpi(resposta, idAmbiente) {
     const ctxTemp = document.getElementById(`kpi_temperatura${idAmbiente}`).getContext('2d');
     const ctxUr = document.getElementById(`kpi_umidade${idAmbiente}`).getContext('2d');
     const ctxIp = document.getElementById(`kpi_ip${idAmbiente}`).getContext('2d');
 
-    const dataValueTemp = [91.67, 8.33]
+    const dataValueTemp = []
+
+    for(var i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        if(registro.temperatura < 24 && registro.temperatura > 20 ) {
+            dataValueTemp.push(registro.temperatura);
+        }
+    }
+
+    const totalValor = resposta.length;
+    const totalRegistrosValidos = dataValueTemp.length;
+
+    var porcentagem = totalRegistrosValidos / totalValor * 100
+
     const dataTemp = {
-        labels: ['Temperatura Ideal',],
+        labels: ['Temperatura ideal'],
         datasets: [{
             label: 'Temperatura',
-            data: dataValueTemp,
+            data: [parseInt(porcentagem), 100 - parseInt(porcentagem)],
             backgroundColor: ['rgba(255, 118, 51, 0.8)', 'rgba(255, 255, 255, 1)'],
             borderColor: ['rgb(255, 118, 22)', 'rgb(255, 118, 22)'],
             borderWidth: 1,
@@ -269,7 +310,7 @@ function plotarGrafico(resposta, idAmbiente) {
             ctx.textBaseline = 'middle';
             ctx.font = 'bold 21px sans-serif';
             ctx.fillStyle = '#ff7616'
-            const texto = `${dataValueTemp[0]}%`;
+            const texto = `${porcentagem.toFixed(2)}%`;
             const textoWidth = ctx.measureText(texto).width
 
             const x = chart.getDatasetMeta(0).data[0].x;
@@ -297,12 +338,27 @@ function plotarGrafico(resposta, idAmbiente) {
         plugins: [textoPorcentagemTemp],
     }
 
-    const dataValueUr = [79.17, 20.83]
+    const dataValueUmd = []
+
+    for(var i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        if(registro.umidade < 60 && registro.umidade > 45) {
+            dataValueUmd.push(registro.umidade);
+        }
+    }
+
+    const totalValorUmd = resposta.length;
+    const totalRegistrosValidosUmd = dataValueUmd.length;
+
+
+    var porcentagemUmd = totalRegistrosValidosUmd / totalValorUmd * 100
+
+
     const dataUr = {
         labels: ['Umidade ideal'],
         datasets: [{
             label: 'Umidade',
-            data: dataValueUr,
+            data: [parseInt(porcentagemUmd), 100 - parseInt(porcentagemUmd)],
             backgroundColor: ['rgba(0, 142, 252, 0.8)', 'rgba(255, 255, 255, 1)'],
             borderColor: ['rgb(0, 31, 252)', 'rgb(0, 31, 252)'],
             borderWidth: 1,
@@ -320,7 +376,7 @@ function plotarGrafico(resposta, idAmbiente) {
             ctx.textBaseline = 'middle';
             ctx.font = 'bold 21px sans-serif';
             ctx.fillStyle = '#001ffc'
-            const texto = `${dataValueUr[0]}%`;
+            const texto = `${porcentagemUmd.toFixed(2)}%`;
             const textoWidth = ctx.measureText(texto).width
 
 
@@ -348,11 +404,41 @@ function plotarGrafico(resposta, idAmbiente) {
         plugins: [textoPorcentagemUr],
     }
 
+    // Gráfico IP
+
+    const dataValueIpOtimo = [];
+    const dataValueIpOk = [];
+    const dataValueIpRuim = [];
+    
+    for(var i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        var ip = Math.exp((95220 - 134.9 * registro.umidade) / (8.314 * (registro.temperatura + 273.15)) + (0.0284 * registro.umidade) - 28.023) / 365;
+        if(ip >= 70) {
+            dataValueIpOtimo.push(ip);
+            console.log("IP ótimo: " + ip);
+        } else if(ip >= 45 && ip <= 70) {
+            dataValueIpOk.push(ip)
+            console.log("IP ok: " + ip);
+        } else {
+            dataValueIpRuim.push(ip);
+            console.log("IP ruim: " + ip);
+        }
+        
+    }
+
+    const dataValueIpOtimoTamanho = dataValueIpOtimo.length
+    const dataValueIpOkTamnho = dataValueIpOk.length
+    const dataValueIpRuimTamanho = dataValueIpRuim.length
+
+/*     console.log(dataValueIpOtimoTamanho)
+    console.log(dataValueIpOkTamnho)
+    console.log(dataValueIpRuimTamanho) */
+
     const data = {
         labels: ['Ótimo', 'Normal', 'Ruim'],
         datasets: [{
             label: 'IETP',
-            data: [10, 9, 5],
+            data: [dataValueIpOtimoTamanho, dataValueIpOkTamnho, dataValueIpRuimTamanho],
             backgroundColor: [
                 'rgb(3, 166, 60)',
                 'rgba(159, 159, 159)',
@@ -403,7 +489,54 @@ function plotarGrafico(resposta, idAmbiente) {
     new Chart(ctxIp, config);
 }
 
-function atualizarGrafico(idAmbiente, dados, myChart) {
+function atualizarGraficoTemp(idAmbiente, dados, myChart) {
+
+    fetch(`/medidas/tempo-real/${idAmbiente}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (novoRegistro) {
+
+                obterdados(idAmbiente);
+                // alertar(novoRegistro, idAmbiente);
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log(`Dados atuais do gráfico:`);
+                console.log(dados);
+
+                if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+                    console.log("---------------------------------------------------------------")
+                    console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+
+                    console.log("Horário do novo dado capturado:")
+                    console.log(novoRegistro[0].momento_grafico)
+                    console.log("Horário do último dado capturado:")
+                    console.log(dados.labels[dados.labels.length - 1])
+                    console.log("---------------------------------------------------------------")
+                } else {
+                    // tirando e colocando valores no gráfico
+                    dados.labels.shift(); // apagar o primeiro
+                    dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+
+                    dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
+                    dados.datasets[0].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+
+                    myChart.update();
+                }
+
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGraficoTemp(idAmbiente, dados, myChart), 2000);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(() => atualizarGraficoTemp(idAmbiente, dados, myChart), 2000);
+        }
+    })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+
+}
+
+function atualizarGraficoUmd(idAmbiente, dados, myChart) {
 
     fetch(`/medidas/tempo-real/${idAmbiente}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
@@ -432,19 +565,16 @@ function atualizarGrafico(idAmbiente, dados, myChart) {
                     dados.datasets[0].data.shift();  // apagar o primeiro de umidade
                     dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
 
-                    dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                    dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
                     myChart.update();
                 }
 
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAmbiente, dados, myChart), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoUmd(idAmbiente, dados, myChart), 2000);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao = setTimeout(() => atualizarGrafico(idAmbiente, dados, myChart), 2000);
+            proximaAtualizacao = setTimeout(() => atualizarGraficoUmd(idAmbiente, dados, myChart), 2000);
         }
     })
         .catch(function (error) {

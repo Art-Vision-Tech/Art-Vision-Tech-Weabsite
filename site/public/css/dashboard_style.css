@@ -70,6 +70,10 @@ h3 {
     color: red;
 }
 
+.ideal {
+    color: #999999;
+}
+
 .bom {
     background-color: green;
 }

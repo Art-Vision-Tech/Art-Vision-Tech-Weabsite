@@ -25,12 +25,12 @@
         </div>
     </div>
     <div id="sidebar"> <!-- Div que representa o elemento menu  -->
-        <img id="logo" src="../assets/img/logo_museu.png" alt="Logo Museu">
-        <!-- Imagem da logo do museus cadastrado no sistema -->
+        <div id="div_logoSidebar">
+        </div>
         <div id="sidebar-menu">
             <a class="active" href="sensores.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores </a>
             <a href="atendimento.html"> <i class="fa fa-fw fa-solid fa-headset"></i> Atendimento </a>
-            <a href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relatório </a>
+            <!-- <a href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relatório </a> -->
             <a href="ajustes.html"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
             <a onclick="limparSessao()"> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
         </div>
@@ -40,9 +40,6 @@
             <!-- Cabeçalho da div conteúdo, este elemento é opcional -->
             <div class="container-main-content">
                 <h2> Sensores </h2>
-<!--                 <div class="container-pipefy">
-                    <button> Pipefy </button>
-                </div> -->
                 <div class="linha" id="area-card">
                 </div>
             </div>
@@ -95,5 +92,10 @@
     })
     setTimeout(atualizacaoPeriodica, 5000);
     }
+
+    var museuFuncionario = sessionStorage.MUSEU_FUNCIONARIO;
+    div_logoSidebar.innerHTML = `<img style="width: 150px; height: 150px;" src="../assets/img/${museuFuncionario}.png" alt="">`
+    div_logo.innerHTML = `<img style="width: 150px; height: 150px;" src="../assets/img/${museuFuncionario}.png" alt="">`
+    texto_logo.innerHTML = `${museuFuncionario} logo`
 
 </script>
