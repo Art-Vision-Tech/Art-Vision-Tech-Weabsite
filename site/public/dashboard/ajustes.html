@@ -23,7 +23,8 @@
         </div>
     </div>
     <div id="sidebar"> <!-- Div que representa o elemento menu  -->
-        <img id="logo" src="../assets/img/logo_museu.png" alt="Logo Museu">
+        <div id="div_logoSidebar">
+        </div>
         <!-- Imagem da logo do museus cadastrado no sistema -->
         <div id="sidebar-menu">
             <a href="sensores.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores </a>
@@ -46,10 +47,7 @@
                                 <td><b>Nome</b></td>
                                 <td><input type="text" id="input_nomeUser" style="display: none;"><div id="div_nomeUser"></div></td>
                             </tr>
-                            <tr>
-                                <td><b>Nome da Instuição</b></td>
-                                <td></td>
-                            </tr>
+                            
                             <tr>
                                 <td><b>Email</b></td>
                                 <td><input type="text" id="input_emailUser" style="display: none;"><div id="div_emailUser"></div></td>
@@ -61,33 +59,26 @@
                         </table>
                         <button class="botao" id="botão1" onclick="editar()">Editar Usuário</button>
                         <button class="botao" id="botão2" style="display: none" onclick="atualizar()">Atualizar Usuário</button>
-                        <button class="botao" id="botão3" onclick="editarMuseu()">Editar Museu</button>
-                        <button class="botao" id="botão4" style="display: none" onclick="atualizarMuseu()">Atualizar Museu</button>
+                        
                     </div>
                     <div class="div_museu">
                         <h2>Museu</h2>
                         <table class="museu">
                             <tr>
                                 <td><b>Nome</b></td>
-                                <td><input type="text" id="input_museuUser" style="display: none;"><div id="div_museuUser"></div></td>
-                            </tr>
-                            <tr>
-                                <td><b>Quantidade de Obras</b></td>
-                                <td>42</td>
-                            </tr>
-                            <tr>
-                                <td><b>Numero</b></td>
-                                <td>777</td>
+                                <td><div id="div_museuUser"></div></td>
                             </tr>
                             <tr>
                                 <td><b>CNPJ</b></td>
-                                <td><input type="text" id="input_cnpjUser" style="display: none;"><div id="div_cnpjUser"></div></td>
+                                <td><div id="div_cnpjUser"></div></td>
                             </tr>
                         </table>
                     </div>
                     <div class="div_logo">
-                        <img id="img_logo" src="../assets/img/logo_museu.png" alt="Logo Museu">
-                        <p id="texto_logo">Artemis Vintage logo</p>
+                        <div id="div_logo">
+                            
+                        </div>
+                        <p id="texto_logo"></p>
                     </div>
                 </div>
                 <div class="lista-sensores">
@@ -139,17 +130,26 @@
                             <option value="60"> 1 hora </option>
                         </select>
                     </div>
-                    <input type="text" id="input_nome">
+                   
 
                 </div>
             </div>
+            
         </div>
+
 </body>
 
 </html>
 <script>
     var username = sessionStorage.NOME_USUARIO
+    var cnpjMuseu = sessionStorage.MUSEU_CNPJ;
+    var museuFuncionario = sessionStorage.MUSEU_FUNCIONARIO;
+    div_museuUser.innerHTML = `${museuFuncionario}`
+    div_cnpjUser.innerHTML = `${cnpjMuseu}`
+    div_logoSidebar.innerHTML = `<img style="width: 100px; height: 80px;" src="../assets/img/${museuFuncionario}.png" alt="">`
+    div_logo.innerHTML = `<img style="width: 150px; height: 100px;" src="../assets/img/${museuFuncionario}.png" alt="">`
     p_username.innerHTML = `${username}`
+    texto_logo.innerHTML = `${museuFuncionario} logo`
     div_nomeUser.innerHTML = `${username}`
     div_emailUser.innerHTML = `${sessionStorage.EMAIL_USUARIO}`
     function editar(){

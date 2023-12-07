@@ -29,6 +29,8 @@ function autenticar(req, res) {
                                     email: resultadoAutenticar[0].email,
                                     nome: resultadoAutenticar[0].nome,
                                     senha: resultadoAutenticar[0].senha,
+                                    nomeMuseu: resultadoAutenticar[0].nomeMuseu,
+                                    cnpj: resultadoAutenticar[0].cnpj,
                                     ambiente: resultadoAmbiente
                                 });
                             } else {

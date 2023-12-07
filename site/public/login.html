@@ -33,7 +33,6 @@
           </div>
         </div>
         <button onclick="entrar()" class="botao">Entrar</button>
-        <div id="div_aviso"></div>
         <div class="form-footer">
           <b class="registro">Ainda não possui cadastro?
             <a href="cadastro.html" style="text-decoration: none">
@@ -101,6 +100,8 @@
             sessionStorage.EMAIL_USUARIO = json.email;
             sessionStorage.NOME_USUARIO = json.nome;
             sessionStorage.ID_FUNCIONARIO = json.idFuncionario;
+            sessionStorage.MUSEU_FUNCIONARIO = json.nomeMuseu;
+            sessionStorage.MUSEU_CNPJ = json.cnpj;
             sessionStorage.AMBIENTE = JSON.stringify(json.ambiente);
 
             setTimeout(function () {
@@ -108,7 +109,6 @@
             }, 1000); // apenas para exibir o loading
           });
         } else {
-           div_aviso.innerHTML = `<span style= "color: red;"> Email ou senha inválidos</span>`
           console.log("Houve um erro ao tentar realizar o login!");
 
           resposta.text().then((texto) => {
