@@ -63,6 +63,14 @@ function exibirRegistros(resposta, idAmbiente) {
         classe_umd = 'ok'
     }
 
+    if(ip >= 70) {
+        classe_ip = 'ok';
+    } else if (ip >= 45 && ip <= 70) {
+        classe_ip = 'ideal';
+    } else {
+        classe_ip = 'alerta';
+    }
+
     if (document.getElementById(`temp_ambiente_${idAmbiente}`) != null && document.getElementById(`umd_ambiente_${idAmbiente}`) != null) {
         const textoTemp = document.getElementById(`temp_ambiente_${idAmbiente}`)
         const textoUmd = document.getElementById(`umd_ambiente_${idAmbiente}`)
@@ -70,7 +78,9 @@ function exibirRegistros(resposta, idAmbiente) {
         textoTemp.className = classe_temperatura;
         textoUmd.innerHTML = ` ${umd}%`;
         textoUmd.className = classe_umd;
-        document.getElementById(`ip_ambiente_${idAmbiente}`).innerHTML = `${parseInt(ip)} anos`;
+        const textoIp = document.getElementById(`ip_ambiente_${idAmbiente}`);
+        textoIp.innerHTML = `${parseInt(ip)} anos`;
+        textoIp.className = classe_ip;
         document.getElementById(`mensagem_status_${idAmbiente}`).innerHTML = `Temperatura ${temp} | Umidade ${umd} | IP ${parseInt(ip)}`
     }
 
@@ -83,18 +93,20 @@ function exibirRegistros(resposta, idAmbiente) {
 }
 
 function cardHistoricoAlerta(resposta, idAmbiente) {
+    var indice = 0;
     var listaAlertasTemp = [];
     var listaAlertasUmd = [];
     var listaHorario = [];
+
+    
+    indice++
 
     var elementoHistoricoAlerta = document.getElementById(`historicoAlerta${idAmbiente}`);
 
     for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
         if (registro.temperatura > 24 || registro.temperatura < 20) {
-            listaHorario.shift()
             listaHorario.push(registro.momento_grafico);
-            listaAlertasTemp.shift()
             listaAlertasTemp.push(registro.temperatura);
             var alertaAtual = listaAlertasTemp[i];
             var horarioAtual = listaHorario[i];
@@ -109,13 +121,13 @@ function cardHistoricoAlerta(resposta, idAmbiente) {
                 textoDiferenca = `“${alertaAtual}º”`
             }
 
-/*             elementoHistoricoAlerta.innerHTML += `
+            elementoHistoricoAlerta.innerHTML += `
             <div class="log-mensagem">
                 <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
                     <p> Nível de temperatura registrado ${textoDiferenca} do que esperado
                     (${horarioAtual})
                 </p>
-            </div>` */
+            </div>` 
         }  
         if (registro.umidade > 60 || registro.umidade < 45) {
             listaHorario.push(registro.momento_grafico);
@@ -133,62 +145,20 @@ function cardHistoricoAlerta(resposta, idAmbiente) {
                 textoDiferenca = `“${alertaAtual}º”`
             }
 
-/*             elementoHistoricoAlerta.innerHTML += `
+            elementoHistoricoAlerta.innerHTML += `
             <div class="log-mensagem">
                 <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
                     <p> Nível de umidade registrado ${textoDiferenca} do que esperado
                     (${horarioAtual})
                 </p>
-            </div>` */
+            </div>` 
         }
     }
 
+    console.log("Foi")
 
-
-    console.log(listaAlertas)
+    console.log(listaAlertasUmd)
+    console.log(listaAlertasTemp)
     console.log(listaHorario)
 }
-
-
-/* function exibirAlerta(temp, idAmbiente, grauDeAviso, grauDeAvisoCor) {
-    var indice = alertas.findIndex(item => item.idAmbiente == idAmbiente);
-
-    if (indice >= 0) {
-        alertas[indice] = { idAmbiente, temp, grauDeAviso, grauDeAvisoCor }
-    } else {
-        alertas.push({ idAmbiente, temp, grauDeAviso, grauDeAvisoCor });
-    }
-
-    exibirCards();
-}
-
-function removerAlerta(idAmbiente) {
-    alertas = alertas.filter(item => item.idAmbiente != idAmbiente);
-    exibirCards();
-}   */
-
-/* function exibirCards() {
-    alerta.innerHTML = '';
-
-    for (var i = 0; i < alertas.length; i++) {
-        var mensagem = alertas[i];
-        alerta.innerHTML += alertaEmDiv(mensagem);
-    }
-} */
-
-/* function alertaEmDiv({ idAmbiente, temp, grauDeAviso, grauDeAvisoCor }) {
-
-    var nome_ambiente = JSON.parse(sessionStorage.AMBIENTE).find(item => item.id == idAmbiente).nome_ambiente;
-    return `
-    <div class="mensagem-alarme">
-        <div class="informacao">
-            <div class="${grauDeAvisoCor}">&#12644;</div> 
-            <h3>${nome_ambiente} está em estado de ${grauDeAviso}!</h3>
-            <small>Temperatura ${temp}.</small>   
-        </div>
-        <div class="alarme-sino"></div>
-    </div>
-    `;
-}  */
-
 
