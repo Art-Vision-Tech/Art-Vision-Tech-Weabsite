@@ -20,7 +20,8 @@
         </div>
     </div>
     <div id="sidebar">
-        <img id="logo" src="../assets/img/logo_museu.png" alt="Logo Museu">
+        <div id="div_logoSidebar">
+        </div>
         <div id="sidebar-menu">
             <a href="sensores.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores </a>
             <a class="active" href="atendimento.html"> <i class="fa fa-fw fa-headset"></i> Atendimento </a>
@@ -48,3 +49,14 @@
 </body>
 
 </html>
+
+<script>
+    var nome = sessionStorage.NOME_USUARIO;
+    var b_usuario = document.getElementById("b_usuario");
+    b_usuario.innerHTML = nome;
+
+    var museuFuncionario = sessionStorage.MUSEU_FUNCIONARIO;
+    div_logoSidebar.innerHTML = `<img style="width: 150px; height: 150px;" src="../assets/img/${museuFuncionario}.png" alt="">`
+    div_logo.innerHTML = `<img style="width: 150px; height: 150px;" src="../assets/img/${museuFuncionario}.png" alt="">`
+    texto_logo.innerHTML = `${museuFuncionario} logo`
+</script>

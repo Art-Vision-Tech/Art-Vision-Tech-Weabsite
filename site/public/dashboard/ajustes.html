@@ -143,8 +143,8 @@
     var museuFuncionario = sessionStorage.MUSEU_FUNCIONARIO;
     div_museuUser.innerHTML = `${museuFuncionario}`
     div_cnpjUser.innerHTML = `${cnpjMuseu}`
-    div_logoSidebar.innerHTML = `<img style="width: 100px; height: 80px;" src="../assets/img/${museuFuncionario}.png" alt="">`
-    div_logo.innerHTML = `<img style="width: 150px; height: 100px;" src="../assets/img/${museuFuncionario}.png" alt="">`
+    div_logoSidebar.innerHTML = `<img style="width: 150px; height: 150px;" src="../assets/img/${museuFuncionario}.png" alt="">`
+    div_logo.innerHTML = `<img style="width: 150px; height: 150px;" src="../assets/img/${museuFuncionario}.png" alt="">`
     p_username.innerHTML = `${username}`
     texto_logo.innerHTML = `${museuFuncionario} logo`
     div_nomeUser.innerHTML = `${username}`
@@ -154,14 +154,6 @@
         div_emailUser.innerHTML = ""
         document.getElementById("input_nomeUser").style.display = "block";
         document.getElementById("input_emailUser").style.display = "block";
-        document.getElementById("botão2").style.display = "block";
-        document.getElementById("botão1").style.display = "none";
-    }
-    function editarMuseu(){
-        div_museuUser.innerHTML = ""
-        div_cnpjUser.innerHTML = ""
-        document.getElementById("input_museuUser").style.display = "block";
-        document.getElementById("input_cnpjUser").style.display = "block";
         document.getElementById("botão2").style.display = "block";
         document.getElementById("botão1").style.display = "none";
     }
