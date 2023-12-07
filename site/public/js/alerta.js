@@ -10,7 +10,7 @@ function obterdados(idAmbiente) {
 
                     exibirRegistros(resposta, idAmbiente);
                     calcularIp(resposta, idAmbiente);
-                    cardHistoricoAlerta(resposta, idAmbiente);
+                    cardHistoricoAlerta(resposta, idAmbiente)
                 });
             } else {
                 console.error(`Nenhum dado encontrado para o id ${idAmbiente} ou erro na API`);
@@ -18,8 +18,8 @@ function obterdados(idAmbiente) {
         })
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados do ambiente p/ gráfico: ${error.message}`);
-    });
-}  
+        });
+}
 
 function calcularIp(resposta, idAmbiente) {
     var temp = resposta[0].temperatura;
@@ -51,13 +51,13 @@ function exibirRegistros(resposta, idAmbiente) {
     var umd = resposta[0].umidade;
     var ip = Math.exp((95220 - 134.9 * umd) / (8.314 * (temp + 273.15)) + (0.0284 * umd) - 28.023) / 365;
 
-    if(temp > 24 || temp < 20) {
+    if (temp > 24 || temp < 20) {
         classe_temperatura = 'alerta'
     } else {
         classe_temperatura = 'ok'
     }
 
-    if(umd > 60|| umd < 45) {
+    if (umd > 60 || umd < 45) {
         classe_umd = 'alerta'
     } else {
         classe_umd = 'ok'
@@ -83,35 +83,72 @@ function exibirRegistros(resposta, idAmbiente) {
 }
 
 function cardHistoricoAlerta(resposta, idAmbiente) {
-    var listaAlertas = [];
-    var listaHorario = []; 
-    for (i = 0; i < resposta.length; i++) {
-        var registro = resposta[i];
-        if(registro.temperatura > 24 || registro.temperatura < 20) {
-            listaHorario.push(registro.momento_grafico);
-            listaAlertas.push(registro.temperatura);
-        } else{
-            console.log("Não tem alerta")
-        }
-    }
-
-    console.log(listaAlertas)
-    console.log(listaHorario)
+    var listaAlertasTemp = [];
+    var listaAlertasUmd = [];
+    var listaHorario = [];
 
     var elementoHistoricoAlerta = document.getElementById(`historicoAlerta${idAmbiente}`);
 
-    for (var i = 0; i < listaAlertas.length; i++) {
-        var alertaAtual = listaAlertas[i];
-        var horarioAtual = listaHorario[i];
-        elementoHistoricoAlerta.innerHTML += `
-        <div class="log-mensagem">
-            <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
-                <p> Nível de temperatura registrado “+${alertaAtual}º” do que esperado
-                (${horarioAtual})
-            </p>
-        </div>`
+    for (i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        if (registro.temperatura > 24 || registro.temperatura < 20) {
+            listaHorario.shift()
+            listaHorario.push(registro.momento_grafico);
+            listaAlertasTemp.shift()
+            listaAlertasTemp.push(registro.temperatura);
+            var alertaAtual = listaAlertasTemp[i];
+            var horarioAtual = listaHorario[i];
+
+            var textoDiferenca = ``
+
+            if (alertaAtual > 24) {
+                alertaAtual -= 24
+                textoDiferenca = `“+${alertaAtual}º”`
+            } else if (alertaAtual < 20) {
+                alertaAtual -= 20
+                textoDiferenca = `“${alertaAtual}º”`
+            }
+
+/*             elementoHistoricoAlerta.innerHTML += `
+            <div class="log-mensagem">
+                <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
+                    <p> Nível de temperatura registrado ${textoDiferenca} do que esperado
+                    (${horarioAtual})
+                </p>
+            </div>` */
+        }  
+        if (registro.umidade > 60 || registro.umidade < 45) {
+            listaHorario.push(registro.momento_grafico);
+            listaAlertasUmd.push(registro.umidade);
+            var alertaAtual = listaAlertasUmd[i];
+            var horarioAtual = listaHorario[i];
+
+            var textoDiferenca = ``
+
+            if (alertaAtual > 60) {
+                alertaAtual -= 60
+                textoDiferenca = `“+${alertaAtual}º”`
+            } else if (alertaAtual < 45) {
+                alertaAtual -= 45
+                textoDiferenca = `“${alertaAtual}º”`
+            }
+
+/*             elementoHistoricoAlerta.innerHTML += `
+            <div class="log-mensagem">
+                <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
+                    <p> Nível de umidade registrado ${textoDiferenca} do que esperado
+                    (${horarioAtual})
+                </p>
+            </div>` */
+        }
     }
+
+
+
+    console.log(listaAlertas)
+    console.log(listaHorario)
 }
+
 
 /* function exibirAlerta(temp, idAmbiente, grauDeAviso, grauDeAvisoCor) {
     var indice = alertas.findIndex(item => item.idAmbiente == idAmbiente);

@@ -68,6 +68,7 @@ function exibirDadosAmbiente(idAmbiente) {
     `
 
     obtarDadosAmbiente(idAmbiente);
+    obtarDadosKpi(idAmbiente);
 }
 
 function alterarTitulo(idAmbiente) {
@@ -87,8 +88,6 @@ function obtarDadosAmbiente(idAmbiente) {
         clearTimeout(proximaAtualizacao);
     }
 
-    console.log(parseInt(idAmbiente))
-
     fetch(`/medidas/ultimas/${idAmbiente}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
@@ -105,6 +104,29 @@ function obtarDadosAmbiente(idAmbiente) {
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
+}
+
+function obtarDadosKpi(idAmbiente) {
+    if (proximaAtualizacao != undefined) {
+        clearTimeout(proximaAtualizacao);
+    }
+
+    fetch(`/medidas/kpi/${idAmbiente}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                resposta.reverse();
+
+                plotarKpi(resposta, idAmbiente);
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    })
+    .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
 }
 
 
@@ -242,16 +264,33 @@ function plotarGrafico(resposta, idAmbiente) {
 
     setTimeout(() => atualizarGrafico(idAmbiente, dataUmdLine, chartUmd), 2000);
 
+}
+
+function plotarKpi(resposta, idAmbiente) {
     const ctxTemp = document.getElementById(`kpi_temperatura${idAmbiente}`).getContext('2d');
     const ctxUr = document.getElementById(`kpi_umidade${idAmbiente}`).getContext('2d');
     const ctxIp = document.getElementById(`kpi_ip${idAmbiente}`).getContext('2d');
 
-    const dataValueTemp = [91.67, 8.33]
+    const dataValueTemp = []
+
+    for(var i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        if(registro.temperatura < 24 && registro.temperatura > 20 ) {
+            dataValueTemp.push(registro.temperatura);
+        }
+    }
+
+    const totalValor = resposta.length;
+    const totalRegistrosValidos = dataValueTemp.length
+
+    console.log(totalValor)
+    console.log(totalRegistrosValidos)
+
     const dataTemp = {
-        labels: ['Temperatura Ideal',],
+        labels: ['Temperatura ideal'],
         datasets: [{
             label: 'Temperatura',
-            data: dataValueTemp,
+            data: [totalRegistrosValidos, totalValor],
             backgroundColor: ['rgba(255, 118, 51, 0.8)', 'rgba(255, 255, 255, 1)'],
             borderColor: ['rgb(255, 118, 22)', 'rgb(255, 118, 22)'],
             borderWidth: 1,
@@ -432,8 +471,8 @@ function atualizarGrafico(idAmbiente, dados, myChart) {
                     dados.datasets[0].data.shift();  // apagar o primeiro de umidade
                     dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
 
-                    dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                    dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+                    dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
+                    dados.datasets[0].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
 
                     myChart.update();
                 }
