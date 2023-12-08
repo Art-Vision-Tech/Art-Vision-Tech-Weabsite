@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script src="../js/sessao.js"></script>
+    <script data-jsd-embedded data-key="f9a7ed3e-a7bd-4f62-a989-2325d4b457a9" data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <link rel="stylesheet" href="../css/ajustes_style.css">
     <link rel="stylesheet" href="../css/sistema_style.css">
@@ -26,7 +27,6 @@
         <div id="sidebar-menu">
             <a href="sensores.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores </a>
             <!-- <a href="linha_do_tempo.html"> <i class="fa fa-fw fa-solid fa-timeline"></i> Linha do Tempo </a> -->
-            <a href="atendimento.html"> <i class="fa fa-fw fa-solid fa-headset"></i> Atendimento </a>
             <!-- <a href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relatório </a> -->
             <a class="active" href="ajustes.html"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
             <a onclick="limparSessao()"> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
@@ -51,7 +51,7 @@
                             </tr>
                             <tr>
                                 <td><b>Data de registro</b></td>
-                                <td>05-06-23 14:24:36</td>
+                                <td><div id="div_data"></div></td>
                             </tr>
                         </table>
                         <button class="botao" id="botão1" onclick="editar()">Editar Usuário</button>
@@ -138,9 +138,17 @@
 
 </html>
 <script>
+    var dataRegistro = sessionStorage.DATA_REGISTRO;
+    var dataHoraString = dataRegistro;
+
+    var dataHora = new Date(dataHoraString);
+
+
+var dataCerta = dataHora.toLocaleDateString();
     var username = sessionStorage.NOME_USUARIO
     var cnpjMuseu = sessionStorage.MUSEU_CNPJ;
     var museuFuncionario = sessionStorage.MUSEU_FUNCIONARIO;
+    div_data.innerHTML = `${dataCerta}`
     div_museuUser.innerHTML = `${museuFuncionario}`
     div_cnpjUser.innerHTML = `${cnpjMuseu}`
 

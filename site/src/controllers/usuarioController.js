@@ -31,6 +31,7 @@ function autenticar(req, res) {
                                     senha: resultadoAutenticar[0].senha,
                                     nomeMuseu: resultadoAutenticar[0].nomeMuseu,
                                     cnpj: resultadoAutenticar[0].cnpj,
+                                    dataRegistro: resultadoAutenticar[0].dataRegistro,
                                     ambiente: resultadoAmbiente
                                 });
                             } else {

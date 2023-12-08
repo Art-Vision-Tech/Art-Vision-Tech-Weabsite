@@ -102,7 +102,10 @@
             sessionStorage.ID_FUNCIONARIO = json.idFuncionario;
             sessionStorage.MUSEU_FUNCIONARIO = json.nomeMuseu;
             sessionStorage.MUSEU_CNPJ = json.cnpj;
+            sessionStorage.DATA_REGISTRO = json.dataRegistro;
             sessionStorage.AMBIENTE = JSON.stringify(json.ambiente);
+            
+            
 
             setTimeout(function () {
               window.location = "./dashboard/sensores.html";

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
+    <script data-jsd-embedded data-key="f9a7ed3e-a7bd-4f62-a989-2325d4b457a9" data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <!-- Link onde são fornecidos os ícones  -->
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
@@ -29,7 +30,7 @@
         </div>
         <div id="sidebar-menu">
             <a class="active" href="sensores.html"> <i class="fa fa-fw fa-solid fa-table-cells-large"></i> Sensores </a>
-            <a href="atendimento.html"> <i class="fa fa-fw fa-solid fa-headset"></i> Atendimento </a>
+            <!-- <a href="atendimento.html"> <i class="fa fa-fw fa-solid fa-headset"></i> Atendimento </a> -->
             <!-- <a href="relatorio.html"> <i class="fa fa-fw fa-regular fa-clipboard"></i> Relatório </a> -->
             <a href="ajustes.html"> <i class="fa fa-fw fa-solid fa-gear"></i> Ajustes </a>
             <a onclick="limparSessao()"> <i class="fa fa-fw fa-solid fa-arrow-right-from-bracket"></i> Sair </a>
@@ -40,7 +41,45 @@
             <!-- Cabeçalho da div conteúdo, este elemento é opcional -->
             <div class="container-main-content">
                 <h2> Sensores </h2>
-                <div class="linha" id="area-card">
+                <div class="flex-card-container">
+                    <div class="grid-container" id="area-card">
+                    </div>
+                    <div class="container-analytcs">
+                        <div class="container-analytcs-ip">
+                            <h2> Analytics IP </h2>
+                            <hr>
+                            <div class="box-ip bom"> 
+                                <b> Ótimo </b>
+                                <p> IP > 70 </p>
+                            </div>
+                            <hr>
+                            <div class="box-ip normal"> 
+                                <b> Ideal </b>
+                                <p> 45 <= IP >= 70 </p>
+                            </div>
+                            <hr>
+                            <div class="box-ip ruim"> 
+                                <b> Ruim </b>
+                                <p> IP < 45 </p>  
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="container-analytcs-clima">
+                            <h2> Analytics Clima </h2>
+                            <div class="box-clima">
+                                <div class="div-clima">
+                                    <b> Temperatura </b>
+                                    <p> MIN 18 Cº | MAX 24 Cº</p>
+                                </div>
+                                <hr>
+                                <div class="div-clima">
+                                    <b> Umidade </b>
+                                    <p> MIN 45 % | MAX 55 %</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -87,10 +126,11 @@
     }
 
     function atualizacaoPeriodica() {
-    ambiente.forEach(item => {
-        obterdados(item.idAmbiente)
-    })
-    setTimeout(atualizacaoPeriodica, 5000);
+
+            ambiente.forEach(item => {
+                obterdados(item.idAmbiente)
+            })
+    // setTimeout(atualizacaoPeriodica, 10000);
     }
 
     var museuFuncionario = sessionStorage.MUSEU_FUNCIONARIO;
