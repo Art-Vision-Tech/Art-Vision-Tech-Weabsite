@@ -40,9 +40,9 @@ references museu(idMuseu)
 ) auto_increment = 1000;
 
 insert into Funcionario (nome, cpf, email, senha, fkMuseu) values
-('Lucas', '00565860860', 'lucas1990@outlook.com', 'Lluquinhas123', 1),
-('Marcos', '16321760846', 'marcoslindo@gmail.com', 'mar55cosS', 2),
-('Bruno', '86793705849', 'nanatsunotazai@sptech.school', 'brunoBruno231', 3);
+('Lucas', '00565860860', 'lucas@outlook.com', 'Lluquinhas123', 1),
+('Marcos', '16321760846', 'marcos@gmail.com', 'mar55cosS', 2),
+('Bruno', '86793705849', 'bruno@sptech.school', 'brunoBruno231', 3);
 
 create table Ambiente (
 idAmbiente int primary key auto_increment,
@@ -80,7 +80,7 @@ insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (24.7
 insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (24.7, 27, 1);
 insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (22.5, 31, 1);
 insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (23.2, 35, 1);
-insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (23, 40, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (23, 45, 1);
 insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (27, 31, 4);
 insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (26, 32, 4);
 insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (31, 44, 7);
@@ -134,7 +134,7 @@ SELECT  dht11_temperatura as temperatura, dht11_umidade as umidade,
                     order by idRegistro desc limit 7; 
                     
 
-ALTER TABLE museu RENAME COLUMN nome TO nomeMuseu;
-
+ALTER TABLE museu RENAME COLUMN nome to nomeMuseu;
+ALTER TABLE funcionario ADD COLUMN dataRegistro  TIMESTAMP default now();
 
 DROP DATABASE museu;
