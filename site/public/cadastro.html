@@ -192,7 +192,7 @@
             .then(function (resposta) {
                 resposta.json().then((museus) => {
                     museus.forEach((museu) => {
-                        listaMuseus.innerHTML += `<option value='${museu.idMuseu}'>${museu.nome}</option>`;
+                        listaMuseus.innerHTML += `<option value='${museu.idMuseu}'>${museu.nomeMuseu}</option>`;
                     });
                 });
             })

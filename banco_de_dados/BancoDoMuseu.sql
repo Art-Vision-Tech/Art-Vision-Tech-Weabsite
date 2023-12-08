@@ -39,6 +39,9 @@ foreign key (FkMuseu)
 references museu(idMuseu)
 ) auto_increment = 1000;
 
+ALTER TABLE Funcionario ADD COLUMN dataRegistro DATE DEFAULT (CURRENT_DATE());
+select * from Funcionario;
+ALTER TABLE Funcionario DROP COLUMN dataRegistro;
 insert into Funcionario (nome, cpf, email, senha, fkMuseu) values
 ('Lucas', '00565860860', 'lucas1990@outlook.com', 'Lluquinhas123', 1),
 ('Marcos', '16321760846', 'marcoslindo@gmail.com', 'mar55cosS', 2),

@@ -52,7 +52,7 @@
                             </tr>
                             <tr>
                                 <td><b>Data de registro</b></td>
-                                <td>05-06-23 14:24:36</td>
+                                <td><div id="div_data"></div></td>
                             </tr>
                         </table>
                         <button class="botao" id="botão1" onclick="editar()">Editar Usuário</button>
@@ -139,9 +139,17 @@
 
 </html>
 <script>
+    var dataRegistro = sessionStorage.DATA_REGISTRO;
+    var dataHoraString = dataRegistro;
+
+    var dataHora = new Date(dataHoraString);
+
+
+var dataCerta = dataHora.toLocaleDateString();
     var username = sessionStorage.NOME_USUARIO
     var cnpjMuseu = sessionStorage.MUSEU_CNPJ;
     var museuFuncionario = sessionStorage.MUSEU_FUNCIONARIO;
+    div_data.innerHTML = `${dataCerta}`
     div_museuUser.innerHTML = `${museuFuncionario}`
     div_cnpjUser.innerHTML = `${cnpjMuseu}`
     div_logoSidebar.innerHTML = `<img style="width: 150px; height: 150px;" src="../assets/img/${museuFuncionario}.png" alt="">`
