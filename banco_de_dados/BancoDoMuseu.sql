@@ -64,18 +64,6 @@ insert into Ambiente (nome_ambiente, andar, qtd_acervo, fkMuseu) values
  ('Sala 3', '3º andar', '240', 2),
  ('Sala 3', '3º andar', '240', 3);
  
- create table Sensor (
-idSensor int auto_increment,
-nome varchar(45),
-fkAmbiente int,
-primary key (idSensor, fkAmbiente),
-foreign key (fkAmbiente) references ambiente(idAmbiente)
-);
-
-insert into Sensor (nome, fkAmbiente) VALUES 
-	('DHT11 - 1', 1),
-	('DHT11 - 2', 2),
-	('DHT11 - 3', 3);
 
 create table Registro (
 idRegistro int auto_increment,
@@ -83,22 +71,39 @@ dht11_temperatura float,
 dht11_umidade float,
 dtRegistro timestamp default now(), -- atualizar o horario que foi capturado a temperatura e a umidade (lembrando que para aparecer no gráfico e feita a ligação pela API no vscode)
 fkAmbiente int,
-fkSensor int,
-primary key (idRegistro, fkAmbiente, fkSensor),
-foreign key (fkAmbiente) references ambiente(idAmbiente),
-constraint fkS foreign key Registro(fkSensor) references Sensor(idSensor)
+primary key (idRegistro, fkAmbiente),
+foreign key (fkAmbiente) references ambiente(idAmbiente)
 );
 
-insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (24.7, 20, 1, 1);
-insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (24.7, 27, 1, 1);
-insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (22.5, 31, 1, 1);
-insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (23.2, 35, 1, 1);
-insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (23, 40, 1, 1);
-insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (27, 31, 4, 1);
-insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (26, 32, 4, 1);
-insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (22.2, 38, 1, 1);
-insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (22.2, 22, 2, 1);
-insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente, fkSensor) values (21.9, 29, 2, 2);
+
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (24.7, 20, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (24.7, 27, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (22.5, 31, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (23.2, 35, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (23, 40, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (27, 31, 4);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (26, 32, 4);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (31, 44, 7);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (33, 40, 7);
+
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (21, 46, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (22, 48, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (21, 45, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (27, 51, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (24, 48, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (18, 33, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (18, 33, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (18, 33, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (21, 33, 1);
+
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (18, 30, 7);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (21, 30, 7);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (15, 50, 7);
+
+
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (22.2, 38, 1);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (22.2, 22, 2);
+insert into Registro (dht11_temperatura, dht11_umidade, fkAmbiente) values (21.9, 29, 2);
 
 -- selects
 
@@ -112,7 +117,6 @@ select * from Museu as mus join Endereço as ende
 on mus.FkEndereço = ende.idEndereço;
 
 select * from Registro;
-select * from Sensor;
 select * from Ambiente;
 select * from Museu;
 select * from Funcionario;
@@ -129,6 +133,7 @@ SELECT  dht11_temperatura as temperatura, dht11_umidade as umidade,
                     order by idRegistro desc limit 7; 
                     
 
+ALTER TABLE museu RENAME COLUMN nome TO nomeMuseu;
 
 
 DROP DATABASE museu;
