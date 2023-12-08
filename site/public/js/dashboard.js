@@ -440,7 +440,7 @@ function plotarKpi(resposta, idAmbiente) {
             label: 'IETP',
             data: [dataValueIpOtimoTamanho, dataValueIpOkTamnho, dataValueIpRuimTamanho],
             backgroundColor: [
-                'rgb(3, 166, 60)',
+                'rgb(0, 128, 0)',
                 'rgba(159, 159, 159)',
                 'rgba(250, 0, 0)',
             ],
@@ -476,9 +476,21 @@ function plotarKpi(resposta, idAmbiente) {
                 datalabels: {
                     color: 'rgb(255, 255, 255)',
                     font: {
-                        size: 14
+                        size: 10
+                    },
+                    formatter: (value, context) => {
+                        const percentage = percentages[context.dataIndex];
+                        return `${percentage}%`; // Exibe valor original e porcentagem
                     }
                 },
+                title: {
+                    display: true,
+                    text: 'IP',
+                    color: 'rgb(0, 128, 0)',
+                    font: {
+                        size: 20,
+                    }
+                }
             },
         },
         plugins: [ChartDataLabels]
