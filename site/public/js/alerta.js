@@ -11,7 +11,8 @@ function obterdados(idAmbiente) {
 
           exibirRegistros(resposta, idAmbiente);
           calcularIp(resposta, idAmbiente);
-          cardHistoricoAlerta(resposta, idAmbiente);
+          cardHistoricoAlerta(resposta, idAmbiente)
+
         });
       } else {
         console.error(
@@ -42,7 +43,7 @@ function calcularIp(resposta, idAmbiente) {
 
   if (ip >= limites_ip.bom) {
     classe_status = "status-card bom";
-  } else if (ip >= limites_ip.normal && ip <= limites_ip.bom) {
+  } else if (ip > limites_ip.normal && ip < limites_ip.bom) {
     classe_status = "status-card normal";
   } else {
     classe_status = "status-card ruim";
@@ -62,19 +63,19 @@ function exibirRegistros(resposta, idAmbiente) {
       (95220 - 134.9 * umd) / (8.314 * (temp + 273.15)) + 0.0284 * umd - 28.023
     ) / 365;
 
-  if (temp > 24 || temp < 20) {
+  if (temp > 24 || temp < 18) {
     classe_temperatura = "alerta";
   } else {
     classe_temperatura = "ok";
   }
 
-  if (umd > 60 || umd < 45) {
+  if (umd > 55 || umd < 45) {
     classe_umd = "alerta";
   } else {
     classe_umd = "ok";
   }
 
-  if (ip >= 70) {
+  if (ip > 70) {
     classe_ip = "ok";
   } else if (ip >= 45 && ip <= 70) {
     classe_ip = "ideal";
@@ -121,7 +122,7 @@ function cardHistoricoAlerta(resposta, idAmbiente) {
 
   for (i = 0; i < resposta.length; i++) {
     var registro = resposta[i];
-    if (registro.temperatura > 24 || registro.temperatura < 20) {
+    if (registro.temperatura > 24 || registro.temperatura < 18) {
       listaHorario.push(registro.momento_grafico);
       listaAlertasTemp.push(registro.temperatura);
       var alertaAtual = listaAlertasTemp[i];
@@ -132,50 +133,52 @@ function cardHistoricoAlerta(resposta, idAmbiente) {
       if (alertaAtual > 24) {
         alertaAtual -= 24;
         textoDiferenca = `“+${alertaAtual}º”`;
-      } else if (alertaAtual < 20) {
-        alertaAtual -= 20;
+      } else if (alertaAtual < 18) {
+        alertaAtual -= 18;
         textoDiferenca = `“${alertaAtual}º”`;
       }
 
-        elementoHistoricoAlerta.innerHTML += `
-                <div class="log-mensagem">
-                    <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
-                        <p> Nível de temperatura registrado ${textoDiferenca} do que esperado
-                        (${horarioAtual})
-                    </p>
-                </div>`;
+
+      setTimeout(() => elementoHistoricoAlerta.innerHTML += `
+      <div class="log-mensagem">
+        <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
+          <p> Nível de temperatura registrado ${textoDiferenca} do que esperado
+              (${horarioAtual})
+          </p>
+      </div>`, 5000) 
+
 
     }
-    
-    if (registro.umidade > 60 || registro.umidade < 45) {
-         listaHorario.push(registro.momento_grafico);
-         listaAlertasUmd.push(registro.umidade);
-         var alertaAtual = listaAlertasUmd[i];
-         var horarioAtual = listaHorario[i];
 
-         var textoDiferenca = ``
+    if (registro.umidade > 55 || registro.umidade < 45) {
+      listaHorario.push(registro.momento_grafico);
+      listaAlertasUmd.push(registro.umidade);
+      var alertaAtualUmd = listaAlertasUmd[i];
+      var horarioAtualUmd = listaHorario[i];
 
-         if (alertaAtual > 60) {
-             alertaAtual -= 60
-             textoDiferenca = `“+${alertaAtual}º”`
-         } else if (alertaAtual < 45) {
-             alertaAtual -= 45
-             textoDiferenca = `“${alertaAtual}º”`
-         }
+      var textoDiferencaUmd = ``
 
-         elementoHistoricoAlerta.innerHTML += `
-         <div class="log-mensagem">
-             <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
-                 <p> Nível de umidade registrado ${textoDiferenca} do que esperado
-                 (${horarioAtual})
-             </p>
-         </div>`
-     }
+      if (alertaAtual > 55) {
+        alertaAtualUmd -= 55
+        textoDiferencaUmd = `“+${alertaAtualUmd}º”`
+      } else if (alertaAtualUmd < 45) {
+        alertaAtualUmd -= 45
+        textoDiferencaUmd = `“${alertaAtualUmd}º”`
+      }
+
+      setTimeout(() => elementoHistoricoAlerta.innerHTML += `
+      <div class="log-mensagem">
+          <i class="fa-solid fa-circle-exclamation" style="color: #ff1414;"></i>
+              <p> Nível de umidade registrado ${textoDiferencaUmd} do que esperado
+              (${horarioAtualUmd})
+          </p>
+      </div>`, 7500) 
+    }
   }
 
 
 
-  console.log("indice",indice)
+  console.log("indice", indice)
   if (indice && indice >= 10) {
     elementoHistoricoAlerta.innerHTML = ``;
     indice = 0;

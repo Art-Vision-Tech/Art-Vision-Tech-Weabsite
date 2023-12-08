@@ -41,7 +41,45 @@
             <!-- Cabeçalho da div conteúdo, este elemento é opcional -->
             <div class="container-main-content">
                 <h2> Sensores </h2>
-                <div class="linha" id="area-card">
+                <div class="flex-card-container">
+                    <div class="grid-container" id="area-card">
+                    </div>
+                    <div class="container-analytcs">
+                        <div class="container-analytcs-ip">
+                            <h2> Analytics IP </h2>
+                            <hr>
+                            <div class="box-ip bom"> 
+                                <b> Ótimo </b>
+                                <p> IP > 70 </p>
+                            </div>
+                            <hr>
+                            <div class="box-ip normal"> 
+                                <b> Ideal </b>
+                                <p> 45 <= IP >= 70 </p>
+                            </div>
+                            <hr>
+                            <div class="box-ip ruim"> 
+                                <b> Ruim </b>
+                                <p> IP < 45 </p>  
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="container-analytcs-clima">
+                            <h2> Analytics Clima </h2>
+                            <div class="box-clima">
+                                <div class="div-clima">
+                                    <b> Temperatura </b>
+                                    <p> MIN 18 Cº | MAX 24 Cº</p>
+                                </div>
+                                <hr>
+                                <div class="div-clima">
+                                    <b> Umidade </b>
+                                    <p> MIN 45 % | MAX 55 %</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
